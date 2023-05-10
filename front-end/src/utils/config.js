@@ -4,6 +4,10 @@ import AssignmentIndRoundedIcon from "@mui/icons-material/AssignmentIndRounded";
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import {handleLogoutClick} from "@modules/utils/functions";
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import FitnessCenterRoundedIcon from '@mui/icons-material/FitnessCenterRounded';
+import SportsGymnasticsRoundedIcon from '@mui/icons-material/SportsGymnasticsRounded';
+import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
+
 const dashboardData =  [
     {name: "Dashboard", link: "/dashboard", icon: <DashboardRoundedIcon/>, tooltip: "View Dashboard" },
     {name: "Members", link: "/members", icon: <PeopleRoundedIcon/> , tooltip: "View Members"},
@@ -17,5 +21,13 @@ export const logoutButton = {
     tooltip: "Click to logout",
     icon: <LogoutRoundedIcon/>
 }
+
+export const memberSummary =[
+    {name: "Total Members", icon: <Diversity3OutlinedIcon/>, value: 150, color: "#FFE2E6"},
+    {name: "Monthly Members", icon: <FitnessCenterRoundedIcon/>, value: 20, color: "#DCFCE7"},
+    {name: "Muaythai Students", icon: <SportsGymnasticsRoundedIcon/>, value: 10, color: "#FFF4DE"},
+
+]
+
 
 export default dashboardData;
