@@ -23,11 +23,12 @@ export const logoutButton = {
 }
 
 export const memberSummary =[
-    {name: "Total Members", icon: <Diversity3OutlinedIcon/>, value: 150, color: "#FFE2E6"},
-    {name: "Monthly Members", icon: <FitnessCenterRoundedIcon/>, value: 20, color: "#DCFCE7"},
-    {name: "Muaythai Students", icon: <SportsGymnasticsRoundedIcon/>, value: 10, color: "#FFF4DE"},
+    {name: "Total Members", icon: <Diversity3OutlinedIcon/>, value: 134, color: "#FFE2E6", tooltip: "Number of all registered users"},
+    {name: "Monthly Members", icon: <FitnessCenterRoundedIcon/>, value: 20, color: "#DCFCE7", tooltip: "Number of all active monthly users"},
+    {name: "Muaythai Students", icon: <SportsGymnasticsRoundedIcon/>, value: 10, color: "#FFF4DE", tooltip: "Number of total enrolled monthly students"},
 
 ]
+
 
 
 export default dashboardData;

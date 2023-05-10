@@ -4,6 +4,7 @@ import DashboardLayout from "@modules/components/layouts/DashboardLayout";
 import Head from "next/head";
 import PaperDashboard from "@modules/components/PaperDashboard";
 import {memberSummary} from "@modules/utils/config";
+import MemberSummary from "@modules/components/MemberSummary";
 export default function dashboard(){
     return(
         <DashboardLayout>
@@ -11,23 +12,8 @@ export default function dashboard(){
                 <title>Dashboard</title>
             </Head>
             <Container sx={{display: "flex", flexDirection: "column"}}>
+                <MemberSummary/>
 
-                <Paper  style={{padding:"1rem"}} elevation={24}>
-                    {/*<Typography variant="h6" display="block" gutterBottom> Overview</Typography>*/}
-
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-evenly",
-                        flexWrap: "wrap",
-                        gap: "10px",
-                        margin: "10px",
-                        maxWidth: "1000px",}}>
-                        {memberSummary.map(summary => (
-                            <PaperDashboard key={summary.name} color={summary.color} />
-                        ))}
-                    </div>
-                </Paper>
 
             </Container>
         </DashboardLayout>
