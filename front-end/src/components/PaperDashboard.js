@@ -13,16 +13,23 @@ export default function PaperDashboard(props){
 
     return(
         <Tooltip title={tooltip}>
-        <Paper style={{width: 250, height: 250, borderRadius: "25px", backgroundColor: color, padding: "1rem"}} variant={"outlined"} square >
+        <Paper style={{width:'25%',borderRadius: "25px", backgroundColor: color, padding: "1rem"}} variant={"outlined"} square >
             <List>
 
                     <ListItem key={name} disablePadding sx={{ display: 'block' }}>
 
-                            <ListItemIcon>
+                            <ListItemIcon >
                                 {icon}
                             </ListItemIcon>
-                            <ListItemText primary={value} />
-                            <ListItemText primary={name} />
+                        <ListItemText >
+                            <Typography component="p" variant="h5">
+                                {value}
+                            </Typography>
+
+                        </ListItemText>
+                        <ListItemText>
+                            <Typography color="text.secondary" sx={{ flex: 1 }}> {name}</Typography>
+                        </ListItemText>
 
                     </ListItem>
 
