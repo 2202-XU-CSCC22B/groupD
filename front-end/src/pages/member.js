@@ -5,7 +5,7 @@ import Head from "next/head";
 import PageLayout from "@modules/components/layouts/PageLayout";
 import MembersContent from "@modules/components/members/MembersContent";
 
-export default function Members(){
+export default function Member(){
     return(
         <DashboardLayout>
             <Head>

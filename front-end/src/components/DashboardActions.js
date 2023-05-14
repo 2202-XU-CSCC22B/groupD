@@ -1,7 +1,7 @@
 import * as React from "react";
 import Title from "@modules/components/dashboard/Title";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
+import Link from "next/link";
 import {styled} from "@mui/material/styles";
 import {ButtonBase} from "@mui/material";
 import Box from "@mui/material/Box";
@@ -78,6 +78,7 @@ export default function DashboardActions(props){
     return(
         <React.Fragment>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
+
                     <ImageButton
                         focusRipple
                         key={props.title}
@@ -100,8 +101,10 @@ export default function DashboardActions(props){
                                     pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                                 }}
                             >
+                                <Link href={props.link}  style={{textDecoration: "none", color: "inherit"}}>
+                                    {props.icon} {props.title}
+                                </Link>
 
-                                {props.icon} {props.title}
                                 <ImageMarked className="MuiImageMarked-root" />
                             </Typography>
                         </Image>
@@ -116,5 +119,6 @@ DashboardActions.propTypes = {
     title: PropTypes.string,
     width: PropTypes.string,
     url: PropTypes.string,
-    icon: PropTypes.element
+    icon: PropTypes.element,
+    link: PropTypes.string
 };

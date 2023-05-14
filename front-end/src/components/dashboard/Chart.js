@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recha
 import {Title} from "@mui/icons-material";
 
 
-// Generate Sales Data
+// Generate Transaction Data
 function createData(time, amount) {
     return { time, amount };
 }

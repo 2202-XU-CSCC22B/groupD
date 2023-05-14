@@ -4,7 +4,7 @@ import Head from "next/head";
 import PageLayout from "@modules/components/layouts/PageLayout";
 import SalesContent from "@modules/components/sales/SalesContent";
 
-export default function Sales(){
+export default function Transaction(){
     return(
         <DashboardLayout>
             <Head>
@@ -12,7 +12,7 @@ export default function Sales(){
             </Head>
             {/*<PageLayout>*/}
             {/*    <Container sx={{display: "flex", flexDirection: "column"}}>*/}
-            {/*        <Typography> Sales here here!</Typography>*/}
+            {/*        <Typography> Transaction here here!</Typography>*/}
             {/*        <Button variant="contained">Click to add a transaction!</Button>*/}
             {/*        <Button variant="contained">Click to add view all transactions</Button>*/}
             {/*    </Container>*/}

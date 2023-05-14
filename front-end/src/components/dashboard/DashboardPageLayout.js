@@ -15,7 +15,7 @@ export default function DashboardPageLayout({children}){
                 height: '100vh',
                 overflow: 'auto',
                 width: '100vw',
-                pt: '2rem',
+                p: '1rem',
             }}
         >
             {children}
