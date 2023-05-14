@@ -7,7 +7,7 @@ export default function StaffContent(){
         <Container>
             <Grid container spacing={3} >
                 {/* Chart */}
-                {/* Recent Sales */}
+                {/* Recent Transaction */}
                 {staffAction.map((action, index) => (
                     <Grid item xs={12} md={4} lg={3} style={{margin: "1rem"}}>
 

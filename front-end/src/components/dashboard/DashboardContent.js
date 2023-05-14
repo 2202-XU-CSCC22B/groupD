@@ -24,7 +24,7 @@ export default function DashboardContent(){
                             <MemberSummary/>
                         </Paper>
                     </Grid>
-                    {/* Recent Sales */}
+                    {/* Recent Transaction */}
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper
                             sx={{

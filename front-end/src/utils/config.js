@@ -13,8 +13,8 @@ const fontSize = '50px';
 
 const dashboardData =  [
     {name: "Dashboard", link: "/dashboard", icon: <DashboardRoundedIcon/>, tooltip: "View Dashboard" },
-    {name: "Members", link: "/members", icon: <PeopleRoundedIcon/> , tooltip: "View Members"},
-    {name: "Sales", link: "/sales", icon: <PointOfSaleRoundedIcon/>, tooltip: "View Sales"},
+    {name: "Member", link: "/member", icon: <PeopleRoundedIcon/> , tooltip: "View Member"},
+    {name: "Transaction", link: "/transaction", icon: <PointOfSaleRoundedIcon/>, tooltip: "View Transaction"},
     {name:"Staff", link: "/staff", icon: <AssignmentIndRoundedIcon/>, tooltip: "View Staff"}
 ]
 
@@ -33,18 +33,29 @@ export const memberSummary =[
 ]
 
 export const memberActions=[
-    {title: "New Member", url:"/images/AddAMember.jpg", width:'100%', icon: <AddCircleIcon/>},
-    {title: "All Members", url:"/images/AllMembers.jpg", width:'100%', icon:<TableViewIcon/>}
+    {title: "New Member", url:"/images/AddAMember.jpg", width:'100%', icon: <AddCircleIcon/>, link: "/member/new"},
+
+    {title: "All Member", url:"/images/AllMembers.jpg", width:'100%', icon:<TableViewIcon/>, link: "/member/all"}
 ]
+export const member={
+breadcrumbs:[],
+    name: "Member"
+}
+export const newMemberBreadCrumbs={
+        breadcrumbs: [
+            {name: "Member", link: "/member"}
+        ],
+    name: "New"
+}
 
 export const salesAction=[
-    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/>},
-    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/>}
+    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
+    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
 ]
 
 export const staffAction=[
-    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/>},
-    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/>}
+    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
+    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
 ]
 
 
