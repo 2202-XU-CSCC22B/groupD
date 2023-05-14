@@ -22,6 +22,8 @@ import Link from "next/link";
 import dashboardData from "@modules/utils/config";
 import {Tooltip} from "@mui/material";
 import {logoutButton} from "@modules/utils/config";
+import {Copyright} from "@mui/icons-material";
+import DashboardPageLayout from "@modules/components/dashboard/DashboardPageLayout";
 const drawerWidth = 240;
 
 
@@ -193,9 +195,11 @@ export default function DashboardLayout({children}) {
 
                 </List>
             </Drawer>
-            <Box component="main" sx={{  p: 3 }}>
+            <Box component="main">
                 <DrawerHeader />
-                {children}
+                <DashboardPageLayout>
+                    {children}
+                </DashboardPageLayout>
             </Box>
         </Box>
     );
