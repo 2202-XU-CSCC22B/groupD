@@ -15,7 +15,7 @@ export default function LandingPage() {
 
           <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Box sx={{ marginBottom: 4 }}>
-              <Image src={logo} alt="Unscathed Fitness Gym Logo" width={450} height={450} />
+              <Image src={logo} alt="Unscathed Fitness Gym Logo" width={400} height={400} />
             </Box>
             <Typography variant="h3" sx={{ marginBottom: 4, color: "#000000", textAlign: "center" }}>Welcome to Unscathed Fitness Gym!</Typography>
             <Typography variant="subtitle1" sx={{ marginBottom: 4, color: "#000000", textAlign: "center" }}>We are committed to helping you achieve your fitness goals</Typography>
