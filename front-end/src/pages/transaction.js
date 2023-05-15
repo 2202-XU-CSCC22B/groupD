@@ -2,7 +2,7 @@ import {Button, Container, Typography} from "@mui/material";
 import DashboardLayout from "@modules/components/layouts/DashboardLayout";
 import Head from "next/head";
 import PageLayout from "@modules/components/layouts/PageLayout";
-import SalesContent from "@modules/components/sales/SalesContent";
+import TransactionContent from "@modules/components/transactions/TransactionContent";
 
 export default function Transaction(){
     return(
@@ -17,7 +17,7 @@ export default function Transaction(){
             {/*        <Button variant="contained">Click to add view all transactions</Button>*/}
             {/*    </Container>*/}
             {/*</PageLayout>*/}
-            <SalesContent/>
+            <TransactionContent/>
 
         </DashboardLayout>
 

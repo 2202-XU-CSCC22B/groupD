@@ -9,6 +9,9 @@ import SportsGymnasticsRoundedIcon from '@mui/icons-material/SportsGymnasticsRou
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TableViewIcon from '@mui/icons-material/TableView';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import SportsMmaIcon from '@mui/icons-material/SportsMma';
+import PeopleIcon from '@mui/icons-material/People';
 const fontSize = '50px';
 
 const dashboardData =  [
@@ -48,15 +51,41 @@ export const newMemberBreadCrumbs={
     name: "New"
 }
 
-export const salesAction=[
-    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
-    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
+export const transactionAction=[
+    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/> , link: "/transaction/new"},
+    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/> , link: "/transaction/all"}
 ]
 
 export const staffAction=[
-    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
-    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
+    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/> , link: "/staff/new"},
+    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/> , link: "/staff/all"}
 ]
 
+export const backGroundImage={
+    url: "/images/background.jpg"
+}
 
+
+
+
+
+
+export const PTFunction = () => {
+    alert("PT has been clicked!");
+};
+
+export const MTFunction = () => {
+    alert("MT has been clicked!");
+};
+
+export const CBFunction = () => {
+    alert("CB has been clicked!");
+};
+export const productDescription=[
+    {title:"Personal Training", description: "Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.", function:  PTFunction, icon: <FitnessCenterRoundedIcon/>},
+    {title: "Muay Thai/Boxing", description:"Join our Muay Thai/Boxing classes to meet other gym-goers and challenge yourself with a different workout.", function: MTFunction, icon: <SportsMmaIcon/>},
+    {title:"Community Building", description:"Our experienced trainers will create a customized meal plan to help you achieve your fitness goals.", function: CBFunction, icon: <PeopleIcon />},
+]
 export default dashboardData;
+
+

@@ -1,10 +1,7 @@
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+
 import {Container, Grid, Paper} from "@mui/material";
-import Chart from "@modules/components/dashboard/Chart";
 import Sales from "@modules/components/dashboard/Sales";
 import RecentMembers from "@modules/components/dashboard/RecentMembers";
-import {Copyright} from "@mui/icons-material";
 import MemberSummary from "@modules/components/dashboard/MemberSummary";
 
 export default function DashboardContent(){
