@@ -17,7 +17,7 @@ export default function LoginPage() {
           <Link href={"/dashboard"}>
              <Button variant="contained" sx={{ bgcolor: "#404040", color: "#fff", marginBottom: 2 }}>Log In</Button>
             </Link>
-          <Typography variant="subtitle1" sx={{ color: "#737373", marginBottom: 2 }}>Don't have an account yet?</Typography>
+          <Typography variant="subtitle1" sx={{ color: "#737373", marginBottom: 2 }}>Don't have an account yet change ni?</Typography>
           <Link href={"/signup"} passHref>
             <Button variant="outlined" sx={{ bgcolor: "#fff", color: "#404040" }}>Sign Up</Button>
           </Link>
