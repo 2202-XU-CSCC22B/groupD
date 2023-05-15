@@ -15,7 +15,7 @@ export default function LoginPage() {
           <TextField label="Email" type="email" variant="outlined" sx={{ width: "100%", marginBottom: 2 }} />
           <TextField label="Password" type="password" variant="outlined" sx={{ width: "100%", marginBottom: 4 }} />
           <Link href={"/dashboard"}>
-             <Button variant="contained" sx={{ bgcolor: "#404040", color: "#fff", marginBottom: 2 }}>Log In</Button>
+             <Button variant="contained" sx={{ backgroundColor: "#404040", color: "#fff", marginBottom: 2 }}>Log In</Button>
             </Link>
           <Typography variant="subtitle1" sx={{ color: "#737373", marginBottom: 2 }}>Don't have an account yet?</Typography>
           <Link href={"/signup"} passHref>
