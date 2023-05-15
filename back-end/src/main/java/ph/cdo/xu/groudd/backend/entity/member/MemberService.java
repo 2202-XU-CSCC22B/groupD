@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberService {
 
@@ -9,5 +10,8 @@ public interface MemberService {
 
     boolean doesEmailExists(String email);
 
-    boolean sendEmail(Member member);
+    Optional<Member> getMemberByEmail(String email);
+
+
+    boolean validateMember(String email, Member member);
 }

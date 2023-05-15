@@ -39,4 +39,27 @@ public class EmailService {
         // Send the email
         mailSender.send(message);
     }
+
+
+    public void sendValidationEmail(String recipientEmail, String firstName, String expirationDate) throws MessagingException {
+        // Create a Thymeleaf context and set the variables for dynamic data
+        Context context = new Context();
+        context.setVariable("firstName", firstName);
+        context.setVariable("expirationDate", expirationDate);
+
+        // Render the Thymeleaf email template
+        String emailContent = templateEngine.process("registration_success", context);
+
+        // Set the email subject, recipient, and content
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setSubject("Registration Complete!");
+        helper.setTo(recipientEmail);
+        helper.setText(emailContent, true);
+
+        // Send the email
+        mailSender.send(message);
+    }
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.utils.EmailService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member add(Member member) {
+
         return memberRepository.saveAndFlush(member);
     }
 
@@ -32,15 +34,21 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public boolean sendEmail(Member member) {
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom("noreply@unsathedfitness.com");
-//        message.setTo(member.getEmail());
-//        message.setSubject("Verification");
-//        message.setText("YOu have registered");
-//        javaMailSender.send(message);
-//        System.out.println("Email sent!");
-
-        return true;
+    public Optional<Member> getMemberByEmail(String email) {
+        return memberRepository.findMemberByEmail(email);
     }
+
+    @Override
+    public boolean validateMember(String email, Member member) {
+        Optional<Member> optionalMember = memberRepository.findMemberByEmail(email);
+        if(optionalMember.isPresent()){
+            member.setActive(true);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 }
