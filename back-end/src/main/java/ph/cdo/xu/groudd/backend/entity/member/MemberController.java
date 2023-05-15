@@ -1,5 +1,6 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.CustomResponseBody;
 import ph.cdo.xu.groudd.backend.exceptions.ApiError;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
+import ph.cdo.xu.groudd.backend.utils.EmailService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin
 public class MemberController {
-
+    private EmailService emailService;
 
     private MemberService memberService;
 
@@ -28,8 +30,8 @@ public class MemberController {
         return "Hello world!";
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.ALL_VALUE)
-    public ResponseEntity<CustomResponseBody> newMember(@RequestBody Member member, BindingResult bindingResult){
+    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomResponseBody> newMember(@RequestBody Member member, BindingResult bindingResult) throws MessagingException {
         String email = member.getEmail();
         if(memberService.doesEmailExists(email)){
             System.out.println("Result : " + memberService.doesEmailExists(email));
@@ -52,7 +54,7 @@ public class MemberController {
         }
                 Member temp = memberService.add(member);
 
-
+                emailService.sendRegistrationEmail(temp.getEmail(), temp.getFirstName());
 
             return ResponseEntity.ok(CustomResponseBody.builder().message(temp.getFirstName() + " has been registered successfully").build());
 

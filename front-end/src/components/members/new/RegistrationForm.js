@@ -49,9 +49,6 @@ const RegistrationForm = () => {
                 return response.json();
             } else {
                 return response.json().then(errorData => {
-                    if(Array.isArray(errorData)){
-                        console.log("This is an array of errors!")
-                    }
                     throw new Error(errorData.message || 'Request failed');
                 });
             }

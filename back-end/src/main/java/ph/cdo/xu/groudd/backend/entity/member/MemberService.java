@@ -8,4 +8,6 @@ public interface MemberService {
     List<Member> allMembers();
 
     boolean doesEmailExists(String email);
+
+    boolean sendEmail(Member member);
 }

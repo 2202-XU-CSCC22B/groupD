@@ -28,18 +28,6 @@ public class EmailAlreadyExistsExceptionHandler extends ResponseEntityExceptionH
 
 
 
-//    @ExceptionHandler(AnotherCustomException.class)
-//    public ResponseEntity<Object> handleAnotherCustomException(
-//            AnotherCustomException ex, WebRequest request) {
-//        // Handle AnotherCustomException
-//        String errorMessage = ex.getMessage();
-//        String type = "Another Custom Exception";
-//        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, errorMessage, type);
-//        return handleExceptionInternal(ex, apiError,
-//                new HttpHeaders(), apiError.getStatus(), request);
-//    }
-
-    // ... Add more @ExceptionHandler methods for other exception types
 
 }
 
