@@ -22,7 +22,6 @@ import Box from "@mui/material/Box";
 export default function NewMembersContent(){
     return(
         <Container>
-            <GoBackButton link={"/member"}/>
 
             <Grid container spacing={3}>
 

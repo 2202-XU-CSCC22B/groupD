@@ -139,7 +139,7 @@ export default function DashboardLayout({children}) {
                     {dashboardData.map((page, index) => (
                     <Tooltip title={page.tooltip}>
                         <ListItem key={page.name} disablePadding sx={{ display: 'block' }}>
-                            <Link href={page.link}  style={{textDecoration: 'none', color: 'black'}}>
+                            <Link href={page.link}  passHref style={{textDecoration: 'none', color: 'black'}}>
                                 <ListItemButton
                                     sx={{
                                         minHeight: 48,

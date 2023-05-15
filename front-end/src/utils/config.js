@@ -48,14 +48,14 @@ export const newMemberBreadCrumbs={
     name: "New"
 }
 
-export const salesAction=[
-    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
-    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
+export const transactionAction=[
+    {title: "New Transaction", url:"/images/AddSale.png", width:'100%', icon: <AddCircleIcon/> , link: "/transaction/new"},
+    {title: "All Transactions", url:"/images/ViewTransactions.jpg", width:'100%', icon:<TableViewIcon/> , link: "/transaction/all"}
 ]
 
 export const staffAction=[
-    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/> , link: "/member/new"},
-    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/> , link: "/member/all"}
+    {title: "New Staff", url:"/images/Staff.jpg", width:'100%', icon: <AddCircleIcon/> , link: "/staff/new"},
+    {title: "All Staff", url:"/images/ViewAllStaff.jpg", width:'100%', icon:<TableViewIcon/> , link: "/staff/all"}
 ]
 
 

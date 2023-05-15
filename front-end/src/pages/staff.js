@@ -4,7 +4,7 @@ import Head from "next/head";
 import PageLayout from "@modules/components/layouts/PageLayout";
 import StaffContent from "@modules/components/staff/StaffContent";
 
-export default function Sales(){
+export default function Staff(){
     return(
         <DashboardLayout>
             <Head>

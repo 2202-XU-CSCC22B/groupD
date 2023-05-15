@@ -39,7 +39,7 @@ export default function PaperDashboard(props){
     )
 }
 
-PaperDashboard.PropTypes={
+PaperDashboard.propTypes={
     color : PropTypes.string.isRequired,
     tooltip: PropTypes.string.isRequired,
     icon: PropTypes.element.isRequired,
