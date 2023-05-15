@@ -10,7 +10,7 @@ export default function NewTransaction(){
                 <title>New Transactions</title>
             </Head>
             <GoBackButton link={"/transaction"}/>
-            <Typography>All Transactions</Typography>
+            <Typography>New Transaction</Typography>
         </DashboardLayout>
     )
 }
