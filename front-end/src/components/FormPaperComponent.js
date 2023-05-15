@@ -4,7 +4,7 @@ import {Paper, Typography} from "@mui/material";
 function FormPaperComponent(props) {
     const styles = {
         root: {
-            padding: '16px',
+            padding: '2rem',
         },
         mediaQuery: {
             '@media (max-width: 600px)': {
