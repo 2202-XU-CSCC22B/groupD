@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { TextField, Grid, Button, Typography } from '@mui/material';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from 'axios';
-import {postApi} from "@modules/utils/api";
 const RegistrationForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -15,65 +13,25 @@ const RegistrationForm = () => {
     const [birthDay, setBirthday] = useState(new Date());
     const [startDate, setStartDate] = useState(new Date());
     const [occupation, setOccupation] = useState('');
-    //errors
-
-    const [emailError, setEmailError] = useState('');
+    const currentDate = new Date();
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-
-
-
-        const data = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            brgy: brgy,
-            weight: weight,
-            height: height,
-            contactNumber: contactNumber,
-            occupation: occupation,
-            birthday: birthDay,
-            startDate: startDate
-        };
-
-        fetch("http://localhost:8080/member/new", {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify(data),
-        }).then(response => {
-            console.log('Response status code:', response.status);
-            if (response.ok) {
-                return response.json();
-            } else {
-                return response.json().then(errorData => {
-                    if(Array.isArray(errorData)){
-                        console.log("This is an array of errors!")
-                    }
-                    throw new Error(errorData.message || 'Request failed');
-                });
-            }
-        })
-            .then(data => {
-                console.log('Response data:', data);
-                alert(data.message);
-            })
-            .catch(error => {
-                console.log(error)
-                setEmailError(error.message);
-                alert(error.message);
-                console.log('Error:', error);
-            });
-
+        // Perform form submission logic here
+        // You can access the form data using the state variables
+        console.log({
+            firstName,
+            lastName,
+            email,
+            weight,
+            height,
+            brgy,
+            contactNumber,
+            birthday,
+        });
     };
-    // Function to create an account
-
-
 
     return (
-
 
             <Grid container spacing={2}>
                 <Grid item xs={6} sm={6}>
@@ -96,8 +54,6 @@ const RegistrationForm = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
-                        error={emailError !== ''}
-                        helperText={emailError}
                         label="Email Address"
                         type="email"
                         fullWidth
@@ -175,7 +131,7 @@ const RegistrationForm = () => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" onClick={(e) => handleFormSubmit(e)}>
+                    <Button type="submit" variant="contained" color="primary">
                         Submit
                     </Button>
                 </Grid>
