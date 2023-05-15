@@ -26,6 +26,7 @@ export default function LoginPage() {
       <Card sx={{ backgroundColor: "#f2f2f2", height: "100vh", width: "50vw", display: "flex", justifyContent: "center", alignItems: "center", p:5 }}>
         <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center", p: 4}}>
           <Typography variant="h4" sx={{ color: "#404040", marginBottom: 2 }}> User Login</Typography>
+          
           <TextField label="Email" type="email" variant="outlined" sx={{ width: "100%", marginBottom: 2 }} />
           <TextField label="Password" type="password" variant="outlined" sx={{ width: "100%", marginBottom: 4 }} />
           <Link href={"/dashboard"} passHref style={{textDecoration: 'none', color: 'black'}}>
