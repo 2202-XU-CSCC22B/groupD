@@ -94,7 +94,7 @@ function ResponsiveAppBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" style={{padding: "2rem", display: "flex", justifyContent: "center", width: "100vw", backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
         <Toolbar />
         {props.children}
       </Box>
