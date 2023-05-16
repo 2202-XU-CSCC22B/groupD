@@ -12,6 +12,8 @@ import TableViewIcon from '@mui/icons-material/TableView';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SportsMmaIcon from '@mui/icons-material/SportsMma';
 import PeopleIcon from '@mui/icons-material/People';
+
+
 const fontSize = '50px';
 
 const dashboardData =  [
@@ -86,6 +88,27 @@ export const productDescription=[
     {title: "Muay Thai/Boxing", description:"Join our Muay Thai/Boxing classes to meet other gym-goers and challenge yourself with a different workout.", function: MTFunction, icon: <SportsMmaIcon/>},
     {title:"Community Building", description:"Our experienced trainers will create a customized meal plan to help you achieve your fitness goals.", function: CBFunction, icon: <PeopleIcon />},
 ]
+
+
+
+
+export const allMembersColumnDef = [
+    {field: "id", headerName: "ID", width: 70},
+    { field: 'firstName', headerName: 'First name', width: 130},
+    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'membershipStatus', headerName: 'Status', width: 130 },
+    { field: 'email', headerName: 'Email', width: 260 },
+]
+
+
+
+
+
+
+
+
+
+
 export default dashboardData;
 
 

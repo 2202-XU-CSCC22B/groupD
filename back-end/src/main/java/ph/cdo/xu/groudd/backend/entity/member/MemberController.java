@@ -58,6 +58,7 @@ public class MemberController {
         }
 //
         member.setActive(false);
+        member.setMembershipStatus(MembershipStatus.UNVERIFIED);
                 Member temp = memberService.add(member);
                 emailService.sendRegistrationEmail(temp.getEmail(), temp.getFirstName());
 
@@ -77,6 +78,9 @@ public class MemberController {
         }
 
         member.setExpirationDate(dateService.addMonthsToDate(member.getStartDate(), 12));
+        member.setMembershipStatus(MembershipStatus.ACTIVE);
+
+
         memberService.validateMember(email, member);
         emailService.sendValidationEmail(member.getEmail(), member.getFirstName(), new DateTime(member.getExpirationDate()).toString("MM DD YYYY"));
 

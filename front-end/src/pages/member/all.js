@@ -3,6 +3,7 @@ import DashboardLayout from "@modules/components/layouts/DashboardLayout";
 
 import GoBackButton from "@modules/components/GoBackButton";
 import Head from "next/head";
+import AllMembersContent from "@modules/components/members/new/AllMembersContent";
 
 export default function AllMembers(){
     return(
@@ -11,7 +12,7 @@ export default function AllMembers(){
                 <title>All Members</title>
             </Head>
             <GoBackButton link={"/member"}/>
-            <Typography>All members</Typography>
+            <AllMembersContent/>
         </DashboardLayout>
     )
 }

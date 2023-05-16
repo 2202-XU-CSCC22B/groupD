@@ -14,7 +14,7 @@ export default function dashboard(){
             </Head>
 
                 <DashboardContent/>
-
+            
 
      
         </DashboardLayout>
