@@ -36,11 +36,13 @@ function ResponsiveAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
+           <Link href={`/#${item}`}>
           <ListItem  key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -98,7 +100,14 @@ function ResponsiveAppBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" style={{padding: "2rem", display: "flex", justifyContent: "center", width: "100vw", backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+      <Box
+        component="main"
+        sx={{
+          justifyContent: "center",
+          width: "100%",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+        }}
+      >
         <Toolbar />
         {props.children}
       </Box>

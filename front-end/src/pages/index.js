@@ -80,7 +80,7 @@ export default function LandingPage() {
         </Container>
 </div>
 
-<div id = "contact" style = {{height:"100vh"}}>
+<div id = "contact" style = {{height:"100vh", backgroundColor: "red"}}>
   <Container
     sx = {{
       display:"flex",
