@@ -57,7 +57,7 @@ export default function AllMemberTable(){
 
         fetchData()
     }, []); // The empty dependency array ensures the effect runs only once on component mount
-    
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
