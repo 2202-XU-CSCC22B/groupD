@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.thymeleaf.TemplateEngine;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
+import ph.cdo.xu.groudd.backend.entity.member.MembershipStatus;
 
 import java.util.Date;
 import java.util.Properties;
@@ -40,6 +41,7 @@ public class ApplicationConfig {
                String contactNumber = faker.phoneNumber().cellPhone();
                String occupation = faker.job().title();
 
+
                //For Birthday
                 Date birthday = getRandomDate(1980);
                 Date startDate = getRandomDate(2022);
@@ -55,6 +57,7 @@ public class ApplicationConfig {
                                 .occupation(occupation)
                                 .birthday(birthday)
                                 .startDate(startDate)
+                                .membershipStatus(MembershipStatus.values()[ran.nextInt(MembershipStatus.values().length)])
                         .build());
             }
         };
