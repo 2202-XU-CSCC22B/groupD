@@ -4,6 +4,13 @@
 @tailwind utilities;
 /* added tailwindcss -b */
 
+/* registration form input */
+@layer components {
+  .reg-form input {
+    @apply bg-white border py-1 shrink min-w-0 indent-2 outline-none;
+  }
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
