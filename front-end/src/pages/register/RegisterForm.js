@@ -35,14 +35,20 @@ const RegisterForm = () => {
       const response = await axios.post(process.env.post_add_member_api, data);
       // add logic
       console.log(response);
-      if (response.data.status === "CONFLICT") {
+      if(response.status === 200){
+        alert("registration complete")
+        reset();
+      }if (response.data.status === "CONFLICT") {
+        alert(response.data.message);
         setConflict(response.data.message);
+
       }
     } catch (error) {
+      alert(error.message);
       console.log(error);
     }
 
-    reset();
+
   };
 
   // input css in globals.css
