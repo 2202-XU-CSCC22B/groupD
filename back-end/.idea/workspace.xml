@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -87,10 +88,15 @@
       <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
       <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.MemberTest" />
       <option name="TEST_OBJECT" value="class" />
+
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="MemberTest.shouldReturnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back-end" />
       <extension name="coverage">
@@ -103,10 +109,15 @@
       <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.MemberTest" />
       <option name="METHOD_NAME" value="shouldReturnFalse" />
       <option name="TEST_OBJECT" value="method" />
+
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="back-end [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -177,5 +188,7 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+
+
   </component>
 </project>
