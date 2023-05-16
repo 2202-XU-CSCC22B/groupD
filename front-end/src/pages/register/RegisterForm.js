@@ -17,10 +17,13 @@ const schema = z.object({
 });
 
 const RegisterForm = () => {
+  const [conflict, setConflict] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -31,9 +34,14 @@ const RegisterForm = () => {
       const response = await axios.post(process.env.post_add_member_api, data);
       // add logic
       console.log(response);
+      if (response.data.status === "CONFLICT") {
+        setConflict(response.data.message);
+      }
     } catch (error) {
       console.log(error);
     }
+
+    reset();
   };
 
   // input css in globals.css
@@ -189,9 +197,10 @@ const RegisterForm = () => {
               <small
                 className={` text-rose-600 ${
                   errors.email ? "visible" : "invisible"
-                }`}
+                } ${conflict && "visible"}`}
               >
                 {errors.email ? errors.email.message : "."}
+                {conflict && conflict}
               </small>
             </div>
 
