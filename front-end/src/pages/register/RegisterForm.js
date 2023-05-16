@@ -9,20 +9,11 @@ const schema = z.object({
   lastName: z.string().nonempty("Last name is required"),
   email: z.string().nonempty("Email is required").email(),
   gender: z.nativeEnum(["Male", "Female", "Others"]),
-  weight: z
-    .number({
-      invalid_type_error: "Age is required",
-    })
-    .max(400)
-    .optional(),
-  height: z
-    .number({
-      invalid_type_error: "Height is required",
-    })
-    .optional(),
+  weight: z.coerce.number(),
+  height: z.coerce.number(),
   phone: z.string().optional(),
   address: z.string().optional(),
-  birthday: z.string().nonempty("Birthday is required").datetime(),
+  birthday: z.coerce.date(),
 });
 
 const RegisterForm = () => {
@@ -35,14 +26,19 @@ const RegisterForm = () => {
   });
 
   // POST function here
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const response = await axios.post(process.env.post_add_member_api, data);
+    console.log(response);
+    console.log(response.data);
+  };
 
   // input css in globals.css
   const inputGroupClassName = "reg-form flex flex-col gap-1 text-gray-900";
 
   // email sent state (important: update for correct boolean)
-  const [isSent, setIsSent] = useState(true);
+  const [isSent, setIsSent] = useState(false);
 
+  console.log(errors);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -163,7 +159,7 @@ const RegisterForm = () => {
               />
               <small
                 className={` text-rose-600 ${
-                  errors.lastName ? "visible" : "invisible"
+                  errors.birthday ? "visible" : "invisible"
                 }`}
               >
                 {errors.birthday ? errors.birthday.message : "."}
