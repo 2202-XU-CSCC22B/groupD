@@ -11,11 +11,16 @@ import ProductDescription from "@modules/components/landingPage/ProductDescripti
 export default function LandingPage() {
   return (
     <ResponsiveAppBar>
+      <div style = {{display: "flex", flexDirection: "column"}}>
+      <div id ="home" style = {{backgroundColor:"blue", height: "100vh"}}>
       <Container
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor:"blue",
+          height:"100vh",
+          marginTop:15
         }}
       >
         <Box sx={{ marginBottom: 4 }}>
@@ -46,6 +51,19 @@ export default function LandingPage() {
             Get started
           </Button>
         </Link>
+</Container>
+</div>
+        <div id = "about" style = {{backgroundColor: "red", height: "100vh" }} >
+          
+        <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100%",
+          justifyContent:"center"
+        }}
+      >
 
         <Grid container spacing={2} justifyContent="center">
           {productDescription.map((product, index) => (
@@ -57,9 +75,34 @@ export default function LandingPage() {
                 icon={product.icon}
               />
             </Grid>
+          
           ))}
         </Grid>
-      </Container>
+        </Container>
+</div>
+
+<div id = "contact" style = {{backgroundColor:"yellow", height:"100vh"}}>
+  <Container
+    sx = {{
+      display:"flex",
+      flexDirection: "column",
+      alignItems: "flexstart",
+      marginTop:10
+    }}>
+
+<Typography
+          variant="h3"
+          sx={{ marginBottom: 4, color: "#000000", textAlign: "center" }}
+        >
+          Contact information should go here
+
+        </Typography>
+
+  </Container>
+
+</div>
+
+</div>
     </ResponsiveAppBar>
   );
 }

@@ -14,9 +14,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Link from 'next/link';
+
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ["home", "about", "contact"];
 
 function ResponsiveAppBar(props) {
   const { window, children } = props;
@@ -34,7 +36,7 @@ function ResponsiveAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem  key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
@@ -70,9 +72,11 @@ function ResponsiveAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
+             <Link href={`/#${item}`}>
               <Button key={item} sx={{ color: '#F2F2F2' }}>
                 {item}
               </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
