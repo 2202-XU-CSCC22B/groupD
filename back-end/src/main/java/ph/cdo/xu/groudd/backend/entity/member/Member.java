@@ -46,4 +46,23 @@ public class Member {
     private Date expirationDate;
     private boolean isActive;
     private MembershipStatus membershipStatus;
+
+
+
+    public void copyFields(Member source) {
+        this.id = source.getId();
+        this.firstName = source.getFirstName();
+        this.lastName = source.getLastName();
+        this.email = source.getEmail();
+        this.address = source.getAddress();
+        this.weight = source.getWeight();
+        this.height = source.getHeight();
+        this.phone = source.getPhone();
+        this.occupation = source.getOccupation();
+        this.birthday = source.getBirthday();
+        this.startDate = source.getStartDate();
+        this.expirationDate = source.getExpirationDate();
+        this.isActive = source.isActive();
+        this.membershipStatus = source.getMembershipStatus();
+    }
 }

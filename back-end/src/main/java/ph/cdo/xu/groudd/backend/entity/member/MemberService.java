@@ -15,5 +15,5 @@ public interface MemberService {
     Optional<Member> getMemberByEmail(String email);
 
 
-    boolean validateMember(String email, Member member);
+    Member validateMember(String email);
 }

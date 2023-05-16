@@ -69,19 +69,9 @@ public class MemberController {
 
     @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email) throws MessagingException {
-        Optional<Member> optionalMember = memberService.getMemberByEmail(email);
-        Member member;
-        if (optionalMember.isPresent()) {
-            member = optionalMember.get();
-        } else {
-            throw new RuntimeException("Email not found");
-        }
-
-        member.setExpirationDate(dateService.addMonthsToDate(member.getStartDate(), 12));
-        member.setMembershipStatus(MembershipStatus.ACTIVE);
 
 
-        memberService.validateMember(email, member);
+        Member member =   memberService.validateMember(email);
         emailService.sendValidationEmail(member.getEmail(), member.getFirstName(), new DateTime(member.getExpirationDate()).toString("MM DD YYYY"));
 
         String message = member.getFirstName() + " has been validated as a member";
@@ -89,8 +79,12 @@ public class MemberController {
         return ResponseEntity.ok(responseBody);
     }
 
-    @PutMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody Member member) throws MessagingException {
+        Member temp = memberService.update(email, member);
+
+        String message = temp.getFirstName() + " has been updated!";
+        CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
 
         return ResponseEntity.ok(responseBody);
     }
