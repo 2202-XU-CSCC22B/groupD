@@ -27,10 +27,18 @@ const ActionButton = () => {
 }
 export default function AllMemberTable(){
     const [row, setRow] = useState(null);
+    const [selectedRow, setSelectedRow] = useState(null);
     const column = allMembersColumnDef;
     const [isLoading, setIsLoading] = useState(false);
 
+    const onRowDoubleClick = (row, event) =>{
+        event.preventDefault();
+        console.log(row.row)
 
+        setSelectedRow(row.row);
+
+        alert(row.row.firstName)
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -39,7 +47,7 @@ export default function AllMemberTable(){
                 const jsonData = await response.json();
                 setRow(jsonData);
                 setIsLoading(false);
-
+                setSelectedRow(jsonData[0])
                 setRow(updatedRow);
             } catch (error) {
                 console.error('Error fetching row:', error);
@@ -49,7 +57,7 @@ export default function AllMemberTable(){
 
         fetchData()
     }, []); // The empty dependency array ensures the effect runs only once on component mount
-
+    
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -77,9 +85,10 @@ export default function AllMemberTable(){
                             },
                         }}
                         pageSizeOptions={[10, 20]}
+                        onRowDoubleClick={(row, event) => onRowDoubleClick(row, event)}
                     />
                 </div>
-                <MoreInformation data={row[0]}/>
+                <MoreInformation data={selectedRow}/>
             </div>
 
         </Paper>
