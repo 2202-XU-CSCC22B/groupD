@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
 import backgroundImg from "../../public/images/background.jpg";
-import logo from "../../public/images/logo.png";
+import logo2 from "../../public/images/logo2.png";
 import { backGroundImage } from "@modules/utils/config";
 import { productDescription } from "@modules/utils/config";
 import ProductDescription from "@modules/components/landingPage/ProductDescription";
@@ -12,20 +12,19 @@ export default function LandingPage() {
   return (
     <ResponsiveAppBar>
       <div style = {{display: "flex", flexDirection: "column"}}>
-      <div id ="home" style = {{backgroundColor:"blue", height: "100vh"}}>
+      <div id ="home" style = {{height: "100vh"}}>
       <Container
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          backgroundColor:"blue",
           height:"100vh",
           marginTop:15
         }}
       >
         <Box sx={{ marginBottom: 4 }}>
           <Image
-            src={logo}
+            src={logo2}
             alt="Unscathed Fitness Gym Logo"
             width={400}
             height={400}
@@ -53,7 +52,7 @@ export default function LandingPage() {
         </Link>
 </Container>
 </div>
-        <div id = "about" style = {{backgroundColor: "red", height: "100vh" }} >
+        <div id = "about" style = {{height: "100vh" }} >
           
         <Container
         sx={{
@@ -81,7 +80,7 @@ export default function LandingPage() {
         </Container>
 </div>
 
-<div id = "contact" style = {{backgroundColor:"yellow", height:"100vh"}}>
+<div id = "contact" style = {{height:"100vh"}}>
   <Container
     sx = {{
       display:"flex",
