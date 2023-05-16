@@ -4,6 +4,9 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-      companyName: 'Unscathed Fitness Gym'
+      companyName: 'Unscathed Fitness Gym',
+
+      post_add_member_api : "http://localhost:8080/member/new",
+      post_get_members_api : "http://localhost:8080/member/all"
   }
 };

@@ -14,9 +14,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Link from 'next/link';
+
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ["home", "about", "contact"];
 
 function ResponsiveAppBar(props) {
   const { window, children } = props;
@@ -34,11 +36,13 @@ function ResponsiveAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+           <Link href={`/#${item}`}>
+          <ListItem  key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -70,9 +74,11 @@ function ResponsiveAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
+             <Link href={`/#${item}`}>
               <Button key={item} sx={{ color: '#F2F2F2' }}>
                 {item}
               </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
@@ -94,7 +100,14 @@ function ResponsiveAppBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" style={{padding: "2rem", display: "flex", justifyContent: "center", width: "100vw", backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+      <Box
+        component="main"
+        sx={{
+          justifyContent: "center",
+          width: "100%",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+        }}
+      >
         <Toolbar />
         {props.children}
       </Box>

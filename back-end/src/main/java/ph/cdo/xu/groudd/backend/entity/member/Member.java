@@ -45,4 +45,5 @@ public class Member {
     private Date startDate;
     private Date expirationDate;
     private boolean isActive;
+    private MembershipStatus membershipStatus;
 }
