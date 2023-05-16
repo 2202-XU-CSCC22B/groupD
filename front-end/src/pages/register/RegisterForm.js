@@ -27,11 +27,13 @@ const RegisterForm = () => {
 
   // POST function here
   const onSubmit = async (data) => {
-    const response = await axios.post(process.env.post_add_member_api, data);
-
-    // add logic response.status logic here
-    console.log(response);
-    console.log(response.data);
+    try {
+      const response = await axios.post(process.env.post_add_member_api, data);
+      // add logic
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // input css in globals.css
