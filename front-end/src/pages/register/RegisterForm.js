@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import axios from "axios";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name is required"),
