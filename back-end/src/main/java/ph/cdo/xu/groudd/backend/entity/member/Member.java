@@ -41,6 +41,7 @@ public class Member {
     private String phone;
     private String occupation;
 
+
     private Date birthday;
     private Date startDate;
     private Date expirationDate;
@@ -50,7 +51,6 @@ public class Member {
 
 
     public void copyFields(Member source) {
-        this.id = source.getId();
         this.firstName = source.getFirstName();
         this.lastName = source.getLastName();
         this.email = source.getEmail();
