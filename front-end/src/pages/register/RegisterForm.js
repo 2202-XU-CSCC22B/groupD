@@ -9,17 +9,8 @@ const schema = z.object({
   lastName: z.string().nonempty("Last name is required"),
   email: z.string().nonempty("Email is required").email(),
   gender: z.nativeEnum(["Male", "Female", "Others"]),
-  weight: z
-    .number({
-      invalid_type_error: "Age is required",
-    })
-    .max(400)
-    .optional(),
-  height: z
-    .number({
-      invalid_type_error: "Height is required",
-    })
-    .optional(),
+  weight: z.number().optional(),
+  height: z.number().optional(),
   phone: z.string().optional(),
   address: z.string().optional(),
   birthday: z.string().nonempty("Birthday is required").datetime(),
