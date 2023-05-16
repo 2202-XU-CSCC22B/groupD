@@ -47,13 +47,13 @@ public class ApplicationConfig {
                 Date startDate = getRandomDate(2022);
                 memberService.add(Member
                         .builder()
-                                .brgy(brgy)
+                                .address(brgy)
                                 .firstName(firstName)
                                 .lastName(lastName)
                                 .email(email)
                                 .weight(weight)
                                 .height(height)
-                                .contactNumber(contactNumber)
+                                .phone(contactNumber)
                                 .occupation(occupation)
                                 .birthday(birthday)
                                 .startDate(startDate)

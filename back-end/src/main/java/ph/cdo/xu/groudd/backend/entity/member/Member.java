@@ -35,10 +35,10 @@ public class Member {
     @NotEmpty(message = "Email is required")
     @Email(message = "Email must be valid")
     private String email;
-    private String brgy;
+    private String address;
     private double weight;
     private double height;
-    private String contactNumber;
+    private String phone;
     private String occupation;
 
     private Date birthday;

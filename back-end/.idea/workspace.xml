@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4866f9d5-fe6a-4580-90d8-afd9720bbaec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMemberTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMemberTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

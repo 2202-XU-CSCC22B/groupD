@@ -89,6 +89,12 @@ public class MemberController {
         return ResponseEntity.ok(responseBody);
     }
 
+    @PutMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody Member member) throws MessagingException {
+
+        return ResponseEntity.ok(responseBody);
+    }
+
 
 
 

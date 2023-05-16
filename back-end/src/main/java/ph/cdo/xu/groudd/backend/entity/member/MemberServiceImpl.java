@@ -29,6 +29,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public Member update(String email, Member member) {
+
+    }
+
+
+    @Override
         public boolean doesEmailExists(String email) {
         return memberRepository.existsMemberByEmail(email);
     }

@@ -8,6 +8,8 @@ public interface MemberService {
     Member add(Member member);
     List<Member> allMembers();
 
+
+    Member update(String email, Member member);
     boolean doesEmailExists(String email);
 
     Optional<Member> getMemberByEmail(String email);
