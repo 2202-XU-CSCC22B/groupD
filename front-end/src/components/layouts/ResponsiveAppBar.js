@@ -34,8 +34,8 @@ function ResponsiveAppBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <Link href={`/#${item}`}>
+        {navItems.map((item, index) => (
+          <Link key={index} href={`/#${item}`}>
             <ListItem key={item} disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText primary={item} />
@@ -72,8 +72,8 @@ function ResponsiveAppBar(props) {
             Unscathed Fitness Gym
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Link href={`/#${item}`}>
+            {navItems.map((item, index) => (
+              <Link href={`/#${item}`} key={index}>
                 <Button key={item} sx={{ color: "#F2F2F2" }}>
                   {item}
                 </Button>

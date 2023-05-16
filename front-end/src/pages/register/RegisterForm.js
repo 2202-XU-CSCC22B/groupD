@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+
 const schema = z.object({
   firstName: z.string().nonempty("Name is required"),
   lastName: z.string().nonempty("Last name is required"),
@@ -10,17 +11,18 @@ const schema = z.object({
   gender: z.nativeEnum(["Male", "Female", "Others"]),
   weight: z
     .number({
-      invalid_type_error: "Age must be a number",
+      invalid_type_error: "Age is required",
     })
     .max(400)
     .optional(),
   height: z
     .number({
-      invalid_type_error: "Height must be a number",
+      invalid_type_error: "Height is required",
     })
     .optional(),
   phone: z.string().optional(),
   address: z.string().optional(),
+  birthday: z.string().nonempty("Birthday is required").datetime(),
 });
 
 const RegisterForm = () => {
@@ -93,6 +95,7 @@ const RegisterForm = () => {
             <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
               <label htmlFor="weight">Weight</label>
               <input
+                type="number"
                 id="weight"
                 {...register("weight")}
                 className={`${errors?.weight && "border-rose-600"}`}
@@ -109,6 +112,7 @@ const RegisterForm = () => {
             <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
               <label htmlFor="height">Height</label>
               <input
+                type="number"
                 id="height"
                 {...register("height")}
                 className={`${errors?.height && "border-rose-600"}`}
@@ -123,27 +127,48 @@ const RegisterForm = () => {
             </div>
           </div>
 
-          {/* gender */}
-          <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
-            <label htmlFor="gender">Gender *</label>
-            <select
-              className={`h-[34px] bg-white text-gray-900 border indent-1 outline-none ${
-                errors?.gender && "border-rose-600"
-              }`}
-              id="gender"
-              {...register("gender")}
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Others">Others</option>
-            </select>
-            <small
-              className={` text-rose-600 ${
-                errors.gender ? "visible" : "invisible"
-              }`}
-            >
-              {errors.gender ? errors.gender.message : "."}
-            </small>
+          <div className=" flex flex-col min-[400px]:flex-row min-[400px]:gap-4 justify-between">
+            {/* gender */}
+            <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
+              <label htmlFor="gender">Gender *</label>
+              <select
+                className={`h-[34px] bg-white text-gray-900 border indent-1 outline-none ${
+                  errors?.gender && "border-rose-600"
+                }`}
+                id="gender"
+                {...register("gender")}
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+              </select>
+              <small
+                className={` text-rose-600 ${
+                  errors.gender ? "visible" : "invisible"
+                }`}
+              >
+                {errors.gender ? errors.gender.message : "."}
+              </small>
+            </div>
+
+            {/* birthday */}
+            <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
+              <label htmlFor="birthday">Birthday *</label>
+              <input
+                max={new Date().toISOString().split("T")[0]}
+                type="date"
+                id="birthday"
+                {...register("birthday")}
+                className={`${errors?.lastName && "border-rose-600"}`}
+              />
+              <small
+                className={` text-rose-600 ${
+                  errors.lastName ? "visible" : "invisible"
+                }`}
+              >
+                {errors.birthday ? errors.birthday.message : "."}
+              </small>
+            </div>
           </div>
         </div>
 
