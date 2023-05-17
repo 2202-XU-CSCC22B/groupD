@@ -16,7 +16,7 @@ const links = [
 const NavBar = ({ className, ...props }) => {
   return (
     <div
-      className={`${className} fixed  bg-gray-900 w-full py-6 px-4 xl:px-0`}
+      className={`${className} fixed  bg-gray-900 w-full py-6 px-4 xl:px-0 shadow-lg`}
       {...props}
     >
       <MyContainer className=" flex justify-between items-center ">
@@ -29,7 +29,7 @@ const NavBar = ({ className, ...props }) => {
           <Image src={Logo} />
         </Link>
 
-        {/* desktop links */}
+        {/* desktop nav */}
         <div className="hidden sm:flex gap-6">
           {links.map((link, index) => (
             <Link
@@ -42,8 +42,7 @@ const NavBar = ({ className, ...props }) => {
           ))}
         </div>
 
-        {/* mobile hamburger */}
-
+        {/* mobile nav */}
         <Menu>
           {({ open }) => (
             <>
