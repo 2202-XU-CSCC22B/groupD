@@ -12,6 +12,8 @@ import TableViewIcon from "@mui/icons-material/TableView";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import PeopleIcon from "@mui/icons-material/People";
+import { styled } from "@mui/system";
+import { Container } from "@mui/material";
 
 const fontSize = "50px";
 
@@ -154,7 +156,7 @@ export const productDescription = [
     description:
       "Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.",
     function: PTFunction,
-    icon: <FitnessCenterRoundedIcon />,
+    icon: <FitnessCenterIcon />,
   },
   {
     title: "Muay Thai/Boxing",
@@ -171,6 +173,12 @@ export const productDescription = [
     icon: <PeopleIcon />,
   },
 ];
+
+export const StyledContainer = styled(Container)`
+  background-image: url("../../public/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+`;
 
 export const allMembersColumnDef = [
   { field: "id", headerName: "ID", width: 70 },
