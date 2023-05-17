@@ -118,4 +118,11 @@ public class MemberController {
         return ResponseEntity.ok(CustomResponseBody.builder().message(email + " has been deleted!").build());
 
     }
+
+    @GetMapping(value = "/allMembers", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Map<String, Object>> getAllMembers() {
+
+        return memberService.sendMembersToFrontEnd(memberService.allMembers());
+
+    }
 }
