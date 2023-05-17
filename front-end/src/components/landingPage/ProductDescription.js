@@ -11,10 +11,12 @@ export default function ProductDescription(props) {
   };
 
   const CenteredIcon = styled("div")`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-  `;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  line-height: 0;
+`;
+
 
   return (
     <Paper
@@ -30,15 +32,17 @@ export default function ProductDescription(props) {
         <Typography variant="h5" sx={{ marginBottom: 2 }}>
           {props.title}
         </Typography>
-        <CenteredIcon>
-          <Icon>{props.icon}</Icon>
-        </CenteredIcon>
+        <Box sx={{ fontSize: "2rem", transform: "scale(2)", marginTop:4}}>
+          <CenteredIcon>
+  <Icon>{props.icon}</Icon>
+  </CenteredIcon>
+</Box>
         <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
           {props.description}
         </Typography>
         <Button
           variant="contained"
-          sx={{ backgroundColor: "#404040", color: "#fff" }}
+          sx={{ backgroundColor: "#404040", color: "#0D0D0D" }}
           onClick={handleOpen}
         >
           Learn More

@@ -10,10 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.thymeleaf.TemplateEngine;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
-import ph.cdo.xu.groudd.backend.entity.member.MembershipStatus;
+import ph.cdo.xu.groudd.backend.entity.member.MembershipDetails;
+import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
+import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
+import ph.cdo.xu.groudd.backend.entity.model.Name;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 
 import java.util.Date;
 import java.util.Properties;
@@ -23,45 +27,63 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    @Bean
-    public CommandLineRunner commandLineRunner(
-            @Autowired Faker faker,
-            @Autowired Random ran,
-            @Autowired MemberService memberService){
-        return args -> {
-            double minimum = 50.0;
-            double maximum = 100.0;
-            for(int i = 0; i < 50; i++){
-               String firstName = faker.name().firstName();
-               String lastName = faker.name().lastName();
-               String email = firstName+lastName + "@gmail.com";
-               String brgy = faker.address().streetName();
-               double weight = minimum + (maximum - minimum) * ran.nextDouble();
-               double height = minimum + (maximum - minimum) * ran.nextDouble();
-               String contactNumber = faker.phoneNumber().cellPhone();
-               String occupation = faker.job().title();
-
-
-               //For Birthday
-                Date birthday = getRandomDate(1980);
-                Date startDate = getRandomDate(2022);
-                memberService.add(Member
-                        .builder()
-                                .brgy(brgy)
-                                .firstName(firstName)
-                                .lastName(lastName)
-                                .email(email)
-                                .weight(weight)
-                                .height(height)
-                                .contactNumber(contactNumber)
-                                .occupation(occupation)
-                                .birthday(birthday)
-                                .startDate(startDate)
-                                .membershipStatus(MembershipStatus.values()[ran.nextInt(MembershipStatus.values().length)])
-                        .build());
-            }
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(
+//            @Autowired Faker faker,
+//            @Autowired Random ran,
+//            @Autowired MemberService memberService){
+//        return args -> {
+//            double minimum = 50.0;
+//            double maximum = 100.0;
+//            for(int i = 0; i < 50; i++){
+//               String firstName = faker.name().firstName();
+//               String lastName = faker.name().lastName();
+//               String email = firstName+lastName + "@gmail.com";
+//               String address = faker.address().streetName();
+//               double weight = minimum + (maximum - minimum) * ran.nextDouble();
+//               double height = minimum + (maximum - minimum) * ran.nextDouble();
+//               String phone = faker.phoneNumber().cellPhone();
+//               String occupation = faker.job().title();
+//
+//
+//               //For Birthday
+//                Date birthday = getRandomDate(1980);
+//                Date startDate = getRandomDate(2022);
+//                memberService.add((Member) Member
+//                        .builder()
+//                                .weight(weight)
+//                                .height(height)
+//                                .occupation(occupation)
+//                                .address(address)
+//                                .membershipDetails(
+//                                        MembershipDetails.builder()
+//                                                .membershipStatus(Status.values()[ran.nextInt(Status.values().length)])
+//                                                .monthlySubscriptionStatus(Status.values()[ran.nextInt(Status.values().length)])
+//                                                .studentStatus(Status.values()[ran.nextInt(Status.values().length)])
+//                                                .build())
+//                                .name(
+//                                        Name
+//                                                .builder()
+//                                                .firstName(firstName)
+//                                                .lastName(lastName)
+//                                                .build())
+//                                .contactDetails(
+//                                        ContactDetails
+//                                            .builder()
+//                                            .email(email)
+//                                            .phone(phone)
+//                                            .build())
+//                                .birthDetails(
+//                                        BirthDetails
+//                                            .builder()
+//                                            .birthday(birthday)
+//                                            .build())
+//                                .gender(Gender.values()[ran.nextInt(Status.values().length)])
+//                                .build());
+//
+//            }
+//        };
+//    }
 
 
     @Bean

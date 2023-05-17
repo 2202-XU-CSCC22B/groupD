@@ -1,49 +1,55 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import ph.cdo.xu.groudd.backend.entity.model.Person;
 
-import java.util.Date;
-
-@Entity
 @Getter
+@ToString
 @Setter
-@Builder
+@Entity
+@Table
+@SuperBuilder
+@EnableJpaAuditing
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member extends Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "member_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     private Long id;
-
-    @NotNull(message = "First name is required")
-    @NotEmpty(message = "First name is required")
-    private String firstName;
-
-    @NotNull(message = "Last name is required")
-    @NotEmpty(message = "Last name is required")
-    private String lastName;
-
-    @NotNull(message = "Email is required")
-    @NotEmpty(message = "Email is required")
-    @Email(message = "Email must be valid")
-    private String email;
-    private String brgy;
     private double weight;
     private double height;
-    private String contactNumber;
+
     private String occupation;
 
-    private Date birthday;
-    private Date startDate;
-    private Date expirationDate;
-    private boolean isActive;
-    private MembershipStatus membershipStatus;
+    @Embedded
+    private MembershipDetails membershipDetails;
+
+
+
+
+    public void copyFields(Member source) {
+        setName(source.getName());
+        setAddress(source.getAddress());
+        setGender(source.getGender());
+        setBirthDetails(source.getBirthDetails());
+        setContactDetails(source.getContactDetails());
+        setOccupation(source.getOccupation());
+        setWeight(source.getWeight());
+        setHeight(source.getHeight());
+        setMembershipDetails(source.getMembershipDetails());
+
+    }
 }
