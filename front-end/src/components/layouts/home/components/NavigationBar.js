@@ -13,7 +13,7 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-const NavBar = ({ className, ...props }) => {
+const NavigationBar = ({ className, ...props }) => {
   return (
     <div
       className={`${className} fixed  bg-gray-900 w-full py-6 px-4 xl:px-0 shadow-lg`}
@@ -73,4 +73,4 @@ const NavBar = ({ className, ...props }) => {
   );
 };
 
-export default NavBar;
+export default NavigationBar;

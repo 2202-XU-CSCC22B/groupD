@@ -33,22 +33,17 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(process.env.post_add_member_api, data);
-      // add logic
-      console.log(response);
-      if(response.status === 200){
-        alert("registration complete")
-        reset();
-      }if (response.data.status === "CONFLICT") {
-        alert(response.data.message);
-        setConflict(response.data.message);
 
+      // add logic
+      console.log("Before if: ", response);
+      if (response.status === 200) {
+        console.log("200: ", response);
+      } else if (response.data.status === "CONFLICT") {
+        console.log("Conflict: ", response);
       }
     } catch (error) {
-      alert(error.message);
-      console.log(error);
+      console.log("Catch Error: ", error);
     }
-
-
   };
 
   // input css in globals.css

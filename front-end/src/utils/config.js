@@ -26,19 +26,19 @@ const dashboardData = [
   },
   {
     name: "Member",
-    link: "/member",
+    link: "/dashboard/member",
     icon: <PeopleRoundedIcon />,
     tooltip: "View Member",
   },
   {
     name: "Transaction",
-    link: "/transaction",
+    link: "/dashboard/transactions",
     icon: <PointOfSaleRoundedIcon />,
     tooltip: "View Transaction",
   },
   {
     name: "Staff",
-    link: "/staff",
+    link: "/dashboard/staff",
     icon: <AssignmentIndRoundedIcon />,
     tooltip: "View Staff",
   },
@@ -81,7 +81,7 @@ export const memberActions = [
     url: "/images/AddAMember.jpg",
     width: "100%",
     icon: <AddCircleIcon />,
-    link: "/member/new",
+    link: "/dashboard/member/new",
   },
 
   {
@@ -89,7 +89,7 @@ export const memberActions = [
     url: "/images/AllMembers.jpg",
     width: "100%",
     icon: <TableViewIcon />,
-    link: "/member/all",
+    link: "/dashboard/member/all",
   },
 ];
 export const member = {
@@ -107,14 +107,14 @@ export const transactionAction = [
     url: "/images/AddSale.png",
     width: "100%",
     icon: <AddCircleIcon />,
-    link: "/transaction/new",
+    link: "/dashboard/transactions/new",
   },
   {
     title: "All Transactions",
     url: "/images/ViewTransactions.jpg",
     width: "100%",
     icon: <TableViewIcon />,
-    link: "/transaction/all",
+    link: "/dashboard/transactions/all",
   },
 ];
 
@@ -124,14 +124,14 @@ export const staffAction = [
     url: "/images/Staff.jpg",
     width: "100%",
     icon: <AddCircleIcon />,
-    link: "/staff/new",
+    link: "/dashboard/staff/new",
   },
   {
     title: "All Staff",
     url: "/images/ViewAllStaff.jpg",
     width: "100%",
     icon: <TableViewIcon />,
-    link: "/staff/all",
+    link: "/dashboard/staff/all",
   },
 ];
 

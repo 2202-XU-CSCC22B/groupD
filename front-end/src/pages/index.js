@@ -1,7 +1,6 @@
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
 import logo2 from "../../public/images/logo2.png";
 import { productDescription } from "@modules/utils/config";
 import ProductDescription from "@modules/components/landingPage/ProductDescription";
@@ -17,8 +16,8 @@ import gym3 from "../../public/images/gym3.jpg";
 import gym4 from "../../public/images/gym4.jpg";
 
 export default function LandingPage() {
-  console.log(gym1);
   return (
+<<<<<<< HEAD
     <ResponsiveAppBar>
     <div style={{ display: "flex", flexDirection: "column" }}>
         <div id="home">
@@ -31,6 +30,31 @@ export default function LandingPage() {
                 height: "100vh",
                 marginTop: 15,
               }}
+=======
+    <>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div id="home" style={{ height: "100vh" }}>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "100vh",
+              marginTop: 15,
+            }}
+          >
+            <Box sx={{ marginBottom: 4 }}>
+              <Image
+                src={logo2}
+                alt="Unscathed Fitness Gym Logo"
+                width={400}
+                height={400}
+              />
+            </Box>
+            <Typography
+              variant="h3"
+              sx={{ marginBottom: 4, color: "#000000", textAlign: "center" }}
+>>>>>>> memberRegistrationFeature
             >
               <Box sx={{ marginBottom: 4 }}>
                 <Image
@@ -103,6 +127,7 @@ export default function LandingPage() {
             >
               Contact information should go here
             </Typography>
+<<<<<<< HEAD
             <div className={styles.carouselContainer}>
     <Carousel
       className={styles.gymImages}
@@ -132,8 +157,36 @@ export default function LandingPage() {
     </Carousel>
   </div>
 </Container>
+=======
+            <Carousel
+              className="gym-images"
+              infiniteLoop={true}
+              showArrows={true}
+              emulateTouch={true}
+              autoPlay={true}
+              interval={2000}
+              stopOnHover={true}
+              swipeScrollTolerance={10}
+              dynamicHeight={false}
+              showThumbs={false}
+            >
+              <div>
+                <Image src={gym1} />
+              </div>
+              <div>
+                <Image src={gym2} />
+              </div>
+              <div>
+                <Image src={gym3} />
+              </div>
+              <div>
+                <Image src={gym4} />
+              </div>
+            </Carousel>
+          </Container>
+>>>>>>> memberRegistrationFeature
         </div>
       </div>
-    </ResponsiveAppBar>
+    </>
   );
 }
