@@ -1,12 +1,10 @@
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
 import logo2 from "../../public/images/logo2.png";
 import { productDescription } from "@modules/utils/config";
 import ProductDescription from "@modules/components/landingPage/ProductDescription";
 import React from "react";
-import ReactDOM from "react-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -16,9 +14,8 @@ import gym3 from "../../public/images/gym3.jpg";
 import gym4 from "../../public/images/gym4.jpg";
 
 export default function LandingPage() {
-  console.log(gym1);
   return (
-    <ResponsiveAppBar>
+    <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div id="home" style={{ height: "100vh" }}>
           <Container
@@ -102,24 +99,24 @@ export default function LandingPage() {
             </Typography>
             <Carousel
               className="gym-images"
-              infiniteLoop={true} 
-              showArrows={true} 
-              emulateTouch={true} 
-              autoPlay={true} 
-              interval={2000} 
-              stopOnHover={true} 
-              swipeScrollTolerance={10} 
-              dynamicHeight={false} 
-              showThumbs={false} 
+              infiniteLoop={true}
+              showArrows={true}
+              emulateTouch={true}
+              autoPlay={true}
+              interval={2000}
+              stopOnHover={true}
+              swipeScrollTolerance={10}
+              dynamicHeight={false}
+              showThumbs={false}
             >
               <div>
-                <Image src={gym1}/>
+                <Image src={gym1} />
               </div>
               <div>
-                <Image src={gym2}/>
+                <Image src={gym2} />
               </div>
               <div>
-                <Image src={gym3}/>
+                <Image src={gym3} />
               </div>
               <div>
                 <Image src={gym4} />
@@ -128,6 +125,6 @@ export default function LandingPage() {
           </Container>
         </div>
       </div>
-    </ResponsiveAppBar>
+    </>
   );
 }
