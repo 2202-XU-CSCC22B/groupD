@@ -10,14 +10,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.CustomResponseBody;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 import ph.cdo.xu.groudd.backend.exceptions.ApiError;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 import ph.cdo.xu.groudd.backend.utils.DateService;
 import ph.cdo.xu.groudd.backend.utils.EmailService;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -36,7 +38,7 @@ public class MemberController {
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponseBody> newMember(@RequestBody Member member, BindingResult bindingResult) throws MessagingException {
-        String email = member.getEmail();
+        String email = member.getContactDetails().getEmail();
         if(memberService.doesEmailExists(email)){
             System.out.println("Result : " + memberService.doesEmailExists(email));
             throw new EmailAlreadyExistsException(email + " already exists!");
@@ -57,12 +59,15 @@ public class MemberController {
             return ResponseEntity.badRequest().body(CustomResponseBody.builder().errors(errors).build());
         }
 //
-        member.setActive(false);
-        member.setMembershipStatus(MembershipStatus.UNVERIFIED);
-                Member temp = memberService.add(member);
-                emailService.sendRegistrationEmail(temp.getEmail(), temp.getFirstName());
 
-            return ResponseEntity.ok(CustomResponseBody.builder().message(temp.getFirstName() + " has been registered successfully").build());
+        member.getMembershipDetails().setMembershipStatus(Status.UNVERIFIED);
+        member.getMembershipDetails().setMonthlySubscriptionStatus(Status.UNVERIFIED);
+        member.getMembershipDetails().setStudentStatus(Status.UNVERIFIED);
+
+                Member temp = memberService.add(member);
+                emailService.sendRegistrationEmail(temp.getContactDetails().getEmail(), temp.getName().getFirstName());
+
+            return ResponseEntity.ok(CustomResponseBody.builder().message(temp.getName().getFirstName()+ " has been registered successfully").build());
 
 
     }
@@ -72,9 +77,10 @@ public class MemberController {
 
 
         Member member =   memberService.validateMember(email);
-        emailService.sendValidationEmail(member.getEmail(), member.getFirstName(), new DateTime(member.getExpirationDate()).toString("MM DD YYYY"));
+        emailService.sendValidationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName(), member.getMembershipDetails().getMembershipEndDate().toString());
 
-        String message = member.getFirstName() + " has been validated as a member";
+
+        String message = member.getName().getFirstName() + " has been validated as a member";
         CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
         return ResponseEntity.ok(responseBody);
     }
@@ -83,7 +89,7 @@ public class MemberController {
     public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody Member member) throws MessagingException {
         Member temp = memberService.update(email, member);
 
-        String message = temp.getFirstName() + " has been updated!";
+        String message = temp.getName().getFirstName() + " has been updated!";
         CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
 
         return ResponseEntity.ok(responseBody);
@@ -93,7 +99,23 @@ public class MemberController {
 
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Member> getMembers(){
-        return memberService.allMembers();
+    public List<Map<String, Object>> getMembers() {
+
+        return memberService.sendMembersToFrontEnd( memberService.allVerified());
+
+    }
+
+
+    @GetMapping(value = "/unverified", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Map<String, Object>> getUnverifiedMembers() {
+        return memberService.sendMembersToFrontEnd( memberService.allUnverified());
+    }
+
+
+    @DeleteMapping(value= "/delete/{email}")
+    public ResponseEntity<CustomResponseBody> deleteMember(@PathVariable("email") String email){
+        memberService.delete(email);
+        return ResponseEntity.ok(CustomResponseBody.builder().message(email + " has been deleted!").build());
+
     }
 }

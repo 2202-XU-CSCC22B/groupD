@@ -176,7 +176,10 @@ export const allMembersColumnDef = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "firstName", headerName: "First name", width: 130 },
   { field: "lastName", headerName: "Last name", width: 130 },
-  { field: "membershipStatus", headerName: "Status", width: 130 },
   { field: "email", headerName: "Email", width: 260 },
+  { field: "membershipStatus", headerName: "Status", width: 130 },
+  { field: "monthlySubscriptionStatus", headerName: "Status", width: 130 },
+  { field: "studentStatus", headerName: "Status", width: 130 },
+
 ];
 export default dashboardData;
