@@ -35,15 +35,34 @@ public class Member {
     @NotEmpty(message = "Email is required")
     @Email(message = "Email must be valid")
     private String email;
-    private String brgy;
+    private String address;
     private double weight;
     private double height;
-    private String contactNumber;
+    private String phone;
     private String occupation;
+
 
     private Date birthday;
     private Date startDate;
     private Date expirationDate;
     private boolean isActive;
     private MembershipStatus membershipStatus;
+
+
+
+    public void copyFields(Member source) {
+        this.firstName = source.getFirstName();
+        this.lastName = source.getLastName();
+        this.email = source.getEmail();
+        this.address = source.getAddress();
+        this.weight = source.getWeight();
+        this.height = source.getHeight();
+        this.phone = source.getPhone();
+        this.occupation = source.getOccupation();
+        this.birthday = source.getBirthday();
+        this.startDate = source.getStartDate();
+        this.expirationDate = source.getExpirationDate();
+        this.isActive = source.isActive();
+        this.membershipStatus = source.getMembershipStatus();
+    }
 }

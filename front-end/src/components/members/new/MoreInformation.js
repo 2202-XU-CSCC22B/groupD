@@ -78,9 +78,9 @@ const MoreInformation = ({ data }) => {
             </Grid>
             <Grid item xs={12} sm={6}>
                 <TextField
-                    label="Barangay"
-                    name="brgy"
-                    value={formData.brgy}
+                    label="Address"
+                    name="address"
+                    value={formData.address}
                     onChange={handleInputChange}
                     disabled={!editable}
                     fullWidth
@@ -109,8 +109,8 @@ const MoreInformation = ({ data }) => {
             <Grid item xs={12} sm={6}>
                 <TextField
                     label="Contact Number"
-                    name="contactNumber"
-                    value={formData.contactNumber}
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleInputChange}
                     disabled={!editable}
                     fullWidth

@@ -37,7 +37,6 @@ export default function AllMemberTable(){
 
         setSelectedRow(row.row);
 
-        alert(row.row.firstName)
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -88,7 +87,7 @@ export default function AllMemberTable(){
                         onRowDoubleClick={(row, event) => onRowDoubleClick(row, event)}
                     />
                 </div>
-                <MoreInformation data={selectedRow}/>
+                <MoreInformation data={selectedRow} key={selectedRow?.id}/>
             </div>
 
         </Paper>

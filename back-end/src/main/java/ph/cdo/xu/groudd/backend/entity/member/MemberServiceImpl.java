@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import ph.cdo.xu.groudd.backend.utils.DateService;
 import ph.cdo.xu.groudd.backend.utils.EmailService;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class MemberServiceImpl implements MemberService{
 
     private MemberRepository memberRepository;
     private JavaMailSender javaMailSender;
-
+    private DateService dateService;
 
     @Override
     public Member add(Member member) {
@@ -29,6 +30,22 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public Member update(String email, Member member) {
+        Optional<Member> optionalMember = memberRepository.findMemberByEmail(email);
+        if(optionalMember.isEmpty()){
+            throw new RuntimeException("Email not found!");
+        }else{
+            Member temp = optionalMember.get();
+
+            temp.copyFields(member);
+            return memberRepository.save(temp);
+        }
+
+
+    }
+
+
+    @Override
         public boolean doesEmailExists(String email) {
         return memberRepository.existsMemberByEmail(email);
     }
@@ -39,14 +56,16 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public boolean validateMember(String email, Member member) {
+    public Member validateMember(String email) {
         Optional<Member> optionalMember = memberRepository.findMemberByEmail(email);
         if(optionalMember.isPresent()){
-            member.setActive(true);
-            return true;
+            Member member = optionalMember.get();
+            member.setExpirationDate(dateService.addMonthsToDate(member.getStartDate(), 12));
+            member.setMembershipStatus(MembershipStatus.ACTIVE);
+            return memberRepository.saveAndFlush(member);
         }
         else{
-            return false;
+            throw new RuntimeException("Member not found!");
         }
     }
 

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import axios from "axios";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name is required"),
@@ -17,21 +18,37 @@ const schema = z.object({
 });
 
 const RegisterForm = () => {
+  const [conflict, setConflict] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(schema),
   });
 
   // POST function here
   const onSubmit = async (data) => {
-    const response = await axios.post(process.env.post_add_member_api, data);
+    try {
+      const response = await axios.post(process.env.post_add_member_api, data);
+      // add logic
+      console.log(response);
+      if(response.status === 200){
+        alert("registration complete")
+        reset();
+      }if (response.data.status === "CONFLICT") {
+        alert(response.data.message);
+        setConflict(response.data.message);
 
-    // add logic response.status logic here
-    console.log(response);
-    console.log(response.data);
+      }
+    } catch (error) {
+      alert(error.message);
+      console.log(error);
+    }
+
+
   };
 
   // input css in globals.css
@@ -187,9 +204,10 @@ const RegisterForm = () => {
               <small
                 className={` text-rose-600 ${
                   errors.email ? "visible" : "invisible"
-                }`}
+                } ${conflict && "visible"}`}
               >
                 {errors.email ? errors.email.message : "."}
+                {conflict && conflict}
               </small>
             </div>
 
