@@ -19,7 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Link from "next/link";
-import dashboardData from "@modules/utils/config";
+import dashboardData, {dashBoardAction} from "@modules/utils/config";
 import { Tooltip } from "@mui/material";
 import { logoutButton } from "@modules/utils/config";
 import { Copyright } from "@mui/icons-material";
@@ -177,36 +177,40 @@ export default function DashboardLayout({ children }) {
         </List>
         <Divider />
         <List>
-          <Tooltip title={logoutButton.tooltip}>
-            <ListItem
-              key={logoutButton.name}
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-                onClick={logoutButton.onClick}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+          {dashBoardAction.map((page,index)=>(
+
+              <Tooltip title={page.tooltip}>
+                <ListItem
+                    key={index}
+                    disablePadding
+                    sx={{ display: "block" }}
                 >
-                  {logoutButton.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={logoutButton.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </Tooltip>
+                  <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                      }}
+                      onClick={page.onClick}
+                  >
+                    <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                        }}
+                    >
+                      {page.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                        primary={page.name}
+                        sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </Tooltip>
+          ))}
+
         </List>
       </Drawer>
       <Box component="main">

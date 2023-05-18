@@ -1,7 +1,6 @@
 import {Paper, Tooltip} from "@mui/material";
 import List from "@mui/material/List";
-import {logoutButton} from "@modules/utils/config";
-import ListItemButton from "@mui/material/ListItemButton";
+
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
