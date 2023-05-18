@@ -10,7 +10,7 @@ export default function MemberSummary() {
     const [summaryData, setSummaryData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/member/count")
+        fetch(process.env.count_members_api)
             .then((response) => response.json())
             .then((data) => {
                 const memberSummaryWithValues = memberSummary.map((summary, index) => {
