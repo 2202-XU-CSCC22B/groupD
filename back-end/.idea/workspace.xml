@@ -11,8 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/BackEndApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/BackEndApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/index 2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

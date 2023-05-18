@@ -239,11 +239,6 @@ const MoreInformation = ({ data }) => {
               </div>
             </div>
         )}
-        <MyCustomAccordion data={[
-          {title: "MEMBERSHIP", status: formData.membershipStatus, startDate: formData.membershipStartDate, endDate: formData.membershipEndDate},
-          {title: "MONTHLY", status: formData.monthlySubscriptionStatus, startDate: formData.monthlySubscriptionStartDate, endDate: formData.monthlySubscriptionEndDate},
-          {title: "STUDENT", status: formData.studentStatus, startDate: formData.studentStartDate, endDate: formData.studentEndDate},
-        ]}/>
 
         <MyCustomAccordion
           data={[
