@@ -10,14 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/MemberTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/MemberTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/MemberSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/MemberSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/utils/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +213,7 @@
       <workItem from="1684172398578" duration="12676000" />
       <workItem from="1684267092030" duration="314000" />
       <workItem from="1684345176528" duration="16162000" />
-      <workItem from="1684394576925" duration="6183000" />
+      <workItem from="1684394576925" duration="9689000" />
     </task>
     <servers />
   </component>

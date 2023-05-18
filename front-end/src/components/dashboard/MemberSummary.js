@@ -15,11 +15,11 @@ export default function MemberSummary() {
             .then((data) => {
                 const memberSummaryWithValues = memberSummary.map((summary, index) => {
                     switch (summary.name) {
-                        case "Total Members":
+                        case "Active Members":
                             return { ...summary, value: data.members };
                         case "Monthly Members":
                             return { ...summary, value: data.monthly };
-                        case "Muaythai Students":
+                        case "Registered Students":
                             return { ...summary, value: data.students };
                         default:
                             return summary;

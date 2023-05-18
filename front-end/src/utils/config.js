@@ -55,23 +55,20 @@ export const logoutButton = {
 
 export const memberSummary = [
   {
-    name: "Total Members",
+    name: "Active Members",
     icon: <Diversity3OutlinedIcon sx={{ fontSize: fontSize }} />,
-    value: 134,
     color: "#FFE2E6",
     tooltip: "Number of all registered users",
   },
   {
     name: "Monthly Members",
     icon: <FitnessCenterRoundedIcon sx={{ fontSize: fontSize }} />,
-    value: 20,
     color: "#DCFCE7",
     tooltip: "Number of all active monthly users",
   },
   {
-    name: "Muaythai Students",
+    name: "Registered Students",
     icon: <SportsGymnasticsRoundedIcon sx={{ fontSize: fontSize }} />,
-    value: 10,
     color: "#FFF4DE",
     tooltip: "Number of total enrolled monthly students",
   },
