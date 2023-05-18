@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const Accordion = ({ data }) => {
+const MyCustomAccordion = ({ data }) => {
   return (
     <div className="w-full md:w-1/2 bg-white rounded border p-2 !text-black text-left space-y-2">
       {data.map((item, index) => (
@@ -13,6 +13,12 @@ const Accordion = ({ data }) => {
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </Disclosure.Button>
               <Disclosure.Panel className=" p-2 flex flex-col md:flex-row justify-between">
+                <section className=" text-sm">
+                  <h1>
+                     Status:{" "}
+                    <span className=" font-medium">{item.status}</span>
+                  </h1>
+                </section>
                 <section className=" text-sm">
                   <h1>
                     Start Date:{" "}
@@ -34,4 +40,4 @@ const Accordion = ({ data }) => {
   );
 };
 
-export default Accordion;
+export default MyCustomAccordion;
