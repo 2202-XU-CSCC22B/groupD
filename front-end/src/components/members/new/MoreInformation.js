@@ -17,8 +17,6 @@ const MoreInformation = ({ data }) => {
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
 
-
-
   const formattedData = {
     name: {
       firstName: formData.firstName,
@@ -33,7 +31,7 @@ const MoreInformation = ({ data }) => {
     height: parseFloat(formData.height),
     occupation: formData.occupation,
     birthDetails: {
-      birthday: formData.birthday
+      birthday: formData.birthday,
     },
     membershipDetails: {
       membershipStartDate: formData.membershipStartDate,
@@ -78,23 +76,21 @@ const MoreInformation = ({ data }) => {
         method: "PUT",
         body: JSON.stringify(formattedData),
       })
-          .then((response) => {
-            // Handle the API response if needed
-            console.log(response);
-            console.log("Data saved successfully!");
-            alert("Changes were successful");
-            setLoading(false); // Stop the loading animation
-          })
-          .catch((error) => {
-            // Handle any errors that occurred during the API call
-            console.error("Error saving data:", error);
+        .then((response) => {
+          // Handle the API response if needed
+          console.log(response);
+          console.log("Data saved successfully!");
+          alert("Changes were successful");
+          setLoading(false); // Stop the loading animation
+        })
+        .catch((error) => {
+          // Handle any errors that occurred during the API call
+          console.error("Error saving data:", error);
 
-            setLoading(false); // Stop the loading animation
-          });
+          setLoading(false); // Stop the loading animation
+        });
     }, 100); // Simulating 1 second delay for the API call
   };
-
-
 
   return (
     <Grid
@@ -233,43 +229,34 @@ const MoreInformation = ({ data }) => {
           Save Changes
         </MyButton>
         {isLoading && (
-            <div className="text-center mt-4">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+          <div className="text-center mt-4">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
+          </div>
         )}
-        <MyCustomAccordion data={[
-          {title: "MEMBERSHIP", status: formData.membershipStatus, startDate: formData.membershipStartDate, endDate: formData.membershipEndDate},
-          {title: "MONTHLY", status: formData.monthlySubscriptionStatus, startDate: formData.monthlySubscriptionStartDate, endDate: formData.monthlySubscriptionEndDate},
-          {title: "STUDENT", status: formData.studentStatus, startDate: formData.studentStartDate, endDate: formData.studentEndDate},
-        ]}/>
-
         <MyCustomAccordion
           data={[
             {
               title: "MEMBERSHIP",
-              status: formData?.membershipStatus,
-              startDate: formData?.membershipStartDate,
-              endDate: formData?.membershipEndDate,
+              status: formData.membershipStatus,
+              startDate: formData.membershipStartDate,
+              endDate: formData.membershipEndDate,
             },
             {
               title: "MONTHLY",
-              status: formData?.monthlySubscriptionStatus,
-              startDate: formData?.monthlySubscriptionStartDate,
-              endDate: formData?.monthlySubscriptionEndDate,
+              status: formData.monthlySubscriptionStatus,
+              startDate: formData.monthlySubscriptionStartDate,
+              endDate: formData.monthlySubscriptionEndDate,
             },
             {
               title: "STUDENT",
-              status: formData?.studentStatus,
-              startDate: formData?.studentStartDate,
-              endDate: formData?.studentEndDate,
+              status: formData.studentStatus,
+              startDate: formData.studentStartDate,
+              endDate: formData.studentEndDate,
             },
           ]}
         />
-        {/* <MyButton>Enroll Monthly</MyButton>
-
-        <MyButton>Enroll Muay-Thai</MyButton> */}
       </Grid>
     </Grid>
   );
