@@ -55,8 +55,8 @@ export default function AllMemberTable() {
   }
 
   return (
-    <div className=" flex flex-col xl:flex-row gap-12 py-8">
-      <div className=" h-[500px] w-fit">
+    <div className=" flex flex-col xl:flex-row gap-12 py-8 ">
+      <div className=" h-[500px] min-[800px]:w-fit">
         <DataGrid
           rows={row}
           columns={column}

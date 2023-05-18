@@ -17,7 +17,6 @@ import gym3 from "../../public/images/gym3.jpg";
 import gym4 from "../../public/images/gym4.jpg";
 
 export default function LandingPage() {
-  console.log(gym1);
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>

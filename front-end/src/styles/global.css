@@ -7,7 +7,7 @@
 /* registration form input */
 @layer components {
   .reg-form input {
-    @apply bg-white border py-1 shrink min-w-0 indent-2 outline-none;
+    @apply bg-white border py-1 shrink min-w-0 indent-2 outline-none rounded;
   }
   .MuiDataGrid-row {
     @apply !hover:bg-red-500;

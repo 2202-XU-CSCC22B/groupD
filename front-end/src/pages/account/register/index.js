@@ -4,8 +4,8 @@ import React from "react";
 
 const RegisterPage = () => {
   return (
-    <main className=" bg-white container !max-w-6xl mx-auto px-4 py-8 lg:px-0">
-      <div className=" flex flex-col md:flex-row gap-6 md:gap-12">
+    <main className=" bg-white  pt-[87px] ">
+      <div className=" flex  container !max-w-6xl mx-auto px-4 lg:px-0 flex-col md:flex-row gap-6 md:gap-12 py-8 min-h-screen">
         <RegisterHeader />
         <RegisterForm />
       </div>

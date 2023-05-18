@@ -4,10 +4,17 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import axios from "axios";
+import { titleCase } from "@modules/utils/functions";
 
 const schema = z.object({
-  firstName: z.string().nonempty("Name is required"),
-  lastName: z.string().nonempty("Last name is required"),
+  firstName: z
+    .string()
+    .nonempty("First name is required")
+    .min(2, "Name too short"),
+  lastName: z
+    .string()
+    .nonempty("Last name is required")
+    .min(2, "Last name too short"),
   email: z.string().nonempty("Email is required").email(),
   gender: z.nativeEnum(["Male", "Female", "Others"]),
   weight: z.coerce.number(),
@@ -15,6 +22,7 @@ const schema = z.object({
   phone: z.string().optional(),
   address: z.string().optional(),
   birthday: z.coerce.date(),
+  occupation: z.string().optional(),
 });
 
 const RegisterForm = () => {
@@ -31,19 +39,16 @@ const RegisterForm = () => {
 
   // POST function here
   const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(process.env.post_add_member_api, data);
+    const refine = {
+      ...data,
+      firstName: titleCase(data.firstName),
+      lastName: titleCase(data.lastName),
+      email: data.email.toLowerCase(),
+      ...(data.address && { address: titleCase(data.address) }),
+      ...(data.occupation && { occupation: titleCase(data.occupation) }),
+    };
 
-      // add logic
-      console.log("Before if: ", response);
-      if (response.status === 200) {
-        console.log("200: ", response);
-      } else if (response.data.status === "CONFLICT") {
-        console.log("Conflict: ", response);
-      }
-    } catch (error) {
-      console.log("Catch Error: ", error);
-    }
+    // handle submit logic here
   };
 
   // input css in globals.css
@@ -103,7 +108,9 @@ const RegisterForm = () => {
           {/* weight & height */}
           <div className=" flex flex-col min-[400px]:flex-row min-[400px]:gap-4 justify-between">
             <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
-              <label htmlFor="weight">Weight</label>
+              <label htmlFor="weight">
+                Weight <span className=" text-gray-400">(kg)</span>
+              </label>
               <input
                 type="number"
                 id="weight"
@@ -120,7 +127,9 @@ const RegisterForm = () => {
             </div>
 
             <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
-              <label htmlFor="height">Height</label>
+              <label htmlFor="height">
+                Height <span className=" text-gray-400">(cm)</span>
+              </label>
               <input
                 type="number"
                 id="height"
@@ -190,7 +199,7 @@ const RegisterForm = () => {
 
           <div className=" flex flex-col min-[400px]:flex-row min-[400px]:gap-4 justify-between">
             <div className={`${inputGroupClassName} min-[400px]:w-1/2`}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email *</label>
               <input
                 id="email"
                 {...register("email")}
@@ -237,6 +246,7 @@ const RegisterForm = () => {
               id="address"
               {...register("address")}
               className={`${errors?.address && "border-rose-600"}`}
+              placeholder="Zone 1, Bulua"
             />
             <small
               className={` text-rose-600 ${
@@ -247,13 +257,14 @@ const RegisterForm = () => {
             </small>
           </div>
 
-          {/* phone */}
+          {/* occupation */}
           <div className={inputGroupClassName}>
             <label htmlFor="occupation">Occupation</label>
             <input
               id="occupation"
               {...register("occupation")}
               className={`${errors?.occupation && "border-rose-600"}`}
+              placeholder="Software Engineer"
             />
             <small
               className={` text-rose-600 ${
