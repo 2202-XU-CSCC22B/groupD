@@ -3,7 +3,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const MyCustomAccordion = ({ data }) => {
   return (
-    <div className="w-full md:w-1/2 bg-white rounded border p-2 !text-black text-left space-y-2">
+    <div className="w-full bg-white rounded border p-2 !text-black text-left space-y-2">
       {data.map((item, index) => (
         <Disclosure key={index}>
           {({ open }) => (
@@ -12,11 +12,10 @@ const MyCustomAccordion = ({ data }) => {
                 {item.title}
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </Disclosure.Button>
-              <Disclosure.Panel className=" p-2 flex flex-col md:flex-row justify-between">
-                <section className=" text-sm">
-                  <h1>
-                     Status:{" "}
-                    <span className=" font-medium">{item.status}</span>
+              <Disclosure.Panel className=" p-2 flex flex-col justify-between">
+                <section className=" text-sm w-fit">
+                  <h1 className=" ">
+                    Status: <span className=" font-medium">{item.status}</span>
                   </h1>
                 </section>
                 <section className=" text-sm">

@@ -1,26 +1,5 @@
 import Head from "next/head";
-import MyContainer from "@modules/components/ui/MyContainer";
 import AllMembersContent from "@modules/components/members/new/AllMembersContent";
-import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
-
-// data sample for accordion
-const data = [
-  {
-    title: "Membership",
-    startDate: "February 24, 2023",
-    endDate: "March 24, 2023",
-  },
-  {
-    title: "Student",
-    startDate: "February 24, 2023",
-    endDate: "March 24, 2023",
-  },
-  {
-    title: "Ambot",
-    startDate: "February 24, 2023",
-    endDate: "March 24, 2023",
-  },
-];
 
 const MemberPage = () => {
   return (
@@ -36,8 +15,6 @@ const MemberPage = () => {
           </h1>
         </section>
         <AllMembersContent />
-
-
       </div>
     </div>
   );
