@@ -47,7 +47,7 @@ const HomeSection = ({ ...props }) => {
 
             {/* CTA */}
             <Link href="/account/register" passHref>
-              <button class="rounded-full tracking-wider font-medium bg-gray-900 hover:scale-95 hover:bg-gray-800 transition-all duration-300 ease-in-out text-slate-50 drop-shadow-lg text-xl py-4 px-8">
+              <button className="rounded-full tracking-wider font-medium bg-gray-900 hover:scale-95 hover:bg-gray-800 transition-all duration-300 ease-in-out text-slate-50 drop-shadow-lg text-xl py-4 px-8">
                 Get Started
               </button>
             </Link>
