@@ -129,6 +129,8 @@ public class MemberController {
         map.put("members", memberService.countActiveMembers());
         map.put("students", memberService.countActiveStudents());
         map.put("monthly", memberService.countActiveMonthly());
+        map.put("verifiedMembers", memberService.allVerified().size());
+        map.put("pendingRegistrations", memberService.allUnverified().size());
 
         return ResponseEntity.ok(map);
     }

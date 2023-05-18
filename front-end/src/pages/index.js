@@ -8,7 +8,7 @@ import ProductDescription from "@modules/components/landingPage/ProductDescripti
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "./carousel.module.css";
+import styles from "../pages/carousel.module.css";
 import { StyledContainer } from "@modules/utils/config";
 
 import gym1 from "../../public/images/gym1.jpg";
