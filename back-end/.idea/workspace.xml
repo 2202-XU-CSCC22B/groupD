@@ -10,13 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../front-end/src/components/FailureNotification.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/PendingRegistrationContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/all/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,14 +1,41 @@
 import {DataGrid} from "@mui/x-data-grid";
 import * as React from "react";
-import {Paper, Stack, Typography} from "@mui/material";
+import {Paper, Snackbar, Stack, Typography} from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import IconButton from "@mui/material/IconButton";
 import {useEffect, useState} from "react";
 import Divider from "@mui/material/Divider";
 import Title from "@modules/components/dashboard/Title";
+
+import {Alert} from "@mui/lab";
 export default function PendingRegistrationContent(){
     const [row, setRow] = useState([]);
+    const [openSuccess, setOpenSuccess] = useState(false);
+    const [openRemove, setOpenRemove] = useState(false);
+    const [message, setMessage]  = useState(false);
+    const horizontal = "right";
+    const vertical = "top";
+
+
+
+    const handleSuccessClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSuccess(false);
+    };
+
+    const handleRemoveClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenRemove(false);
+    };
+
+
     const renderAccept = (params) => {
         return (
             <Stack direction="row" spacing={1}>
@@ -37,7 +64,7 @@ export default function PendingRegistrationContent(){
         e.preventDefault();
         const selectedObject = row.find(item => item.id === params.id);
         handleRemoveRow(params.id);
-        alert(selectedObject.email);
+
         fetch(process.env.validate_unverified_api.replace("{email}", selectedObject.email), {
             method: 'PUT',
             headers: {
@@ -47,7 +74,9 @@ export default function PendingRegistrationContent(){
         })
             .then(response => {
                 if (response.ok) {
-                    alert(process.env.validate_unverified_api.replace("{email}", params.email))
+                    setMessage(selectedObject.firstName + " " + selectedObject.lastName +  " is now  a member");
+                    setOpenSuccess(true);
+
                     // Request was successful
                     console.log('Data updated successfully!');
                 } else {
@@ -68,7 +97,6 @@ export default function PendingRegistrationContent(){
         e.preventDefault();
         const selectedObject = row.find(item => item.id === params.id);
         handleRemoveRow(params.id);
-        alert(selectedObject.email);
         fetch(process.env.delete_member_api.replace("{email}", selectedObject.email.email), {
             method: 'DELETE',
             headers: {
@@ -78,7 +106,9 @@ export default function PendingRegistrationContent(){
         })
             .then(response => {
                 if (response.ok) {
-                    alert((process.env.delete_member_api.replace("{email}", params.email)))
+
+                    setMessage(selectedObject.firstName + " " + selectedObject.lastName +  " is rejected as a member");
+                    setOpenRemove(true)
                     // Request was successful
                     console.log('Data Deleted successfully!');
                 } else {
@@ -149,6 +179,17 @@ export default function PendingRegistrationContent(){
                 }}
                 pageSizeOptions={[5]}
             />
+                <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleSuccessClose} anchorOrigin={{vertical, horizontal}}>
+                    <Alert onClose={handleSuccessClose} severity={"success"} sx={{ width: '100%' }} key={vertical+horizontal}>
+                        {message}
+                    </Alert>
+                </Snackbar>
+
+                <Snackbar open={openRemove} autoHideDuration={3000} onClose={handleRemoveClose} anchorOrigin={{vertical, horizontal}}>
+                    <Alert onClose={handleRemoveClose} severity={"warning"} sx={{ width: '100%' }} key={vertical + horizontal}>
+                        {message}
+                    </Alert>
+                </Snackbar>
             </div>
         </>
 
