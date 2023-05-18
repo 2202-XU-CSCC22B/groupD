@@ -14,6 +14,8 @@ import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import PeopleIcon from "@mui/icons-material/People";
 import { styled } from "@mui/system";
 import { Container } from "@mui/material";
+import image1 from "../../public/images/AddSale.png"
+import image2 from  "../../public/images/AddAMember.jpg"
 
 const fontSize = "50px";
 
@@ -240,3 +242,22 @@ export const allMembersColumnDef = [
   },
 ];
 export default dashboardData;
+
+
+export const cardContents = [ 
+  {
+    title: 'Personal Training',
+    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout',
+    image: image2
+  },
+  {
+    title: 'Muay Thai/Boxing',
+    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
+    image: image1
+  },
+  {
+    title: 'Community Building',
+    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
+    image: image1
+  },
+]
