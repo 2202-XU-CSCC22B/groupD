@@ -6,6 +6,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import IconButton from "@mui/material/IconButton";
 import {useEffect, useState} from "react";
 import Divider from "@mui/material/Divider";
+import Title from "@modules/components/dashboard/Title";
 export default function PendingRegistrationContent(){
     const [row, setRow] = useState([]);
     const renderAccept = (params) => {
@@ -122,22 +123,37 @@ export default function PendingRegistrationContent(){
     ];
 
     return(
-        <Paper style={{padding: "2rem", justifyContent: "center", display: "flex", flexDirection: "column", gap: 10, width: "80vw"}} elevation={24}>
-            <Typography variant={"h3"}>Unverified Members</Typography>
-            <Divider/>
-        <div style={{ height: 690 , width: 690}}>
-        <DataGrid
-            rows={row}
-            columns={column}
-            initialState={{
-                pagination: {
-                    paginationModel: { page: 0, pageSize: 10 },
-                },
-            }}
-            pageSizeOptions={[10, 20]}
-        />
-        </div>
-        </Paper>
+        // <Paper style={{padding: "2rem", justifyContent: "center", display: "flex", flexDirection: "column", gap: 10, width: "80vw"}} elevation={24}>
+        //     <Typography variant={"h3"}>Unverified Members</Typography>
+        //     <Divider/>
+        <>
+            <Title>Pending registration</Title>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                    margin: "10px",
+                    overflow: "auto",
+                }}
+            >
+            <DataGrid
+                rows={row}
+                columns={column}
+                initialState={{
+                    pagination: {
+                        paginationModel: { page: 0, pageSize: 5 },
+                    },
+                }}
+                pageSizeOptions={[5]}
+            />
+            </div>
+        </>
+
+
+        // </Paper>
     )
 }
 

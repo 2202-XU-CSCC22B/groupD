@@ -3,6 +3,25 @@ import MyContainer from "@modules/components/ui/MyContainer";
 import AllMembersContent from "@modules/components/members/new/AllMembersContent";
 import Accordion from "@modules/components/members/Accordion";
 
+// data sample for accordion
+const data = [
+  {
+    title: "Membership",
+    startDate: "February 24, 2023",
+    endDate: "March 24, 2023",
+  },
+  {
+    title: "Student",
+    startDate: "February 24, 2023",
+    endDate: "March 24, 2023",
+  },
+  {
+    title: "Ambot",
+    startDate: "February 24, 2023",
+    endDate: "March 24, 2023",
+  },
+];
+
 const MemberPage = () => {
   return (
     <div>
@@ -18,7 +37,7 @@ const MemberPage = () => {
         </section>
         <AllMembersContent />
 
-        <Accordion />
+        <Accordion data={data} />
       </div>
     </div>
   );
