@@ -16,7 +16,7 @@ const AboutSection = ({ ...props }) => {
   return (
     <Section
       {...props}
-      className="flex items-center mt-[87px] -z-50"
+      className="flex items-center -z-50"
       style={{
         backgroundImage: `url(${homeBG2.src})`,
         backgroundRepeat: "no-repeat",

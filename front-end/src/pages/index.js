@@ -9,19 +9,17 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "../pages/carousel.module.css";
-import { StyledContainer } from "@modules/utils/config";
 
-import gym1 from "../../public/images/gym1.jpg";
-import gym2 from "../../public/images/gym2.jpg";
-import gym3 from "../../public/images/gym3.jpg";
-import gym4 from "../../public/images/gym4.jpg";
+import gym1 from "../../public/images/gym1.png";
+import gym2 from "../../public/images/gym2.png";
+import gym3 from "../../public/images/gym3.png";
+import gym4 from "../../public/images/gym4.png";
 
 export default function LandingPage() {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div id="home">
-          <StyledContainer>
             <Container
               sx={{
                 display: "flex",
@@ -60,7 +58,7 @@ export default function LandingPage() {
                 </Button>
               </Link>
             </Container>
-          </StyledContainer>
+      
         </div>
         <div id="about" style={{ height: "100vh" }}>
           <Container

@@ -11,66 +11,17 @@ import Link from "next/link";
 import Head from "next/head";
 import logo from "../../../../public/images/logo.png";
 import Image from "next/image";
+import MyContainer from "@modules/components/ui/MyContainer";
 
 export default function LoginPage() {
   return (
     <>
-      <Head>
-        <title>Login</title>
-      </Head>
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          p: 25,
-        }}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            p: 5,
-          }}
-        >
-          <Box sx={{ marginBottom: 1, marginTop: -20 }}>
-            <Image
-              src={logo}
-              alt="Unscathed Fitness Gym Logo"
-              width={250}
-              height={250}
-            />
-          </Box>
-          <Typography variant="h6" component="h2" sx={{ fontStyle: "italic" }}>
-            "Fitness is not just about the body. It's also about the mind. It's
-            about you waking up every day with the determination to be better
-            than you were yesterday."
-          </Typography>
-        </Container>
-        <Card
-          sx={{
-            backgroundColor: "#f2f2f2",
-            height: "100vh",
-            width: "50vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            p: 5,
-          }}
-        >
-          <Container
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              p: 4,
-            }}
-          >
-            <Typography variant="h4" sx={{ color: "#404040", marginBottom: 2 }}>
-              {" "}
-              User Login
-            </Typography>
+      <MyContainer className="pt-[87px] text-black min-h-screen ">
+        <div className="grid h-[calc(100vh-87px)] place-items-center calc w-full px-4 lg:px-0">
+          <div className="flex flex-col gap-2 w-full max-w-[450px] min-[520px]:px-8 min-[520px]:py-12 sm:w-[450px] border border-gray-300 shadow px-4 py-8 bg-white rounded-lg">
+            <h1 className="text-3xl font-medium pb-5 text-left w-full">
+              Login
+            </h1>
 
             <TextField
               label="Email"
@@ -78,53 +29,33 @@ export default function LoginPage() {
               variant="outlined"
               sx={{ width: "100%", marginBottom: 2 }}
             />
+
             <TextField
               label="Password"
               type="password"
               variant="outlined"
               sx={{ width: "100%", marginBottom: 4 }}
             />
-            <Link
-              href={"/dashboard"}
-              passHref
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#404040",
-                  color: "#fff",
-                  marginBottom: 2,
-                }}
+
+            <div className=" flex flex-col gap-2 items-center">
+              <Link
+                className="w-full mx-auto"
+                href={"/dashboard"}
+                passHref
+                style={{ textDecoration: "none", color: "black" }}
               >
-                Log In
-              </Button>
-            </Link>
-            <Typography
-              variant="subtitle1"
-              sx={{ color: "#737373", marginBottom: 2 }}
-            >
-              Don't have an account yet?{" "}
-            </Typography>
-            <Link href={"/signup"} passHref>
-              <Button
-                variant="outlined"
-                sx={{ backgroundColor: "#fff", color: "#404040" }}
-              >
-                Sign Up
-              </Button>
-            </Link>
-            <Link href={"/forgot_password"} passHref>
-              <Typography
-                variant="subtitle1"
-                sx={{ color: "#737373", marginTop: 4 }}
-              >
-                Forgot your password?
-              </Typography>
-            </Link>
-          </Container>
-        </Card>
-      </Container>
+                <button className="rounded-md w-full bg-gray-800 text-slate-50 font-medium tracking-widest drop-shadow-lg py-3 px-6 uppercase text-base -translate-y-2  hover:bg-gray-700 duration-300 transition-all ease-in-out">
+                  Login
+                </button>
+              </Link>
+              <small className=" text-sm text-center w-fit mx-auto">
+                Forgot your password?{" "}
+                <span className=" text-blue-500 underline">Click here.</span>
+              </small>
+            </div>
+          </div>
+        </div>
+      </MyContainer>
     </>
   );
 }
