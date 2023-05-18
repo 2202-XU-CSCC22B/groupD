@@ -53,7 +53,17 @@ const MoreInformation = ({ data }) => {
   };
 
   return (
-    <Grid container spacing={2} className="shrink-0 overflow-x-scroll">
+    <Grid
+      container
+      spacing={1}
+      className=" max-w-md border px-4 py-6 !rounded-lg"
+    >
+      <Grid item xs={12}>
+        <FormControlLabel
+          control={<Switch checked={editable} onChange={handleToggleEdit} />}
+          label="Edit"
+        />
+      </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
           label="First Name"
@@ -134,18 +144,33 @@ const MoreInformation = ({ data }) => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <DatePicker
-          label="Birthday"
-          name="birthday"
-          value={formData.birthday}
-          onChange={(date) => handleDateChange(date, "birthday")}
-          disabled={!editable}
-          showYearDropdown
-          fullWidth
-        />
+      <Grid item xs={12} sm={6} className="">
+        <div
+          className={`${
+            editable ? "border-gray-400 " : "border-gray-200"
+          } rounded  border relative py-[15px] px-2`}
+        >
+          <label
+            htmlFor="birthday"
+            className={`${
+              editable ? "text-gray-500" : "text-gray-300"
+            } text-sm   absolute -top-2 left-3  z-50 bg-[#F5F5F5] px-1`}
+          >
+            Birthday
+          </label>
+          <DatePicker
+            label="Birthday"
+            name="birthday"
+            value={formData.birthday}
+            onChange={(date) => handleDateChange(date, "birthday")}
+            disabled
+            showYearDropdown
+            className={"text-gray-400"}
+            fullWidth
+          />
+        </div>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
         <DatePicker
           label="Start Date"
           name="startDate"
@@ -154,15 +179,11 @@ const MoreInformation = ({ data }) => {
           disabled={!editable}
           showYearDropdown
           fullWidth
+          className=" border"
         />
-      </Grid>
+      </Grid> */}
       {/* Add more Grid items for other data fields */}
-      <Grid item xs={12}>
-        <FormControlLabel
-          control={<Switch checked={editable} onChange={handleToggleEdit} />}
-          label="Edit"
-        />
-      </Grid>
+
       <Grid item>
         <MyButton disabled={!editable} onClick={handleSaveChanges}>
           Save Changes

@@ -55,27 +55,22 @@ export default function AllMemberTable() {
   }
 
   return (
-    <div className=" overflow-hidden">
-      <div className=" flex flex-col md:flex-row">
-        <div className=" h-[500px]">
-          <DataGrid
-            className=""
-            rows={row}
-            columns={column}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 10 },
-              },
-            }}
-            pageSizeOptions={[10, 20]}
-            onRowDoubleClick={(row, event) => onRowDoubleClick(row, event)}
-          />
-        </div>
-        {/* <MoreInformation
-          data={selectedRow}
-          key={selectedRow?.id}
-        /> */}
+    <div className=" flex flex-col xl:flex-row gap-12 py-8">
+      <div className=" h-[500px] w-fit">
+        <DataGrid
+          rows={row}
+          columns={column}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 20]}
+          onRowDoubleClick={(row, event) => onRowDoubleClick(row, event)}
+        />
       </div>
+
+      <MoreInformation data={selectedRow} key={selectedRow?.id} />
     </div>
   );
 }

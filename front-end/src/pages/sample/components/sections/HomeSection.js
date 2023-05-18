@@ -8,7 +8,7 @@ const HomeSection = ({ ...props }) => {
   return (
     <Section
       {...props}
-      className="flex items-center"
+      className="flex items-center mt-[87px] -z-50"
       style={{
         backgroundImage: `url("/images/gymbg1.png")`,
         backgroundRepeat: "no-repeat",
@@ -17,8 +17,12 @@ const HomeSection = ({ ...props }) => {
       }}
     >
       <MyContainer className="text-center">
+        {/* remove position relative & absolute kay ga overflow, pwede flex column, items-center, justify center */}
         <div style={{ position: "relative", marginBottom: "1rem" }}>
-          <h1 className="text-6xl text-white" style={{ textShadow: "2px 2px 2px black", marginBottom: "1rem" }}>
+          <h1
+            className="text-6xl text-white"
+            style={{ textShadow: "2px 2px 2px black", marginBottom: "1rem" }}
+          >
             Welcome to Unscathed Fitness Gym!
           </h1>
           <div

@@ -121,109 +121,15 @@ a {
     color-scheme: dark;
   }
 }
-.MuiDataGrid-root {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  color: #333;
-  overflow: auto;
+
+.MuiDataGrid-row {
+  @apply cursor-pointer hover:!bg-blue-100 transition-all duration-300 ease-linear;
 }
 
-/* Styles for the header */
-.MuiDataGrid-columnHeader {
-  background-color: #f5f5f5;
-  color: #555;
-  font-weight: bold;
+.Mui-selected {
+  @apply !bg-blue-100 transition-all duration-300 ease-linear;
 }
 
-/* Styles for the cell */
-.MuiDataGrid-cell {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Styles for the alternate rows */
-.MuiDataGrid-row:nth-child(even) .MuiDataGrid-cell {
-  background-color: #f9f9f9;
-}
-
-/* Styles for the selected rows */
-.MuiDataGrid-row.Mui-selected {
-  background-color: #e0e0e0;
-}
-
-/* Styles for the hover effect on rows */
-.MuiDataGrid-row:hover {
-  background-color: #fafafa;
-}
-
-/* Styles for the pagination component */
-.MuiDataGrid-footerContainer {
-  background-color: #f5f5f5;
-  color: #555;
-  font-size: 12px;
-}
-
-/* Styles for the sort icon */
-.MuiDataGrid-sortIcon {
-  font-size: 18px;
-}
-
-/* Styles for the filter icon */
-.MuiDataGrid-filterIcon {
-  font-size: 16px;
-}
-
-/* Styles for the toolbar */
-.MuiDataGrid-toolbarContainer {
-  background-color: #f5f5f5;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-}
-
-/* Styles for the toolbar buttons */
-.MuiDataGrid-toolbarContainer button {
-  margin-right: 8px;
-}
-
-/* Styles for the pagination button */
-.MuiDataGrid-paginationButton {
-  background-color: #f5f5f5;
-  color: #555;
-}
-
-/* Styles for the pagination button when active */
-.MuiDataGrid-paginationButton.Mui-selected {
-  background-color: #e0e0e0;
-  color: #333;
-}
-
-/* Styles for the checkbox */
-.MuiDataGrid-checkboxInput {
-  color: #333;
-}
-
-/* Styles for the table borders */
-.MuiDataGrid-cell--withRightBorder,
-.MuiDataGrid-columnHeader--withRightBorder {
-  border-right: 1px solid #ddd;
-}
-
-/* Mobile-friendly styles */
-@media (max-width: 600px) {
-  .MuiDataGrid-root {
-    font-size: 12px;
-  }
-
-  .MuiDataGrid-cell {
-    padding: 6px;
-    white-space: normal;
-  }
-}
-.grid-container {
-  overflow-x: auto;
-  max-width: 100%;
+.MuiDataGrid-columnHeadersInner {
+  @apply !bg-gray-200 !text-gray-800 !uppercase !text-xs !font-bold;
 }

@@ -9,9 +9,14 @@ const MemberPage = () => {
         <title>Member</title>
       </Head>
 
-      <MyContainer>
+      <div className="container pr-4 py-8">
+        <section className="">
+          <h1 className=" text-3xl font-bold xl:text-left xl:pl-4 text-gray-800">
+            All members
+          </h1>
+        </section>
         <AllMembersContent />
-      </MyContainer>
+      </div>
     </div>
   );
 };

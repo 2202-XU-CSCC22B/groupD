@@ -10,7 +10,7 @@ function App({ Component, pageProps }) {
     if (router.pathname.includes("dashboard")) {
       return <DashboardLayout>{children}</DashboardLayout>;
     } else {
-      return <ResponsiveAppBar>{children}</ResponsiveAppBar>;
+      return <HomeLayout>{children}</HomeLayout>;
     }
   };
 

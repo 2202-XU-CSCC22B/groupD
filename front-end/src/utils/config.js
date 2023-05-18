@@ -184,10 +184,59 @@ export const allMembersColumnDef = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "firstName", headerName: "First name", width: 130 },
   { field: "lastName", headerName: "Last name", width: 130 },
-  { field: "email", headerName: "Email", width: 260 },
-  { field: "membershipStatus", headerName: "Status", width: 130 },
-  { field: "monthlySubscriptionStatus", headerName: "Status", width: 130 },
-  { field: "studentStatus", headerName: "Status", width: 130 },
-
+  {
+    field: "membershipStatus",
+    headerName: "Membership",
+    width: 130,
+    renderCell: (params) => (
+      <span
+        className={`font-semibold px-2 py-1 rounded text-xs ${
+          params.value === "ACTIVE"
+            ? " bg-emerald-100 text-emerald-700"
+            : params.value === "INACTIVE"
+            ? " bg-rose-100 text-rose-700"
+            : " bg-gray-100 text-gray-700"
+        }`}
+      >
+        {params.value}
+      </span>
+    ),
+  },
+  {
+    field: "monthlySubscriptionStatus",
+    headerName: "Monthly",
+    width: 130,
+    renderCell: (params) => (
+      <span
+        className={`font-semibold px-2 py-1 rounded text-xs ${
+          params.value === "ACTIVE"
+            ? " bg-emerald-100 text-emerald-700"
+            : params.value === "INACTIVE"
+            ? " bg-rose-100 text-rose-700"
+            : " bg-gray-300 text-gray-700"
+        }`}
+      >
+        {params.value}
+      </span>
+    ),
+  },
+  {
+    field: "studentStatus",
+    headerName: "Student",
+    width: 130,
+    renderCell: (params) => (
+      <span
+        className={`font-semibold  px-2 py-1 rounded text-xs ${
+          params.value === "ACTIVE"
+            ? " bg-emerald-100 text-emerald-700"
+            : params.value === "INACTIVE"
+            ? " bg-rose-100 text-rose-700"
+            : " bg-gray-300 text-gray-700"
+        }`}
+      >
+        {params.value}
+      </span>
+    ),
+  },
 ];
 export default dashboardData;
