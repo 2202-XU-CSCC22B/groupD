@@ -14,8 +14,9 @@ import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import PeopleIcon from "@mui/icons-material/People";
 import { styled } from "@mui/system";
 import { Container } from "@mui/material";
-import image1 from "../../public/images/AddSale.png"
-import image2 from  "../../public/images/AddAMember.jpg"
+import cardImage1 from "../../public/images/card1.png"
+import cardImage2 from  "../../public/images/card2.png"
+import cardImage3 from  "../../public/images/card3.png"
 
 const fontSize = "50px";
 
@@ -55,23 +56,20 @@ export const logoutButton = {
 
 export const memberSummary = [
   {
-    name: "Total Members",
+    name: "Active Members",
     icon: <Diversity3OutlinedIcon sx={{ fontSize: fontSize }} />,
-    value: 134,
     color: "#FFE2E6",
     tooltip: "Number of all registered users",
   },
   {
     name: "Monthly Members",
     icon: <FitnessCenterRoundedIcon sx={{ fontSize: fontSize }} />,
-    value: 20,
     color: "#DCFCE7",
     tooltip: "Number of all active monthly users",
   },
   {
-    name: "Muaythai Students",
+    name: "Registered Students",
     icon: <SportsGymnasticsRoundedIcon sx={{ fontSize: fontSize }} />,
-    value: 10,
     color: "#FFF4DE",
     tooltip: "Number of total enrolled monthly students",
   },
@@ -247,17 +245,17 @@ export default dashboardData;
 export const cardContents = [ 
   {
     title: 'Personal Training',
-    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout',
-    image: image2
+    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
+    image: cardImage1
   },
   {
     title: 'Muay Thai/Boxing',
-    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
-    image: image1
+    description: 'Join our Muay Thai/Boxing classes to meet other gym-goers and challenge yourself with a different workout.',
+    image: cardImage2
   },
   {
     title: 'Community Building',
-    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
-    image: image1
+    description: 'Engage in group challenges, and find motivation and support in reaching your fitness goals together.',
+    image: cardImage3
   },
 ]
