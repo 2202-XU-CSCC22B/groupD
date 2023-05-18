@@ -10,12 +10,13 @@ import gym2 from "../../../../../public/images/gym2.png";
 import gym3 from "../../../../../public/images/gym3.png";
 import gym4 from "../../../../../public/images/gym4.png";
 import styles from "../../../carousel.module.css"
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 
 const ContactSection = ({ ...props }) => {
   return (
     <Section
       {...props}
-      className="flex items-center mt-[87px] -z-50"
+      className="flex items-center -z-50"
       style={{
         backgroundImage: `url(${homeBG3.src})`,
         backgroundRepeat: "no-repeat",
