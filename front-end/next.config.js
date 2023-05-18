@@ -12,7 +12,7 @@ module.exports = {
     // delete_member_api: "http://localhost:8080/member/delete/{email}",
 
     create_members_api:
-      "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/new",
+        "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/new",
     retrieve_members_api:
       "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/all",
     retrieve_unverified_api:
@@ -23,5 +23,7 @@ module.exports = {
       "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/validate/{email}",
     delete_member_api:
       "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/delete/{email}",
+    count_members_api:
+    "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/count",
   },
 };

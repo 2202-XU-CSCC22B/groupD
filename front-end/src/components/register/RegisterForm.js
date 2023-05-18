@@ -39,14 +39,63 @@ const RegisterForm = () => {
 
   // POST function here
   const onSubmit = async (data) => {
-    const refine = {
-      ...data,
-      firstName: titleCase(data.firstName),
-      lastName: titleCase(data.lastName),
-      email: data.email.toLowerCase(),
-      ...(data.address && { address: titleCase(data.address) }),
-      ...(data.occupation && { occupation: titleCase(data.occupation) }),
+    // const refine = {
+    //   ...data,
+    //   firstName: titleCase(data.firstName),
+    //   lastName: titleCase(data.lastName),
+    //   email: data.email.toLowerCase(),
+    //   ...(data.address && { address: titleCase(data.address) }),
+    //   ...(data.occupation && { occupation: titleCase(data.occupation) }),
+    // };
+
+
+    const formattedData = {
+      name: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+      },
+      contactDetails: {
+        email: data.email,
+        phone: data.phone,
+      },
+      address: data.address,
+      weight: data.weight,
+      height: data.height,
+      occupation: data.occupation,
+      birthDetails: {
+        birthday: data.birthday.toISOString().split("T")[0],
+      },
+      membershipDetails: {},
     };
+
+
+
+    fetch(process.env.create_members_api, {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(formattedData),
+      }).then(response => {
+        console.log('Response status code:', response.status);
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then(errorData => {
+            throw new Error(errorData.message || 'Request failed');
+          });
+        }
+      })
+          .then(data => {
+            console.log('Response data:', data);
+            alert(data.message);
+          })
+          .catch(error => {
+            console.log(error)
+            alert(error.message);
+            console.log('Error:', error);
+          });
+
 
     // handle submit logic here
   };
