@@ -9,13 +9,22 @@ import { CardActionArea } from "@mui/material";
 import image1 from "../../../../../public/images/AddSale.png";
 import { cardContents } from "@modules/utils/config";
 import { maxHeaderSize } from "http";
+import homeBG2 from"../../../../../public/images/gymbg2.png";
 
 
 const AboutSection = ({ ...props }) => {
-
   console.log (image1)
   return (
-    <Section className="bg-yellow-500" {...props}>
+    <Section
+      {...props}
+      className="flex items-center mt-[87px] -z-50"
+      style={{
+        backgroundImage: `url(${homeBG2.src})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <MyContainer className="grid place-items-center h-[calc(100vh-74px)]">
         <div className = "flex flex-col gap-12">
         <h1 className="text-6xl font-semibold	text-slate-50 drop-shadow-lg text-center">
