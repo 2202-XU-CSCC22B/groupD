@@ -16,10 +16,7 @@ import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 import ph.cdo.xu.groudd.backend.utils.DateService;
 import ph.cdo.xu.groudd.backend.utils.EmailService;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/member")
@@ -124,5 +121,15 @@ public class MemberController {
 
         return memberService.sendMembersToFrontEnd(memberService.allMembers());
 
+    }
+
+    @GetMapping(value= "/count", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> countAll(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("members", memberService.countActiveMembers());
+        map.put("students", memberService.countActiveStudents());
+        map.put("monthly", memberService.countActiveMonthly());
+
+        return ResponseEntity.ok(map);
     }
 }
