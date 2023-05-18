@@ -28,4 +28,10 @@ public interface MemberService {
 
      List<Map<String, Object>> sendMembersToFrontEnd(List<Member> members);
 
+
+
+     int countActiveMembers();
+     int countActiveStudents();
+     int countActiveMonthly();
+
 }
