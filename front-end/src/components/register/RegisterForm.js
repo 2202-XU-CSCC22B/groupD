@@ -4,7 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import axios from "axios";
-import { titleCase } from "@modules/utils/functions";
+import { BiLoaderAlt } from "react-icons/bi";
+import { MdError } from "react-icons/md";
 
 const schema = z.object({
   firstName: z
@@ -27,6 +28,9 @@ const schema = z.object({
 
 const RegisterForm = () => {
   const [conflict, setConflict] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(false);
 
   const {
     register,
@@ -39,16 +43,7 @@ const RegisterForm = () => {
 
   // POST function here
   const onSubmit = async (data) => {
-    // const refine = {
-    //   ...data,
-    //   firstName: titleCase(data.firstName),
-    //   lastName: titleCase(data.lastName),
-    //   email: data.email.toLowerCase(),
-    //   ...(data.address && { address: titleCase(data.address) }),
-    //   ...(data.occupation && { occupation: titleCase(data.occupation) }),
-    // };
-
-
+    setIsLoading(true);
     const formattedData = {
       name: {
         firstName: data.firstName,
@@ -68,43 +63,72 @@ const RegisterForm = () => {
       membershipDetails: {},
     };
 
+    // fetch(process.env.create_members_api, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formattedData),
+    // })
+    //   .then((response) => {
+    //     console.log("Response status code:", response.status);
+    //     if (response.ok) {
+    //       setIsLoading(false);
+    //       setIsSent(true);
 
-
-    fetch(process.env.create_members_api, {
-        method: 'POST',
-        headers: {
-          'Content-Type' : 'application/json'
-        },
-        body : JSON.stringify(formattedData),
-      }).then(response => {
-        console.log('Response status code:', response.status);
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json().then(errorData => {
-            throw new Error(errorData.message || 'Request failed');
-          });
-        }
-      })
-          .then(data => {
-            console.log('Response data:', data);
-            alert(data.message);
-          })
-          .catch(error => {
-            console.log(error)
-            alert(error.message);
-            console.log('Error:', error);
-          });
-
-
-    // handle submit logic here
+    //       return response.json();
+    //     } else if (response.status === 409) {
+    //       setIsDuplicate(true);
+    //       setIsLoading(false);
+    //     } else {
+    //       return response.json().then((errorData) => {
+    //         throw new Error(errorData.message || "Request failed");
+    //       });
+    //     }
+    //   })
+    //   .then((data) => {
+    //     console.log("Response data:", data);
+    //     reset();
+    //     setTimeout(() => {
+    //       setIsSent(false);
+    //     }, 5000);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error:", error);
+    //   });
+    try {
+      const response = await axios.post(
+        process.env.create_members_api,
+        formattedData
+      );
+      // response successs
+      if (response.status === 200) {
+        setIsLoading(false);
+        setIsSent(true);
+        reset();
+        setTimeout(() => {
+          setIsSent(false);
+        }, 5000);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      // email already exists
+      if (error.response.status === 409) {
+        setIsLoading(false);
+        setIsDuplicate(true);
+        setTimeout(() => {
+          setIsDuplicate(false);
+        }, 5000);
+      } else {
+        // other error
+        console.log(error);
+      }
+    }
   };
 
   // input css in globals.css
   const inputGroupClassName = "reg-form flex flex-col gap-1 text-gray-900";
-
-  // email sent state (important: update for correct boolean)
-  const [isSent, setIsSent] = useState(false);
 
   console.log(errors);
   return (
@@ -325,20 +349,29 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <input
-          className="text-white bg-gray-900 py-2 rounded w-full cursor-pointer hover:bg-gray-800 transition-all duration-300 ease-in-out"
+        <button
+          className="text-white bg-gray-900 py-2 rounded w-full cursor-pointer hover:bg-gray-800 transition-all duration-300 ease-in-out flex items-center gap-1 text-center justify-center disabled:bg-gray-500 disabled:hover:bg-gray-500"
           type="submit"
-          value="Register"
-        />
+          disabled={isSent || isLoading}
+        >
+          {isLoading && <BiLoaderAlt className=" text-white animate-spin" />}
+          {isLoading ? "Loading" : "Register"}
+        </button>
       </div>
       <div
-        className={`py-2 px-4 w-full text-emerald-700 justify-center  rounded bg-emerald-100 flex items-center gap-2 ${
-          isSent ? "visible" : "invisible"
+        className={`py-2 px-4 w-full  justify-center  rounded  flex items-center gap-2 ${
+          isSent || isDuplicate ? "visible" : "invisible"
+        } ${isSent && "text-emerald-700 bg-emerald-100"} ${
+          isDuplicate && "text-rose-700 bg-rose-100"
         }`}
       >
-        <BsFillCheckCircleFill />
+        {isSent ? <BsFillCheckCircleFill /> : isDuplicate ? <MdError /> : "."}
         <small className=" text-sm">
-          {isSent ? "Confirmation sent to your email." : "."}
+          {isSent
+            ? "Confirmation sent to your email."
+            : isDuplicate
+            ? "Email already exist!"
+            : "."}
         </small>
       </div>
     </form>
