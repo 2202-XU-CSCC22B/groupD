@@ -122,5 +122,41 @@ public class MemberServiceImpl implements MemberService{
         return mappedMembers;
     }
 
+    @Override
+    public int countActiveMembers() {
+       return countStatus("membership");
+    }
+
+    @Override
+    public int countActiveStudents() {
+        return countStatus("student");
+    }
+
+    @Override
+    public int countActiveMonthly() {
+        return countStatus("monthly");
+    }
+
+
+
+    private int countStatus(String status) {
+        int count = 0;
+        List<Member> members = memberRepository.findAll(); // Assuming you have a method to retrieve the list of members
+
+        for (Member member : members) {
+            Status membershipStatus = member.getMembershipDetails().getMembershipStatus();
+            Status monthlySubscriptionStatus = member.getMembershipDetails().getMonthlySubscriptionStatus();
+            Status studentStatus = member.getMembershipDetails().getStudentStatus();
+
+            if ((status.equals("membership") && membershipStatus == Status.ACTIVE) ||
+                    (status.equals("monthly") && monthlySubscriptionStatus == Status.ACTIVE) ||
+                    (status.equals("student") && studentStatus == Status.ACTIVE)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
 
 }
