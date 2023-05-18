@@ -18,6 +18,7 @@ import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.utils.DateService;
 
 import java.util.Date;
 import java.util.Properties;
@@ -31,7 +32,9 @@ public class ApplicationConfig {
     public CommandLineRunner commandLineRunner(
             @Autowired Faker faker,
             @Autowired Random ran,
-            @Autowired MemberService memberService){
+            @Autowired MemberService memberService,
+            @Autowired DateService dateService
+    ){
         return args -> {
             double minimum = 50.0;
             double maximum = 100.0;
@@ -45,6 +48,39 @@ public class ApplicationConfig {
                String phone = faker.phoneNumber().cellPhone();
                String occupation = faker.job().title();
 
+                Status membershipStatus = Status.values()[ran.nextInt(Status.values().length)];
+                Status studentStatus;
+                Status monthlyStatus;
+                Date startDateMembership = null;
+                Date endDateMembership = null;
+
+                Date startStudent = null;
+                Date endStudent = null;
+
+                Date startMonthly = null;
+                Date endMonthly = null;
+
+                if(membershipStatus == Status.ACTIVE){
+                    startDateMembership = getRandomDate(2023);
+                    endDateMembership = dateService.addMonthsToDate(startDateMembership, 12);
+                    studentStatus = Status.values()[ran.nextInt(Status.values().length)];
+                    monthlyStatus = Status.values()[ran.nextInt(Status.values().length)];
+
+                    if(studentStatus == Status.ACTIVE){
+                        startStudent = dateService.addMonthsToDate(startDateMembership, ran.nextInt(6));
+                        endStudent = dateService.addMonthsToDate(startStudent, 1);
+                    }
+                    if(monthlyStatus == Status.ACTIVE){
+                        startMonthly = dateService.addMonthsToDate(startDateMembership, ran.nextInt(6));
+                        endMonthly = dateService.addMonthsToDate(startMonthly, 1);
+                    }
+
+
+                }else{
+                    studentStatus = Status.UNVERIFIED;
+                    monthlyStatus = Status.UNVERIFIED;
+                }
+
 
                //For Birthday
                 Date birthday = getRandomDate(1980);
@@ -57,9 +93,15 @@ public class ApplicationConfig {
                                 .address(address)
                                 .membershipDetails(
                                         MembershipDetails.builder()
-                                                .membershipStatus(Status.values()[ran.nextInt(Status.values().length)])
-                                                .monthlySubscriptionStatus(Status.values()[ran.nextInt(Status.values().length)])
-                                                .studentStatus(Status.values()[ran.nextInt(Status.values().length)])
+                                                .membershipStatus(membershipStatus)
+                                                .monthlySubscriptionStatus(monthlyStatus)
+                                                .studentStatus(studentStatus)
+                                                .membershipStartDate(startDateMembership)
+                                                .membershipEndDate(endDateMembership)
+                                                .studentStartDate(startStudent)
+                                                .studentEndDate(endStudent)
+                                                .monthlySubscriptionStartDate(startMonthly)
+                                                .monthlySubscriptionEndDate(endMonthly)
                                                 .build())
                                 .name(
                                         Name
