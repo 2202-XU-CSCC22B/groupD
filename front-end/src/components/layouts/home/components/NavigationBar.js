@@ -30,7 +30,7 @@ const NavigationBar = ({ className, ...props }) => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden sm:flex gap-6">
+        <div className="hidden sm:flex gap-6 items-center">
           {links.map((link, index) => (
             <Link
               className="text-sm transition-all duration-300 ease-in-out p-2 text-gray-50 uppercase font-medium tracking-wide hover:bg-gray-700 rounded-lg"
@@ -40,6 +40,11 @@ const NavigationBar = ({ className, ...props }) => {
               {link.label}
             </Link>
           ))}
+          <Link passHref href="/account/login">
+            <button className=" text-sm uppercase font-medium text-rose-50 bg-rose-700 tracking-wide px-4 py-2 rounded hover:bg-rose-600 hover:scale-95 duration-300 transition-all ease-in-out">
+              Login
+            </button>
+          </Link>
         </div>
 
         {/* mobile nav */}
@@ -50,7 +55,7 @@ const NavigationBar = ({ className, ...props }) => {
                 {open ? <FaTimes size={24} /> : <FaBars size={24} />}
               </Menu.Button>
               {open && (
-                <div className="absolute right-0 translate-y-[160px] w-full bg-gray-900 sm:hidden block">
+                <div className="absolute right-0 translate-y-[186px] w-full bg-gray-900 sm:hidden block">
                   <Menu.Items className=" flex flex-col px-4 py-8 divide-y divide-solid divide-gray-800 outline-none ">
                     {links.map((link) => (
                       <Menu.Item
@@ -62,6 +67,11 @@ const NavigationBar = ({ className, ...props }) => {
                         {link.label}
                       </Menu.Item>
                     ))}
+                    <Link passHref href="/account/login">
+                      <button className=" text-sm uppercase font-medium text-rose-50 bg-rose-700 tracking-wide px-4 py-2 rounded hover:bg-rose-600 hover:scale-95 duration-300 transition-all ease-in-out w-full mt-4">
+                        Login
+                      </button>
+                    </Link>
                   </Menu.Items>
                 </div>
               )}

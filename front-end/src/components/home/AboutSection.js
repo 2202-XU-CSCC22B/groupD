@@ -1,4 +1,4 @@
-import Section from "../Section";
+import Section from "./Section";
 import MyContainer from "@modules/components/ui/MyContainer";
 import { Typography } from "@mui/material";
 import * as React from "react";
@@ -6,10 +6,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
-import image1 from "../../../../../public/images/AddSale.png";
+import image1 from "../../../public/images/AddSale.png";
 import { cardContents } from "@modules/utils/config";
-import { maxHeaderSize } from "http";
-import homeBG2 from "../../../../../public/images/gymbg2.png";
+import homeBG2 from "../../../public/images/gymbg2.png";
 
 const AboutSection = ({ ...props }) => {
   console.log(image1);
