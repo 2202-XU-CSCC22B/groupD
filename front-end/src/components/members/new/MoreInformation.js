@@ -5,7 +5,8 @@ import {
   Button,
   FormControlLabel,
   Switch,
-  Grid, Accordion,
+  Grid,
+  Accordion,
 } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -111,7 +112,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="First Name"
           name="firstName"
-          value={formData.firstName}
+          value={formData?.firstName}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -121,7 +122,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Last Name"
           name="lastName"
-          value={formData.lastName}
+          value={formData?.lastName}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -131,7 +132,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Email"
           name="email"
-          value={formData.email}
+          value={formData?.email}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -141,7 +142,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Address"
           name="address"
-          value={formData.address}
+          value={formData?.address}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -151,7 +152,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Weight"
           name="weight"
-          value={formData.weight}
+          value={formData?.weight}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -161,7 +162,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Height"
           name="height"
-          value={formData.height}
+          value={formData?.height}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -171,7 +172,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Contact Number"
           name="phone"
-          value={formData.phone}
+          value={formData?.phone}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -181,7 +182,7 @@ const MoreInformation = ({ data }) => {
         <TextField
           label="Occupation"
           name="occupation"
-          value={formData.occupation}
+          value={formData?.occupation}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -204,7 +205,7 @@ const MoreInformation = ({ data }) => {
           <DatePicker
             label="Birthday"
             name="birthday"
-            value={formData.birthday}
+            value={formData?.birthday}
             onChange={(date) => handleDateChange(date, "birthday")}
             disabled
             showYearDropdown
@@ -227,7 +228,7 @@ const MoreInformation = ({ data }) => {
       </Grid> */}
       {/* Add more Grid items for other data fields */}
 
-      <Grid item>
+      <Grid className=" w-full space-y-4">
         <MyButton disabled={!editable} onClick={handleSaveChanges}>
           Save Changes
         </MyButton>
@@ -243,6 +244,29 @@ const MoreInformation = ({ data }) => {
           {title: "MONTHLY", status: formData.monthlySubscriptionStatus, startDate: formData.monthlySubscriptionStartDate, endDate: formData.monthlySubscriptionEndDate},
           {title: "STUDENT", status: formData.studentStatus, startDate: formData.studentStartDate, endDate: formData.studentEndDate},
         ]}/>
+
+        <MyCustomAccordion
+          data={[
+            {
+              title: "MEMBERSHIP",
+              status: formData?.membershipStatus,
+              startDate: formData?.membershipStartDate,
+              endDate: formData?.membershipEndDate,
+            },
+            {
+              title: "MONTHLY",
+              status: formData?.monthlySubscriptionStatus,
+              startDate: formData?.monthlySubscriptionStartDate,
+              endDate: formData?.monthlySubscriptionEndDate,
+            },
+            {
+              title: "STUDENT",
+              status: formData?.studentStatus,
+              startDate: formData?.studentStartDate,
+              endDate: formData?.studentEndDate,
+            },
+          ]}
+        />
         {/* <MyButton>Enroll Monthly</MyButton>
 
         <MyButton>Enroll Muay-Thai</MyButton> */}
