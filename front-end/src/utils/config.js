@@ -17,7 +17,7 @@ import { Container } from "@mui/material";
 import cardImage1 from "../../public/images/card1.png"
 import cardImage2 from  "../../public/images/card2.png"
 import cardImage3 from  "../../public/images/card3.png"
-
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 const fontSize = "50px";
 
 const dashboardData = [
@@ -47,12 +47,27 @@ const dashboardData = [
   },
 ];
 
-export const logoutButton = {
-  name: "Logout",
-  onClick: handleLogoutClick,
-  tooltip: "Click to logout",
-  icon: <LogoutRoundedIcon />,
-};
+function handleEmailClick() {
+  alert("Send email Clicked!")
+}
+
+export const dashBoardAction =[
+  {
+    name: "Email",
+    onClick: handleEmailClick,
+    tooltip: "Click to send email",
+    icon: <EmailRoundedIcon />,
+  },
+  {
+    name: "Logout",
+    onClick: handleLogoutClick,
+    tooltip: "Click to logout",
+    icon: <LogoutRoundedIcon />,
+  },
+
+
+]
+
 
 export const memberSummary = [
   {
