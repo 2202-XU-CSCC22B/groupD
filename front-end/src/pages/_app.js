@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import "../styles/global.css";
 import DashboardLayout from "@modules/components/layouts/DashboardLayout";
-import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
 import HomeLayout from "@modules/components/layouts/home/HomeLayout";
 function App({ Component, pageProps }) {
   const router = useRouter();

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import MyContainer from "@modules/components/ui/MyContainer";
 import AllMembersContent from "@modules/components/members/new/AllMembersContent";
+import Accordion from "@modules/components/members/Accordion";
 
 const MemberPage = () => {
   return (
@@ -16,6 +17,8 @@ const MemberPage = () => {
           </h1>
         </section>
         <AllMembersContent />
+
+        <Accordion />
       </div>
     </div>
   );
