@@ -1,41 +1,53 @@
 import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
+import TableHead from "./ui/TableHead";
+import TableData from "./ui/TableData";
 
-const Table = ({ data }) => {
+const Table = ({ visibleData, data }) => {
   let [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  // table styling in global css
   return (
     <>
-      <table className=" table-auto text-gray-900">
+      <table className="my-table table-auto text-gray-900 p-6">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Membership Status</th>
-            <th>Others</th>
+            <TableHead>ID</TableHead>
+            <TableHead>First name</TableHead>
+            <TableHead>Last name</TableHead>
+            <TableHead>Membership Status</TableHead>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => {
             return (
-              <tr>
-                <td>{item.id}</td>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.membershipStatus}</td>
-                <td>
+              <tr key={index}>
+                <TableData>{item.id}</TableData>
+                <TableData>{item.firstName}</TableData>
+                <TableData>{item.lastName}</TableData>
+                <TableData className=" flex items-center justify-center">
+                  <span
+                    className={`border rounded text-xs uppercase px-2 py-1 ${
+                      item.membershipStatus === "ACTIVE"
+                        ? "bg-emerald-100 text-emerald-700"
+                        : " bg-rose-100 text-rose-700"
+                    }`}
+                  >
+                    {item.membershipStatus}
+                  </span>
+                </TableData>
+                <TableData className=" border-none">
                   <button
                     onClick={() => {
                       setSelectedItem(item);
                       setIsOpen(!isOpen);
                     }}
-                    className=""
+                    className=" underline text-sm text-blue-600"
                   >
-                    ...
+                    View details
                   </button>
-                </td>
+                </TableData>
               </tr>
             );
           })}
@@ -51,7 +63,7 @@ const Table = ({ data }) => {
           <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
 
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="mx-auto max-w-sm rounded bg-white"></Dialog.Panel>
+            <Dialog.Panel className="mx-auto max-w-sm rounded border bg-white"></Dialog.Panel>
           </div>
         </Dialog>
       )}
