@@ -6,7 +6,7 @@ const NewMemberPage = () => {
   return (
     <div className=" text-gray-900">
       <BackButton>Back</BackButton>
-      <AllMembersContent />
+      <PendingRegistrationContent />
     </div>
   );
 };
