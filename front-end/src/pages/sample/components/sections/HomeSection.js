@@ -10,7 +10,7 @@ const HomeSection = ({ ...props }) => {
   return (
     <Section
       {...props}
-      className="flex items-center mt-[87px] -z-50"
+      className="flex items-center md:mt-[87px]"
       style={{
         backgroundImage: `url(${homeBG.src})`,
         backgroundRepeat: "no-repeat",
@@ -18,58 +18,39 @@ const HomeSection = ({ ...props }) => {
         backgroundPosition: "center",
       }}
     >
-      <MyContainer className="text-center">
-      <div className="relative flex min-h-screen justify-center items-center">
-  <div
-    aria-hidden="true"
-    className="absolute inset-y-0 inset-x-0 w-72 rounded-full rotate-90 bg-gradient-to-b from-gray-700  to-blue-950 blur-3xl mx-auto opacity-80"
-  ></div>
-
+      <MyContainer className="text-center relative -translate-y-12">
+        <div className=" flex min-h-screen justify-center items-center">
+          {/* backdrop */}
           <div
-            className="relative z-10"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "1rem",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: "-150px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "200px",
-                height: "200px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                boxShadow: "0 0 0 4px black",
-              }}
-            >
+            aria-hidden="true"
+            className="absolute translate-y-12 inset-y-0 inset-x-0 w-72 rounded-full rotate-90 bg-gradient-to-b from-gray-700  to-blue-950 blur-3xl mx-auto opacity-80"
+          ></div>
+
+          {/* main */}
+          <div className="relative z-10 px-4 flex flex-col items-center gap-8 lg:gap-12">
+            {/* image */}
+            <div className=" w-[200px] h-[200px] rounded-full">
               <img
+                className=" rounded-full shadow-lg border-4 border-black"
                 src="/images/logo.png"
                 alt="Logo"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
-            <div
-              className=" text-6xl md:text-5xl font-semibold text-slate-50 drop-shadow-lg text-center md:!leading-tight md:pt-16 "
 
-            >
-              Welcome to Unscathed Fitness Gym!
+            {/* title and subtitle */}
+            <div className=" space-y-4 max-w-2xl">
+              <div className="text-3xl sm:text-5xl md:text-6xl font-semibold text-slate-50 drop-shadow-lg text-center  !leading-none ">
+                Welcome to Unscathed Fitness Gym!
+              </div>
+              <p className=" text-lg text-slate-300 drop-shadow-lg text-center md:text-2xl font-normal">
+                We are committed to helping you achieve your fitness goals.
+              </p>
             </div>
-            <p
-              className=" text-2xl text-slate-50 drop-shadow-lg text-center md:text-2xl"
-              style={{
-                marginBottom: "1rem",
-              }}
-            >
-              We are committed to helping you achieve your fitness goals.
-            </p>
+
+            {/* CTA */}
             <Link href="/account/register" passHref>
-              <button class="rounded-full bg-gray-800 text-slate-50 drop-shadow-lg text-lg py-2 px-4">
+              <button class="rounded-full tracking-wider font-medium bg-gray-900 hover:scale-95 hover:bg-gray-800 transition-all duration-300 ease-in-out text-slate-50 drop-shadow-lg text-xl py-4 px-8">
                 Get Started
               </button>
             </Link>
