@@ -7,7 +7,7 @@ const HomeLayout = ({ children }) => {
     <div>
       <NavigationBar />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

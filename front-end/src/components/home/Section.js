@@ -1,5 +1,3 @@
-import React from "react";
-
 const Section = ({ className, children, ...props }) => {
   return (
     <section

@@ -1,10 +1,7 @@
-import React from "react";
-import Section from "../Section";
+import Section from "./Section";
 import MyContainer from "@modules/components/ui/MyContainer";
 import Link from "next/link";
-import Button from "@mui/material/Button";
-import homeBG from "../../../../../public/images/gymbg1.png";
-import { Paper } from "@mui/material";
+import homeBG from "../../../public/images/gymbg1.png";
 
 const HomeSection = ({ ...props }) => {
   return (
