@@ -16,7 +16,7 @@ const links = [
 const NavigationBar = ({ className, ...props }) => {
   return (
     <div
-      className={`${className} fixed  bg-gray-900 w-full py-6 px-4 xl:px-0 shadow-lg`}
+      className={`${className} fixed  bg-gray-900 w-full py-6 px-4 xl:px-0 shadow-lg z-50`}
       {...props}
     >
       <MyContainer className=" flex justify-between items-center ">

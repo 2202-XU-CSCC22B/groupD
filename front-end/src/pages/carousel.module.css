@@ -9,7 +9,7 @@
   align-items: center;
   width: 800px; /* Adjust the width as needed */
   height: fit-content; /* Set the height to fit the content */
-  margin-bottom: 300px;
+  margin-bottom: -80px;
   border: 2px solid #000; /* Adjust the border properties as needed */
   border-radius: 8px; /* Adjust the border radius as needed */
   box-sizing: content-box; /* Set box-sizing to content-box */

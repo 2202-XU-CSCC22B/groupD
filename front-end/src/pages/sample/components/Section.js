@@ -3,7 +3,7 @@ import React from "react";
 const Section = ({ className, children, ...props }) => {
   return (
     <section
-      className={`${className} h-[calc(100vh-87px)] snap-start`}
+      className={`${className} md:h-[calc(100vh-87px)] md:snap-start`}
       {...props}
     >
       {children}

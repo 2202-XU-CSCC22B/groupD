@@ -9,7 +9,7 @@ import { CardActionArea } from "@mui/material";
 import image1 from "../../../../../public/images/AddSale.png";
 import { cardContents } from "@modules/utils/config";
 import { maxHeaderSize } from "http";
-import homeBG2 from"../../../../../public/images/gymbg2.png";
+import homeBG2 from "../../../../../public/images/gymbg2.png";
 
 const AboutSection = ({ ...props }) => {
   console.log(image1);
@@ -24,7 +24,7 @@ const AboutSection = ({ ...props }) => {
         backgroundPosition: "center",
       }}
     >
-      <MyContainer className="grid place-items-center h-[calc(100vh-74px)]">
+      <MyContainer className="grid place-items-center md:h-[calc(100vh-74px)]">
         <div className="flex flex-col gap-12">
           <h1 className="text-6xl font-semibold	text-slate-50 drop-shadow-lg text-center">
             About
