@@ -42,8 +42,16 @@ export default function AllMemberTable(){
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch(process.env.post_get_members_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
+                const response = await fetch(process.env.retrieve_members_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
                 const jsonData = await response.json();
+                // const data = {
+                //     firstName: jsonData.name.firstName,
+                //     lastName: jsonData.name.lastName,
+                //     email: jsonData.contactDetails.
+                //     membershipStatus: jsonData.membershipDetails.membershipStatus,
+                //     monthlySubscriptionStatus: jsonData.membershipDetails.monthlySubscriptionStatus,
+                //     studentStatus : jsonData.membershipDetails.studentStatus
+                // }
                 setRow(jsonData);
                 setIsLoading(false);
                 setSelectedRow(jsonData[0])
@@ -73,7 +81,7 @@ export default function AllMemberTable(){
         <Paper style={{padding: "2rem", justifyContent: "center", display: "flex", flexDirection: "column", gap: 10, width: "80vw"}} elevation={24}>
             <Typography variant={"h3"}>All Members</Typography>
             <Divider/>
-            <div style={{display: "flex", flexDirection: "row", gap: 10, justifyContent: "space-evenly"}}>
+            <div style={{display: "flex", flexDirection: "row", gap: 10, justifyContent: "space-evenly", padding : "1rem"}} class="grid-container">
                 <div style={{ height: 600 , width: 800}}>
                     <DataGrid
                         rows={row}
