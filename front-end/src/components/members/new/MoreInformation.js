@@ -14,6 +14,37 @@ import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion
 const MoreInformation = ({ data }) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
+  const [isLoading, setLoading] = useState(false);
+
+
+
+  const formattedData = {
+    name: {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+    },
+    contactDetails: {
+      email: formData.email,
+      phone: formData.phone,
+    },
+    address: formData.address,
+    weight: parseFloat(formData.weight),
+    height: parseFloat(formData.height),
+    occupation: formData.occupation,
+    birthDetails: {
+      birthday: formData.birthday
+    },
+    membershipDetails: {
+      membershipStartDate: formData.membershipStartDate,
+      membershipEndDate: formData.membershipEndDate,
+      monthlySubscriptionStartDate: formData.monthlySubscriptionStartDate,
+      monthlySubscriptionEndDate: formData.monthlySubscriptionEndDate,
+      studentStartDate: formData.studentStartDate,
+      studentEndDate: formData.studentEndDate,
+      membershipStatus: formData.membershipStatus,
+      monthlySubscriptionStatus: formData.monthlySubscriptionStatus,
+    },
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,23 +66,34 @@ const MoreInformation = ({ data }) => {
   };
 
   const handleSaveChanges = () => {
-    // Send the updated data to the API endpoint for saving
-    // Here, you would typically use a fetch or axios to make the API call
-    // Replace <API_ENDPOINT> with your actual endpoint
-    fetch("<API_ENDPOINT>", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        // Handle the API response if needed
-        console.log(response);
-        console.log("Data saved successfully!");
+    setLoading(true); // Start the loading animation
+
+    // Simulate an asynchronous API call
+    setTimeout(() => {
+      // Send the updated data to the API endpoint for saving
+      // Here, you would typically use a fetch or axios to make the API call
+      // Replace <API_ENDPOINT> with your actual endpoint
+      fetch(process.env.update_member_api, {
+        method: "PUT",
+        body: JSON.stringify(formattedData),
       })
-      .catch((error) => {
-        // Handle any errors that occurred during the API call
-        console.error("Error saving data:", error);
-      });
+          .then((response) => {
+            // Handle the API response if needed
+            console.log(response);
+            console.log("Data saved successfully!");
+            alert("Changes were successful");
+            setLoading(false); // Stop the loading animation
+          })
+          .catch((error) => {
+            // Handle any errors that occurred during the API call
+            console.error("Error saving data:", error);
+
+            setLoading(false); // Stop the loading animation
+          });
+    }, 100); // Simulating 1 second delay for the API call
   };
+
+
 
   return (
     <Grid
@@ -189,7 +231,13 @@ const MoreInformation = ({ data }) => {
         <MyButton disabled={!editable} onClick={handleSaveChanges}>
           Save Changes
         </MyButton>
-
+        {isLoading && (
+            <div className="text-center mt-4">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+        )}
         <MyCustomAccordion data={[
           {title: "MEMBERSHIP", status: formData.membershipStatus, startDate: formData.membershipStartDate, endDate: formData.membershipEndDate},
           {title: "MONTHLY", status: formData.monthlySubscriptionStatus, startDate: formData.monthlySubscriptionStartDate, endDate: formData.monthlySubscriptionEndDate},
