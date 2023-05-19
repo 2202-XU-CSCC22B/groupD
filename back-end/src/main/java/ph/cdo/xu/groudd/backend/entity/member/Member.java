@@ -20,12 +20,12 @@ public class Member extends Person {
     @Id
     @SequenceGenerator(
             name = "member_sequence",
-            sequenceName = "student_sequence",
+            sequenceName = "member_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "member_sequence"
     )
     private Long id;
     private double weight;
