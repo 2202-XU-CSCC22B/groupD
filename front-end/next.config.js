@@ -10,6 +10,8 @@ module.exports = {
     // update_member_api: "http://localhost:8080/member/update/{email}",
     // validate_unverified_api: "http://localhost:8080/member/validate/{email}",
     // delete_member_api: "http://localhost:8080/member/delete/{email}",
+    // count_members_api:
+    // "http://localhost:8080/member/count",
 
     create_members_api:
         "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/new",

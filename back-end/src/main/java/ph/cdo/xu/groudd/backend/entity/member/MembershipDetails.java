@@ -41,12 +41,24 @@ public class MembershipDetails {
 
 
     @Enumerated(EnumType.STRING)
-    private Status membershipStatus;
+    private Status membershipStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
-    private Status monthlySubscriptionStatus;
+    private Status monthlySubscriptionStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
-    private Status studentStatus;
+    private Status studentStatus = Status.UNVERIFIED;
 
+
+    public void copyFrom(MembershipDetails source) {
+        this.membershipStartDate = source.getMembershipStartDate();
+        this.membershipEndDate = source.getMembershipEndDate();
+        this.monthlySubscriptionStartDate = source.getMonthlySubscriptionStartDate();
+        this.monthlySubscriptionEndDate = source.getMonthlySubscriptionEndDate();
+        this.studentStartDate = source.getStudentStartDate();
+        this.studentEndDate = source.getStudentEndDate();
+        this.membershipStatus = source.getMembershipStatus();
+        this.monthlySubscriptionStatus = source.getMonthlySubscriptionStatus();
+        this.studentStatus = source.getStudentStatus();
+    }
 }

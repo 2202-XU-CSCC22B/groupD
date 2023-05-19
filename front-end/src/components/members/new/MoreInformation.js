@@ -72,8 +72,10 @@ const MoreInformation = ({ data }) => {
       // Send the updated data to the API endpoint for saving
       // Here, you would typically use a fetch or axios to make the API call
       // Replace <API_ENDPOINT> with your actual endpoint
-      fetch(process.env.update_member_api, {
+      alert(formData.email);
+      fetch(process.env.update_member_api.replace("{email}", formData.email), {
         method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedData),
       })
         .then((response) => {
@@ -89,7 +91,7 @@ const MoreInformation = ({ data }) => {
 
           setLoading(false); // Stop the loading animation
         });
-    }, 100); // Simulating 1 second delay for the API call
+    }, 2000); // Simulating 1 second delay for the API call
   };
 
   return (

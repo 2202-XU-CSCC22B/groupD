@@ -35,24 +35,35 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member update(String email, Member member) {
-        Optional<Member> optionalMember = memberRepository.findMemberByContactDetailsEmail(email);
-        if(optionalMember.isEmpty()){
-            throw new RuntimeException("Email not found!");
-        }else{
-            Member temp = optionalMember.get();
+        List<Member> memberList = memberRepository.findAll();
 
-            temp.copyFields(member);
-            return memberRepository.save(temp);
+        for(int i =0; i < memberList.size(); i++){
+            if(memberList.get(i).getContactDetails().getEmail().equalsIgnoreCase(email)){
+                memberList.get(i).copyFields(member);
+                return memberList.get(i);
+            }
+
         }
-
+        throw new RuntimeException(email + " not found!");
 
     }
 
 
     @Override
         public boolean doesEmailExists(String email) {
-        return memberRepository.existsMemberByContactDetailsEmail(email);
-    }
+        List<Member> memberList = memberRepository.findAll();
+
+        for(int i =0; i < memberList.size(); i++){
+                if(memberList.get(i).getContactDetails().getEmail().equalsIgnoreCase(email))
+                    return true;
+            }
+        return false;
+
+
+        }
+
+
+
 
     @Override
     public Optional<Member> getMemberByEmail(String email) {

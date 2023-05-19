@@ -13,7 +13,6 @@ import ph.cdo.xu.groudd.backend.entity.model.Person;
 @Table
 @SuperBuilder
 @EnableJpaAuditing
-@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member extends Person {
@@ -49,7 +48,7 @@ public class Member extends Person {
         setOccupation(source.getOccupation());
         setWeight(source.getWeight());
         setHeight(source.getHeight());
-        setMembershipDetails(source.getMembershipDetails());
+        this.getMembershipDetails().copyFrom(source.getMembershipDetails());
 
     }
 }

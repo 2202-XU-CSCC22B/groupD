@@ -33,40 +33,22 @@ const dashboardData = [
     icon: <PeopleRoundedIcon />,
     tooltip: "View Member",
   },
-  {
-    name: "Transaction",
-    link: "/dashboard/transactions",
-    icon: <PointOfSaleRoundedIcon />,
-    tooltip: "View Transaction",
-  },
-  {
-    name: "Staff",
-    link: "/dashboard/staff",
-    icon: <AssignmentIndRoundedIcon />,
-    tooltip: "View Staff",
-  },
+  // {
+  //   name: "Transaction",
+  //   link: "/dashboard/transactions",
+  //   icon: <PointOfSaleRoundedIcon />,
+  //   tooltip: "View Transaction",
+  // },
+  // {
+  //   name: "Staff",
+  //   link: "/dashboard/staff",
+  //   icon: <AssignmentIndRoundedIcon />,
+  //   tooltip: "View Staff",
+  // },
 ];
 
-function handleEmailClick() {
-  alert("Send email Clicked!")
-}
-
-export const dashBoardAction =[
-  {
-    name: "Email",
-    onClick: handleEmailClick,
-    tooltip: "Click to send email",
-    icon: <EmailRoundedIcon />,
-  },
-  {
-    name: "Logout",
-    onClick: handleLogoutClick,
-    tooltip: "Click to logout",
-    icon: <LogoutRoundedIcon />,
-  },
 
 
-]
 
 
 export const memberSummary = [

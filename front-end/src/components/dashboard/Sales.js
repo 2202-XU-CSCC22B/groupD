@@ -15,13 +15,13 @@ export default function Sales() {
                 $3,024.00
             </Typography>
             <Typography color="text.secondary" sx={{ flex: 1 }}>
-                on 15 March, 2019
+                on May 2023
             </Typography>
-            <div>
-                <Link color="primary" href="#" onClick={preventDefault}>
-                    View transaction
-                </Link>
-            </div>
+            {/*<div>*/}
+            {/*    <Link color="primary" href="#" onClick={preventDefault}>*/}
+            {/*        View transaction*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
         </React.Fragment>
     );
 }

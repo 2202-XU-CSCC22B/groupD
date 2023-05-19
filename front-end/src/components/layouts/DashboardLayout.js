@@ -24,6 +24,10 @@ import { Tooltip } from "@mui/material";
 import { logoutButton } from "@modules/utils/config";
 import { Copyright } from "@mui/icons-material";
 import DashboardPageLayout from "@modules/components/dashboard/DashboardPageLayout";
+import {useState} from "react";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import {handleLogoutClick} from "@modules/utils/functions";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -91,9 +95,18 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const MessageDrawer = ({ openDrawer, toggleDrawer }) => {
+  return (
+      <Drawer anchor={"bottom"} open={openDrawer} onClose={toggleDrawer}>
+        Hello!
+      </Drawer>
+  );
+};
+
 export default function DashboardLayout({ children }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -102,6 +115,32 @@ export default function DashboardLayout({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const toggleDrawer = () => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setOpenDrawer(!openDrawer);
+
+  };
+
+  const dashBoardAction =[
+    // {
+    //   name: "Email",
+    //   onClick: toggleDrawer,
+    //   tooltip: "Click to send email",
+    //   icon: <EmailRoundedIcon />,
+    // },
+    {
+      name: "Logout",
+      onClick: handleLogoutClick,
+      tooltip: "Click to logout",
+      icon: <LogoutRoundedIcon />,
+    },
+  ]
+
+
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -213,10 +252,17 @@ export default function DashboardLayout({ children }) {
 
         </List>
       </Drawer>
+      <MessageDrawer/>
       <Box component="main">
         <DrawerHeader />
         <DashboardPageLayout>{children}</DashboardPageLayout>
+
       </Box>
     </Box>
   );
+
 }
+
+
+
+
