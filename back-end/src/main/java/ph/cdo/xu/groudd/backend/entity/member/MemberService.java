@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
 import jakarta.transaction.Transactional;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,14 @@ public interface MemberService {
     List<Member> allVerified();
 
      List<Map<String, Object>> sendMembersToFrontEnd(List<Member> members);
+
+     MemberDTO entityToDTO(Member member);
+     Member dtoToEntity(MemberDTO memberDTO);
+
+     List<MemberDTO> dtoMembers(List<Member> memberList);
+
+
+
 
 
 

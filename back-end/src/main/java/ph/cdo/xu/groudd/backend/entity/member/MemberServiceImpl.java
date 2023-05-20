@@ -3,8 +3,13 @@ package ph.cdo.xu.groudd.backend.entity.member;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
+import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
+import ph.cdo.xu.groudd.backend.entity.model.Name;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 import ph.cdo.xu.groudd.backend.utils.DateService;
+import ph.cdo.xu.groudd.backend.utils.StatusService;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -131,6 +136,72 @@ public class MemberServiceImpl implements MemberService{
         }
 
         return mappedMembers;
+    }
+
+    @Override
+    public MemberDTO entityToDTO(Member member) {
+        return MemberDTO
+                .builder()
+                .firstName(member.getName().getFirstName().toLowerCase().trim())
+                .lastName(member.getName().getLastName().toLowerCase().trim())
+                .phone(member.getContactDetails().getPhone().toLowerCase().trim())
+                .email(member.getContactDetails().getEmail().toLowerCase().trim())
+                .gender(member.getGender())
+                .address(member.getAddress().toLowerCase())
+                .weight(member.getWeight())
+                .height(member.getHeight())
+                .occupation(member.getOccupation())
+                .membershipStartDate(member.getMembershipDetails().getMembershipStartDate())
+                .membershipEndDate(member.getMembershipDetails().getMembershipEndDate())
+                .studentStartDate(member.getMembershipDetails().getStudentStartDate())
+                .studentEndDate(member.getMembershipDetails().getStudentEndDate())
+                .monthlySubscriptionStartDate(member.getMembershipDetails().getMonthlySubscriptionStartDate())
+                .monthlySubscriptionEndDate(member.getMembershipDetails().getMonthlySubscriptionEndDate())
+                .membershipStatus(member.getMembershipDetails().getMembershipStatus())
+                .studentStatus(member.getMembershipDetails().getStudentStatus())
+                .monthlySubscriptionStatus(member.getMembershipDetails().getMonthlySubscriptionStatus())
+                .build();
+    }
+
+    @Override
+    public Member dtoToEntity(MemberDTO memberDTO) {
+        return  Member.builder()
+                .name(new Name(memberDTO.getFirstName(), memberDTO.getLastName()))
+                .contactDetails(new ContactDetails(memberDTO.getPhone(), memberDTO.getEmail()))
+                .gender(memberDTO.getGender())
+                .address(memberDTO.getAddress())
+                .weight(memberDTO.getWeight())
+                .height(memberDTO.getHeight())
+                .occupation(memberDTO.getOccupation())
+                .membershipDetails(
+                        MembershipDetails.builder()
+                                .membershipStartDate(memberDTO.getMembershipStartDate())
+                                .membershipEndDate(memberDTO.getMembershipEndDate())
+                                .monthlySubscriptionStartDate(memberDTO.getMonthlySubscriptionStartDate())
+                                .monthlySubscriptionEndDate(memberDTO.getMonthlySubscriptionEndDate())
+                                .studentStartDate(memberDTO.getStudentStartDate())
+                                .studentEndDate(memberDTO.getStudentEndDate())
+                                .membershipStatus(memberDTO.getMembershipStatus())
+                                .monthlySubscriptionStatus(memberDTO.getMonthlySubscriptionStatus())
+                                .studentStatus(memberDTO.getStudentStatus())
+                                .build())
+                .build();
+
+
+
+
+    }
+
+    @Override
+    public List<MemberDTO> dtoMembers(List<Member> members) {
+        List<MemberDTO> memberDTOs = new ArrayList<>();
+
+
+        for (Member member : members) {
+            memberDTOs.add(entityToDTO(member));
+        }
+
+        return memberDTOs;
     }
 
     @Override

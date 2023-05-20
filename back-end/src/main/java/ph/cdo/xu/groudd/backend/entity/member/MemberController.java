@@ -34,8 +34,8 @@ public class MemberController {
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> newMember(@RequestBody Member member, BindingResult bindingResult) throws MessagingException {
-        String email = member.getContactDetails().getEmail();
+    public ResponseEntity<CustomResponseBody> newMember(@RequestBody MemberDTO memberDTO, BindingResult bindingResult) throws MessagingException {
+        String email = memberDTO.getEmail();
         if(memberService.doesEmailExists(email)){
             System.out.println("Result : " + memberService.doesEmailExists(email));
             throw new EmailAlreadyExistsException(email + " already exists!");
@@ -57,17 +57,27 @@ public class MemberController {
         }
 //
 
-        member.getMembershipDetails().setMembershipStatus(Status.UNVERIFIED);
-        member.getMembershipDetails().setMonthlySubscriptionStatus(Status.UNVERIFIED);
-        member.getMembershipDetails().setStudentStatus(Status.UNVERIFIED);
+        memberDTO.setMembershipStatus(Status.UNVERIFIED);
+        memberDTO.setMonthlySubscriptionStatus(Status.UNVERIFIED);
+        memberDTO.setStudentStatus(Status.UNVERIFIED);
+        memberDTO.setMembershipStartDate(null);
+        memberDTO.setMembershipEndDate(null);
+        memberDTO.setMonthlySubscriptionStartDate(null);
+        memberDTO.setMonthlySubscriptionEndDate(null);
+        memberDTO.setStudentStartDate(null);
+        memberDTO.setStudentEndDate(null);
 
-                Member temp = memberService.add(member);
-                emailService.sendRegistrationEmail(temp.getContactDetails().getEmail(), temp.getName().getFirstName());
+        Member member =memberService.dtoToEntity(memberDTO);
 
-            return ResponseEntity.ok(CustomResponseBody.builder().message(temp.getName().getFirstName()+ " has been registered successfully").build());
+        member = memberService.add(member);
+                emailService.sendRegistrationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName());
+                return ResponseEntity.ok(CustomResponseBody.builder().message(member.getName().getFirstName()+ " has been registered successfully").build());
+
 
 
     }
+
+    //This API will be used to officially make a member
 
     @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email) throws MessagingException {
@@ -83,29 +93,39 @@ public class MemberController {
     }
 
     @PutMapping(value = "update/{email}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody Member member) throws MessagingException {
-        Member temp = memberService.update(email, member);
+    public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody MemberDTO memberDTO) throws MessagingException {
+        Optional<Member>optionalMember = memberService.getMemberByEmail(email);
+        if(optionalMember.isEmpty()){
+            System.out.println("Result : " + memberService.doesEmailExists(email.toLowerCase()));
+            throw new EmailAlreadyExistsException(email + "does not exists!");
+        }else{
 
-        String message = temp.getName().getFirstName() + " has been updated!";
-        CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
 
-        return ResponseEntity.ok(responseBody);
+           Member updatedMember = memberService.update(email, memberService.dtoToEntity(memberDTO));
+
+            String message = updatedMember.getName().getFirstName() + " has been updated!";
+            CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
+
+            return ResponseEntity.ok(responseBody);
+        }
+
+
     }
 
 
 
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Map<String, Object>> getMembers() {
+    public ResponseEntity<List<MemberDTO>> getMembers() {
 
-        return memberService.sendMembersToFrontEnd( memberService.allVerified());
+        return ResponseEntity.ok(memberService.dtoMembers(memberService.allMembers()));
 
     }
 
 
     @GetMapping(value = "/unverified", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Map<String, Object>> getUnverifiedMembers() {
-        return memberService.sendMembersToFrontEnd( memberService.allUnverified());
+    public ResponseEntity<List<MemberDTO>>  getUnverifiedMembers() {
+        return ResponseEntity.ok(memberService.dtoMembers(memberService.allUnverified()));
     }
 
 

@@ -10,18 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/ApiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/StatusService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/MemberControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MembershipDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MembershipDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/MessageDrawer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/utils/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
