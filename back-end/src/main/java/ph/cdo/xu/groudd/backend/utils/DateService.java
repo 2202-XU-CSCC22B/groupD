@@ -11,7 +11,7 @@ public class DateService {
 
     public Date addMonthsToDate(Date date, int monthsToAdd){
         DateTime dateTime = new DateTime(date);
-        dateTime.plus(Months.months(monthsToAdd));
-        return dateTime.toDate();
+        DateTime newDate = dateTime.plusMonths(monthsToAdd);
+        return newDate.toDate();
     }
 }
