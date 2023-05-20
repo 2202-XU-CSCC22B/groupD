@@ -16,18 +16,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Link from "next/link";
-import dashboardData, {dashBoardAction} from "@modules/utils/config";
+import dashboardData, { dashBoardAction } from "@modules/utils/config";
 import { Tooltip } from "@mui/material";
-import { logoutButton } from "@modules/utils/config";
-import { Copyright } from "@mui/icons-material";
 import DashboardPageLayout from "@modules/components/dashboard/DashboardPageLayout";
-import {useState} from "react";
+import { useState } from "react";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import {handleLogoutClick} from "@modules/utils/functions";
+import { handleLogoutClick } from "@modules/utils/functions";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import EmailModal from "./dashboard/email-modal";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -97,9 +95,9 @@ const Drawer = styled(MuiDrawer, {
 
 const MessageDrawer = ({ openDrawer, toggleDrawer }) => {
   return (
-      <Drawer anchor={"bottom"} open={openDrawer} onClose={toggleDrawer}>
-        Hello!
-      </Drawer>
+    <Drawer anchor={"bottom"} open={openDrawer} onClose={toggleDrawer}>
+      Hello!
+    </Drawer>
   );
 };
 
@@ -107,6 +105,7 @@ export default function DashboardLayout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(true);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,16 +115,10 @@ export default function DashboardLayout({ children }) {
     setOpen(false);
   };
 
-  const toggleDrawer = () => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setOpenDrawer(!openDrawer);
-
+  const toggleDrawer = () => {
+    setIsEmailModalOpen(!isEmailModalOpen);
   };
-
-  const dashBoardAction =[
+  const dashBoardAction = [
     {
       name: "Email",
       onClick: toggleDrawer,
@@ -138,9 +131,7 @@ export default function DashboardLayout({ children }) {
       tooltip: "Click to logout",
       icon: <LogoutRoundedIcon />,
     },
-  ]
-
-
+  ];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -179,7 +170,7 @@ export default function DashboardLayout({ children }) {
           {dashboardData.map((page, index) => (
             <Tooltip key={index} title={page.tooltip}>
               <ListItem
-                key={page.name}
+                key={page?.name}
                 disablePadding
                 sx={{ display: "block" }}
               >
@@ -205,7 +196,7 @@ export default function DashboardLayout({ children }) {
                       {page.icon}
                     </ListItemIcon>
                     <ListItemText
-                      primary={page.name}
+                      primary={page?.name}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
                   </ListItemButton>
@@ -215,54 +206,47 @@ export default function DashboardLayout({ children }) {
           ))}
         </List>
         <Divider />
-        <List>
-          {dashBoardAction.map((page,index)=>(
-
-              <Tooltip title={page.tooltip}>
-                <ListItem
-                    key={index}
-                    disablePadding
-                    sx={{ display: "block" }}
+        <List className=" space-y-4">
+          {dashBoardAction.map((page, index) => (
+            <Tooltip title={page.tooltip}>
+              <ListItem key={index} disablePadding sx={{ display: "block" }}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                  onClick={() => page.onClick()}
                 >
-                  <ListItemButton
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 2.5,
-                      }}
-                      onClick={page.onClick}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
                   >
-                    <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                        }}
-                    >
-                      {page.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={page.name}
-                        sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              </Tooltip>
+                    {page.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={page?.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Tooltip>
           ))}
-
         </List>
       </Drawer>
-      <MessageDrawer/>
+      <MessageDrawer />
       <Box component="main">
         <DrawerHeader />
         <DashboardPageLayout>{children}</DashboardPageLayout>
-
       </Box>
+
+      <EmailModal
+        isEmailModalOpen={isEmailModalOpen}
+        setIsEmailModalOpen={setIsEmailModalOpen}
+      />
     </Box>
   );
-
 }
-
-
-
-
