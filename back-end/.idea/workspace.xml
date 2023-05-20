@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/PasswordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/send_announcment_email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/staff_registration_success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +213,7 @@
       <workItem from="1684445308957" duration="526000" />
       <workItem from="1684462776503" duration="5676000" />
       <workItem from="1684553825396" duration="1715000" />
-      <workItem from="1684582871179" duration="22401000" />
+      <workItem from="1684582871179" duration="22705000" />
     </task>
     <servers />
   </component>
