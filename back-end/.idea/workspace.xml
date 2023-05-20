@@ -10,18 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../front-end/src/components/ModalComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/model/enums/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/Staff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/StaffServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/utils/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/Transaction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +32,7 @@
         <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -95,8 +94,8 @@
       <recent name="C:\Users\admin\Documents\GitHub\groupD\back-end\src\main\resources\static\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackEndApplication">
-    <configuration name="BackEndApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StaffServiceTest">
+    <configuration name="StaffServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back-end" />
       <extension name="coverage">
         <pattern>
@@ -105,13 +104,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
-      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.BackEndApplicationTests" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DateServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StaffServiceTest.testingGetAllStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back-end" />
       <extension name="coverage">
         <pattern>
@@ -120,29 +119,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
-      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.DateServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DateServiceTest.shouldAddOneMonth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="back-end" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
-      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.DateServiceTest" />
-      <option name="METHOD_NAME" value="shouldAddOneMonth" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
+      <option name="METHOD_NAME" value="testingGetAllStaff" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MemberTest.countMembership" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StaffServiceTest.testingRemovingStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back-end" />
       <extension name="coverage">
         <pattern>
@@ -151,14 +135,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
-      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.MemberTest" />
-      <option name="METHOD_NAME" value="countMembership(java.lang.String,int,int,int)" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
+      <option name="METHOD_NAME" value="testingRemovingStaff" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ph.cdo.xu.groudd.backend in back-end" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StaffServiceTest.testingTheGetStaffByPosition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back-end" />
       <extension name="coverage">
         <pattern>
@@ -167,7 +151,25 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
+      <option name="METHOD_NAME" value="testingTheGetStaffByPosition" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaffServiceTest.testingUpdateStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
+      <option name="METHOD_NAME" value="testingUpdateStaff" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -192,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DateServiceTest" />
-        <item itemvalue="JUnit.DateServiceTest.shouldAddOneMonth" />
-        <item itemvalue="JUnit.MemberTest.countMembership" />
-        <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
-        <item itemvalue="JUnit.BackEndApplicationTests" />
+        <item itemvalue="JUnit.StaffServiceTest" />
+        <item itemvalue="JUnit.StaffServiceTest.testingTheGetStaffByPosition" />
+        <item itemvalue="JUnit.StaffServiceTest.testingGetAllStaff" />
+        <item itemvalue="JUnit.StaffServiceTest.testingUpdateStaff" />
+        <item itemvalue="JUnit.StaffServiceTest.testingRemovingStaff" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +222,7 @@
       <workItem from="1684445308957" duration="526000" />
       <workItem from="1684462776503" duration="5676000" />
       <workItem from="1684553825396" duration="1715000" />
-      <workItem from="1684582871179" duration="7331000" />
+      <workItem from="1684582871179" duration="16649000" />
     </task>
     <servers />
   </component>

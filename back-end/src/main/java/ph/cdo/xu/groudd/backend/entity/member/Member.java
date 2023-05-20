@@ -1,10 +1,15 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import ph.cdo.xu.groudd.backend.entity.model.Person;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @ToString
@@ -51,4 +56,14 @@ public class Member extends Person {
         this.getMembershipDetails().copyFrom(source.getMembershipDetails());
         return this;
     }
+
+
+//    @JsonManagedReference
+//    @OneToMany(
+//            mappedBy = "member",
+//            targetEntity = Transaction.class,
+//            fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<Transaction> students = new ArrayList<>();
 }
