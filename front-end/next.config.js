@@ -13,6 +13,13 @@ module.exports = {
     count_members_api:
     "http://localhost:8080/member/count",
 
+    create_staff_api: "localhost:8080/api/v1/staff/new",
+    update_staff_api: "localhost:8080/api/v1/staff/update/{id}",
+    retrieve_all_staff_api: "localhost:8080/api/v1/staff/all",
+    retrieve_staff_api: "localhost:8080/api/v1/staff/{id}",
+
+
+
     // create_members_api:
     //     "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/new",
     // retrieve_members_api:
@@ -27,5 +34,10 @@ module.exports = {
     //   "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/delete/{email}",
     // count_members_api:
     // "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/member/count",
+
+    // create_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/new",
+    // update_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/update/{id}",
+    // retrieve_all_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/all",
+    // retrieve_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/{id}",
   },
 };
