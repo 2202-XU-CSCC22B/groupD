@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +213,7 @@
       <workItem from="1684445308957" duration="526000" />
       <workItem from="1684462776503" duration="5676000" />
       <workItem from="1684553825396" duration="1715000" />
-      <workItem from="1684582871179" duration="22705000" />
+      <workItem from="1684582871179" duration="22916000" />
     </task>
     <servers />
   </component>
