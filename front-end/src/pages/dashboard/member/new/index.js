@@ -1,5 +1,5 @@
 import AllMembersContent from "@modules/components/members/new/AllMembersContent";
-import PendingRegistrationContent from "@modules/components/members/new/PendingRegistrationContent";
+import PendingRegistrationContent from "@modules/components/dashboard/PendingRegistrationContent";
 import BackButton from "@modules/components/ui/BackButton";
 
 const NewMemberPage = () => {

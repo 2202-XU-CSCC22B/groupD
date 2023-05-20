@@ -3,6 +3,7 @@ package ph.cdo.xu.groudd.backend.entity.member;
 import jakarta.transaction.Transactional;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public interface MemberService {
     Optional<Member> getMemberByEmail(String email);
 
 
-    Member validateMember(String email);
+    Member validateMember(String email, Date date);
 
     List<Member> allUnverified();
 

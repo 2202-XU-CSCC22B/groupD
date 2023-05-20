@@ -33,18 +33,18 @@ const dashboardData = [
     icon: <PeopleRoundedIcon />,
     tooltip: "View Member",
   },
-  // {
-  //   name: "Transaction",
-  //   link: "/dashboard/transactions",
-  //   icon: <PointOfSaleRoundedIcon />,
-  //   tooltip: "View Transaction",
-  // },
-  // {
-  //   name: "Staff",
-  //   link: "/dashboard/staff",
-  //   icon: <AssignmentIndRoundedIcon />,
-  //   tooltip: "View Staff",
-  // },
+  {
+    name: "Transaction",
+    link: "/dashboard/transactions",
+    icon: <PointOfSaleRoundedIcon />,
+    tooltip: "View Transaction",
+  },
+  {
+    name: "Staff",
+    link: "/dashboard/staff",
+    icon: <AssignmentIndRoundedIcon />,
+    tooltip: "View Staff",
+  },
 ];
 
 

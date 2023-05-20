@@ -86,11 +86,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Member validateMember(String email) {
+    public Member validateMember(String email, Date date) {
         Optional<Member> optionalMember = memberRepository.findMemberByContactDetailsEmail(email);
         if(optionalMember.isPresent()){
             Member member = optionalMember.get();
-            member.getMembershipDetails().setMembershipEndDate(dateService.addMonthsToDate(new Date(), 12));
+            member.getMembershipDetails().setMembershipStartDate(date);
+            member.getMembershipDetails().setMembershipEndDate(dateService.addMonthsToDate(date, 12));
             member.getMembershipDetails().setMembershipStatus(Status.ACTIVE);
             return memberRepository.saveAndFlush(member);
         }
@@ -179,13 +180,13 @@ public class MemberServiceImpl implements MemberService{
     public Member dtoToEntity(MemberDTO memberDTO) {
         return  Member.builder()
                 .id(memberDTO.getId())
-                .name(new Name(memberDTO.getFirstName(), memberDTO.getLastName()))
-                .contactDetails(new ContactDetails(memberDTO.getPhone(), memberDTO.getEmail()))
+                .name(new Name(memberDTO.getFirstName().toLowerCase(), memberDTO.getLastName().toLowerCase()))
+                .contactDetails(new ContactDetails(memberDTO.getPhone().toLowerCase(), memberDTO.getEmail().toLowerCase()))
                 .gender(memberDTO.getGender())
-                .address(memberDTO.getAddress())
-                .weight(memberDTO.getWeight())
-                .height(memberDTO.getHeight())
-                .occupation(memberDTO.getOccupation())
+                .address(memberDTO.getAddress().toLowerCase())
+                .weight(Double.parseDouble(String.format("%.2f", memberDTO.getWeight())))
+                .height(Double.parseDouble(String.format("%.2f", memberDTO.getHeight())))
+                .occupation(memberDTO.getOccupation().toLowerCase())
                 .membershipDetails(
                         MembershipDetails.builder()
                                 .membershipStartDate(memberDTO.getMembershipStartDate())

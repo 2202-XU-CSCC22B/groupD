@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
+import ph.cdo.xu.groudd.backend.entity.member.MemberDTO;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
 import ph.cdo.xu.groudd.backend.entity.member.MembershipDetails;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
@@ -85,8 +86,7 @@ public class ApplicationConfig {
                //For Birthday
                 Date birthday = getRandomDate(1980);
                 Date startDate = getRandomDate(2022);
-                memberService.add((Member) Member
-                        .builder()
+                Member temp = Member.builder()
                                 .weight(weight)
                                 .height(height)
                                 .occupation(occupation)
@@ -106,13 +106,13 @@ public class ApplicationConfig {
                                 .name(
                                         Name
                                                 .builder()
-                                                .firstName(firstName)
-                                                .lastName(lastName)
+                                                .firstName(firstName.toLowerCase())
+                                                .lastName(lastName.toLowerCase())
                                                 .build())
                                 .contactDetails(
                                         ContactDetails
                                             .builder()
-                                            .email(email)
+                                            .email(email.toLowerCase())
                                             .phone(phone)
                                             .build())
                                 .birthDetails(
@@ -121,7 +121,11 @@ public class ApplicationConfig {
                                             .birthday(birthday)
                                             .build())
                                 .gender(Gender.values()[ran.nextInt(Status.values().length)])
-                                .build());
+                                .build();
+
+                memberService.add(temp);
+
+
 
             }
         };

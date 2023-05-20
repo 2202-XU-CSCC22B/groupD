@@ -1,23 +1,56 @@
 import {DataGrid} from "@mui/x-data-grid";
 import * as React from "react";
-import {Paper, Snackbar, Stack, Typography} from "@mui/material";
+import {Paper, Snackbar, Stack, Tooltip, Typography} from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import IconButton from "@mui/material/IconButton";
-import {useEffect, useState} from "react";
+import {forwardRef, useEffect, useImperativeHandle, useState} from "react";
 import Divider from "@mui/material/Divider";
 import Title from "@modules/components/dashboard/Title";
 
 import {Alert} from "@mui/lab";
-export default function PendingRegistrationContent(){
+import AcceptMemberModal from "@modules/components/dashboard/AcceptMemberModal";
+
+export
+
+
+const PendingRegistrationContent = (() => {
     const [row, setRow] = useState([]);
     const [openSuccess, setOpenSuccess] = useState(false);
     const [openRemove, setOpenRemove] = useState(false);
-    const [message, setMessage]  = useState(false);
+    const [message, setMessage]  = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedFirstName, setSelectedFirstName] = useState("");
+    const [selectedLastName, setSelectedLastName] = useState("");
+    const [selectedEmail, setSelectedEmail] = useState("");
+    const [selectedID, setSelectedID] = useState(-1);
     const horizontal = "right";
     const vertical = "top";
+    const [parentState, setParentState] = useState('initial value');
+
+    const updateParentState = (newValue) => {
+        setParentState(newValue);
+    };
 
 
+    const handleOpenModal = (params, e) => {
+        e.preventDefault();
+
+        const selectedObject = row.find(item => item.id === params.id);
+        setSelectedEmail(selectedObject.email)
+        setSelectedFirstName(selectedObject.firstName)
+        setSelectedLastName(selectedObject.lastName)
+        setSelectedID(selectedObject.id)
+        setModalOpen(true);
+    };
+
+    const handleOpenSuccess = (newValue) => {
+        setOpenSuccess(newValue);
+    }
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     const handleSuccessClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -39,9 +72,13 @@ export default function PendingRegistrationContent(){
     const renderAccept = (params) => {
         return (
             <Stack direction="row" spacing={1}>
-                <IconButton aria-label="accept" onClick={(e) => handleAccept(params, e)} color={"info"}>
-                    <CheckIcon />
-                </IconButton>
+                <Tooltip title={"Accept ✅"}>
+                    <IconButton aria-label="accept" onClick={(e) => handleOpenModal(params, e)} color={"info"}>
+                        <CheckIcon />
+
+                    </IconButton>
+
+                </Tooltip>
             </Stack>
         );
     };
@@ -49,21 +86,24 @@ export default function PendingRegistrationContent(){
     const renderReject = (params) => {
         return (
             <Stack direction="row" spacing={1}>
-                <IconButton aria-label="reject" onClick={(e) => handleReject(params, e)} color={"error"}>
-                    <RemoveCircleOutlineIcon />
-                </IconButton>
+                <Tooltip title={"Reject ❌"}>
+                    <IconButton aria-label="Reject?" onClick={(e) => handleReject(params, e)} color={"error"}>
+                        <RemoveCircleOutlineIcon />
+                    </IconButton>
+                </Tooltip>
+
             </Stack>
         );
     };
 
-    const handleRemoveRow = (id) => {
+   const handleRemoveRow = (id) => {
         setRow((prevRows) => prevRows.filter((row) => row.id !== id));
-    };
+    }
 
     const handleAccept = (params, e) => {
         e.preventDefault();
         const selectedObject = row.find(item => item.id === params.id);
-        handleRemoveRow(params.id);
+        // handleRemoveRow(params.id);
 
         fetch(process.env.validate_unverified_api.replace("{email}", selectedObject.email), {
             method: 'PUT',
@@ -140,7 +180,7 @@ export default function PendingRegistrationContent(){
         };
 
         fetchData()
-    }, []); // The empty dependency array ensures the effect runs only once on component mount
+    }, [parentState]); // The empty dependency array ensures the effect runs only once on component mount
 
 
     const column = [
@@ -169,16 +209,16 @@ export default function PendingRegistrationContent(){
                     overflow: "auto",
                 }}
             >
-            <DataGrid
-                rows={row}
-                columns={column}
-                initialState={{
-                    pagination: {
-                        paginationModel: { page: 0, pageSize: 5 },
-                    },
-                }}
-                pageSizeOptions={[5]}
-            />
+                <DataGrid
+                    rows={row}
+                    columns={column}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5]}
+                />
                 <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleSuccessClose} anchorOrigin={{vertical, horizontal}}>
                     <Alert onClose={handleSuccessClose} severity={"success"} sx={{ width: '100%' }} key={vertical+horizontal}>
                         {message}
@@ -190,11 +230,26 @@ export default function PendingRegistrationContent(){
                         {message}
                     </Alert>
                 </Snackbar>
+                <AcceptMemberModal
+                    open={modalOpen}
+                    handleClose={handleCloseModal}
+                    email={selectedEmail}
+                    lastName={selectedLastName}
+                    firstName={selectedFirstName}
+                    id={selectedID}
+                    updateParentState={updateParentState}
+                    handleOpenSuccess={handleOpenSuccess}
+
+                />
             </div>
         </>
+    )
 
+
+
+});
+
+export default PendingRegistrationContent;
 
         // </Paper>
-    )
-}
 

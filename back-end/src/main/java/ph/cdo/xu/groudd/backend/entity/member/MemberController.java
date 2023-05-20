@@ -27,7 +27,6 @@ public class MemberController {
     private DateService dateService;
 
     private MemberService memberService;
-    private MemberRepository memberRepository;
 
     @GetMapping(value = "/test")
     public String test(){
@@ -81,10 +80,10 @@ public class MemberController {
     //This API will be used to officially make a member
 
     @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email) throws MessagingException {
+    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email, @RequestBody Date date, @RequestBody double paymentValue) throws MessagingException {
 
 
-        Member member =   memberService.validateMember(email);
+        Member member =   memberService.validateMember(email, date);
         emailService.sendValidationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName(), member.getMembershipDetails().getMembershipEndDate().toString());
 
 
@@ -112,7 +111,7 @@ public class MemberController {
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<MemberDTO>> getMembers() {
 
-        return ResponseEntity.ok(memberService.dtoMembers(memberService.allMembers()));
+        return ResponseEntity.ok(memberService.dtoMembers(memberService.allVerified()));
 
     }
 

@@ -10,14 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../front-end/src/components/ModalComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/new/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/utils/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +220,7 @@
       <workItem from="1684445308957" duration="526000" />
       <workItem from="1684462776503" duration="5676000" />
       <workItem from="1684553825396" duration="1715000" />
-      <workItem from="1684582871179" duration="4208000" />
+      <workItem from="1684582871179" duration="7331000" />
     </task>
     <servers />
   </component>
@@ -228,7 +232,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
-          <line>43</line>
+          <line>42</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
