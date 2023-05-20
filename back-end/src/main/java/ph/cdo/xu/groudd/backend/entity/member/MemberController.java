@@ -27,6 +27,7 @@ public class MemberController {
     private DateService dateService;
 
     private MemberService memberService;
+    private MemberRepository memberRepository;
 
     @GetMapping(value = "/test")
     public String test(){
@@ -92,16 +93,10 @@ public class MemberController {
         return ResponseEntity.ok(responseBody);
     }
 
-    @PutMapping(value = "update/{email}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("email") String email, @RequestBody MemberDTO memberDTO) throws MessagingException {
-        Optional<Member>optionalMember = memberService.getMemberByEmail(email);
-        if(optionalMember.isEmpty()){
-            System.out.println("Result : " + memberService.doesEmailExists(email.toLowerCase()));
-            throw new EmailAlreadyExistsException(email + "does not exists!");
-        }else{
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("id") Long id, @RequestBody MemberDTO memberDTO) throws MessagingException {
 
-
-           Member updatedMember = memberService.update(email, memberService.dtoToEntity(memberDTO));
+           Member updatedMember = memberService.update(id, memberDTO);
 
             String message = updatedMember.getName().getFirstName() + " has been updated!";
             CustomResponseBody responseBody = CustomResponseBody.builder().message(message).build();
@@ -110,7 +105,6 @@ public class MemberController {
         }
 
 
-    }
 
 
 

@@ -39,16 +39,16 @@ public class Member extends Person {
 
 
 
-    public void copyFields(Member source) {
-        setName(source.getName());
-        setAddress(source.getAddress());
-        setGender(source.getGender());
-        setBirthDetails(source.getBirthDetails());
-        setContactDetails(source.getContactDetails());
-        setOccupation(source.getOccupation());
-        setWeight(source.getWeight());
-        setHeight(source.getHeight());
+    public Member copyFields(Member source) {
+        this.setName(source.getName());
+        this.setAddress(source.getAddress());
+        this.setGender(source.getGender());
+        this.setBirthDetails(source.getBirthDetails());
+        this.setContactDetails(source.getContactDetails());
+        this.setOccupation(source.getOccupation());
+        this.setWeight(source.getWeight());
+        this.setHeight(source.getHeight());
         this.getMembershipDetails().copyFrom(source.getMembershipDetails());
-
+        return this;
     }
 }

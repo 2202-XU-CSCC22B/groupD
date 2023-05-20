@@ -18,31 +18,26 @@ const MoreInformation = ({ data }) => {
   const [isLoading, setLoading] = useState(false);
 
   const formattedData = {
-    name: {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-    },
-    contactDetails: {
-      email: formData.email,
-      phone: formData.phone,
-    },
-    address: formData.address,
-    weight: parseFloat(formData.weight),
-    height: parseFloat(formData.height),
-    occupation: formData.occupation,
-    birthDetails: {
-      birthday: formData.birthday,
-    },
-    membershipDetails: {
-      membershipStartDate: formData.membershipStartDate,
-      membershipEndDate: formData.membershipEndDate,
-      monthlySubscriptionStartDate: formData.monthlySubscriptionStartDate,
-      monthlySubscriptionEndDate: formData.monthlySubscriptionEndDate,
-      studentStartDate: formData.studentStartDate,
-      studentEndDate: formData.studentEndDate,
-      membershipStatus: formData.membershipStatus,
-      monthlySubscriptionStatus: formData.monthlySubscriptionStatus,
-    },
+    "id": data.id,
+    "firstName": formData.firstName,
+    "lastName": formData.lastName,
+    "phone": formData.phone,
+    "email": formData.email,
+    "gender": formData.gender,
+    "address": formData.address,
+    "weight": formData.weight,
+    "height": formData.height,
+    "occupation": formData.occupation,
+    "birthday": formData.birthday,
+    "membershipStartDate": data.membershipStartDate,
+    "membershipEndDate": data.membershipEndDate,
+    "monthlySubscriptionStartDate": data.monthlySubscriptionStartDate,
+    "monthlySubscriptionEndDate": data.monthlySubscriptionEndDate,
+    "studentStartDate": data.studentStartDate,
+    "studentEndDate": data.studentEndDate,
+    "membershipStatus": data.membershipStatus,
+    "monthlySubscriptionStatus": data.monthlySubscriptionStatus,
+    "studentStatus": data.studentStatus
   };
 
   const handleInputChange = (event) => {
@@ -73,7 +68,7 @@ const MoreInformation = ({ data }) => {
       // Here, you would typically use a fetch or axios to make the API call
       // Replace <API_ENDPOINT> with your actual endpoint
       alert(formData.email);
-      fetch(process.env.update_member_api.replace("{email}", formData.email), {
+      fetch(process.env.update_member_api.replace("{id}", data.id), {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedData),

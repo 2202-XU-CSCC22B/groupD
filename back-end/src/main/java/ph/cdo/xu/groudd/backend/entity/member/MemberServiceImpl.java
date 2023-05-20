@@ -39,17 +39,27 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Member update(String email, Member member) {
-        List<Member> memberList = memberRepository.findAll();
+    public Member update(Long id, MemberDTO memberDTO) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+        if(optionalMember.isPresent()){
+            Member temp = optionalMember.get();
+            temp.setOccupation(memberDTO.getOccupation());
+            temp.getName().setFirstName(memberDTO.getFirstName());
+            temp.getName().setLastName(memberDTO.getLastName());
+            temp.getContactDetails().setPhone(memberDTO.getPhone());
+            temp.getContactDetails().setEmail(memberDTO.getEmail());
+            temp.setAddress(memberDTO.getAddress());
+            temp.setHeight(memberDTO.getHeight());
+            temp.setWeight(memberDTO.getWeight());
+            temp.setBirthDetails(BirthDetails.builder()
+                    .birthday(memberDTO.getBirthday())
+                    .build());
 
-        for(int i =0; i < memberList.size(); i++){
-            if(memberList.get(i).getContactDetails().getEmail().equalsIgnoreCase(email)){
-                memberList.get(i).copyFields(member);
-                return memberList.get(i);
-            }
-
+            return memberRepository.save(temp);
+        }else{
+            throw new RuntimeException("Member not found!");
         }
-        throw new RuntimeException(email + " not found!");
+
 
     }
 
@@ -142,6 +152,7 @@ public class MemberServiceImpl implements MemberService{
     public MemberDTO entityToDTO(Member member) {
         return MemberDTO
                 .builder()
+                .id(member.getId())
                 .firstName(member.getName().getFirstName().toLowerCase().trim())
                 .lastName(member.getName().getLastName().toLowerCase().trim())
                 .phone(member.getContactDetails().getPhone().toLowerCase().trim())
@@ -160,12 +171,14 @@ public class MemberServiceImpl implements MemberService{
                 .membershipStatus(member.getMembershipDetails().getMembershipStatus())
                 .studentStatus(member.getMembershipDetails().getStudentStatus())
                 .monthlySubscriptionStatus(member.getMembershipDetails().getMonthlySubscriptionStatus())
+                .birthday(member.getBirthDetails().getBirthday())
                 .build();
     }
 
     @Override
     public Member dtoToEntity(MemberDTO memberDTO) {
         return  Member.builder()
+                .id(memberDTO.getId())
                 .name(new Name(memberDTO.getFirstName(), memberDTO.getLastName()))
                 .contactDetails(new ContactDetails(memberDTO.getPhone(), memberDTO.getEmail()))
                 .gender(memberDTO.getGender())
@@ -185,6 +198,10 @@ public class MemberServiceImpl implements MemberService{
                                 .monthlySubscriptionStatus(memberDTO.getMonthlySubscriptionStatus())
                                 .studentStatus(memberDTO.getStudentStatus())
                                 .build())
+                .birthDetails(BirthDetails
+                        .builder()
+                        .birthday(memberDTO.getBirthday())
+                        .build())
                 .build();
 
 

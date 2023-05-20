@@ -15,7 +15,7 @@ public interface MemberService {
 
     void delete(String email);
 
-    Member update(String email, Member member);
+    Member update(Long id, MemberDTO memberDTO);
     boolean doesEmailExists(String email);
 
     Optional<Member> getMemberByEmail(String email);

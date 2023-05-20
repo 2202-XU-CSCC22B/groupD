@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 
@@ -13,7 +14,10 @@ import java.util.Date;
 @Builder
 public class MemberDTO {
 
+    private Long id;
+
     @Column(name = "firstName")
+
     private String firstName;
 
     @Column(name = "lastName")
@@ -28,12 +32,17 @@ public class MemberDTO {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    private String address;
+    @Builder.Default
+    private String address = "Cagayan de Oro City";
 
     private double weight;
     private double height;
 
     private String occupation;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+
+    private Date birthday;
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
