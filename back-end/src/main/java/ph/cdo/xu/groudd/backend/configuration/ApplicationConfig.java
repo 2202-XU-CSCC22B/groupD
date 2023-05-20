@@ -18,12 +18,14 @@ import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
+import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.staff.StaffDTO;
+import ph.cdo.xu.groudd.backend.entity.staff.StaffService;
 import ph.cdo.xu.groudd.backend.utils.DateService;
 
-import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @RequiredArgsConstructor
@@ -34,7 +36,8 @@ public class ApplicationConfig {
             @Autowired Faker faker,
             @Autowired Random ran,
             @Autowired MemberService memberService,
-            @Autowired DateService dateService
+            @Autowired DateService dateService,
+            @Autowired StaffService staffService
     ){
         return args -> {
             double minimum = 50.0;
@@ -127,6 +130,39 @@ public class ApplicationConfig {
 
 
 
+            }
+
+            //Generating Random Staffs!
+            List<Position> positions = new ArrayList<>();
+            positions.add(Position.Owner);
+            positions.add(Position.Owner);
+            positions.add(Position.Trainer);
+            positions.add(Position.Trainer);
+            positions.add(Position.Trainer);
+            positions.add(Position.Staff);
+            positions.add(Position.Staff);
+            positions.add(Position.Staff);
+            positions.add(Position.Staff);
+            positions.add(Position.Staff);
+
+            for (int i = 0; i < 10; i++) {
+                Position randomPosition = positions.get(faker.random().nextInt(positions.size()));
+
+                StaffDTO staffDTO = StaffDTO.builder()
+                        .firstName(faker.name().firstName())
+                        .lastName(faker.name().lastName())
+                        .phone(faker.phoneNumber().cellPhone())
+                        .email(faker.internet().emailAddress())
+                        .gender(Gender.values()[faker.random().nextInt(Gender.values().length)])
+                        .address("Cagayan de Oro City")
+                        .position(randomPosition)
+                        .birthday(faker.date().birthday())
+                        .dateStarted(faker.date().past(365, TimeUnit.HOURS))
+                        .status(Status.values()[faker.random().nextInt(Status.values().length)])
+                        .build();
+
+                System.out.println(staffDTO);
+                staffService.addStaff(staffDTO);
             }
         };
     }

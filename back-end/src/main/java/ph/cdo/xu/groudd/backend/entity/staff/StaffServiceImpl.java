@@ -48,6 +48,10 @@ public class StaffServiceImpl implements StaffService {
     public Staff updateStaff(Long id, StaffDTO staffDTO) {
         Optional<Staff> optionalStaff = staffRepository.findById(id);
         if(optionalStaff.isPresent()){
+            String oldEmail = optionalStaff.get().getContactDetails().getEmail();
+            if(!oldEmail.equals(staffDTO.getEmail()) && staffRepository.existsByContactDetailsEmail(staffDTO.getEmail())){
+                throw new RuntimeException("Email already exists!");
+            }
             Staff staff = optionalStaff.get();
             staff.getName().setLastName(staffDTO.getLastName().toLowerCase().trim());
             staff.getName().setFirstName(staffDTO.getFirstName().toLowerCase().trim());
@@ -142,5 +146,10 @@ public class StaffServiceImpl implements StaffService {
                 .build();
 
 
+    }
+
+    @Override
+    public boolean doesStaffEmailExists(String email) {
+        return staffRepository.existsByContactDetailsEmail(email);
     }
 }

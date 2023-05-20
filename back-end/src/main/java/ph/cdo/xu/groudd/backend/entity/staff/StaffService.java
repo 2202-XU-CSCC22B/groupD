@@ -18,4 +18,6 @@ public interface StaffService {
 
     StaffDTO entityToDTO(Staff staff);
     Staff DtoToEntity(StaffDTO staffDTO);
+
+    boolean doesStaffEmailExists(String email);
 }
