@@ -37,9 +37,11 @@ export default function LoginPage() {
                   Login
                 </button>
               </Link>
-              <small className=" text-sm text-center w-fit mx-auto">
+              <small className="text-sm text-center w-fit mx-auto">
                 Forgot your password?{" "}
-                <span className=" text-blue-500 underline">Click here.</span>
+                <a href="/account/forgot_password" className="text-blue-500 underline">
+                  Click here.
+                </a>
               </small>
             </div>
           </div>
