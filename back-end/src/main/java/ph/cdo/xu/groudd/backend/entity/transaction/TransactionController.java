@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
+import ph.cdo.xu.groudd.backend.entity.staff.StaffService;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class TransactionController {
 
     private final TransactionService transactionService;
+    private final MemberService memberService;
+    private final StaffService staffService;
 
 
     @GetMapping("/test")
@@ -53,12 +56,21 @@ public class TransactionController {
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> addNewTransaction(@RequestBody TransactionDTO transactionDTO){
         Map<String, Object> objectMap = new HashMap<>();
-        Transaction transaction = transactionService.newTransaction(transactionDTO);
-        TransactionDTO tempDTO = transactionService.entityToDTO(transaction);
-        objectMap.put("transaction", tempDTO);
+        if(transactionDTO.getMemberID() != null){
+           memberService.addTransactionToMember(transactionDTO.getMemberID(), transactionDTO);
+        }else if(transactionDTO.getStaffID() != null){
+            staffService.addTransactionToStaff(transactionDTO.getStaffID(), transactionDTO);
+        }else{
+            Transaction transaction = transactionService.newTransaction(transactionDTO);
+            TransactionDTO tempDTO = transactionService.entityToDTO(transaction);
+            objectMap.put("transaction", tempDTO);
 
+            return ResponseEntity.ok(objectMap);
+        }
+
+
+        objectMap.put("transaction", transactionDTO);
         return ResponseEntity.ok(objectMap);
-
 
     }
 

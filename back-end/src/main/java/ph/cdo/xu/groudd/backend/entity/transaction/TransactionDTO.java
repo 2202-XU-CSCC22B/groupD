@@ -36,6 +36,10 @@ public class TransactionDTO {
     @Enumerated(EnumType.STRING)
     private Double value;
 
+    @Nullable
+    private Long memberID;
+    @Nullable
+    private Long staffID;
 
 
 
