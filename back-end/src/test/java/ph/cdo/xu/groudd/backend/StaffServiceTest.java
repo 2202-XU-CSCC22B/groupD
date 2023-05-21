@@ -1,21 +1,22 @@
 package ph.cdo.xu.groudd.backend;
 
 import com.github.javafaker.Faker;
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.model.enums.*;
 import ph.cdo.xu.groudd.backend.entity.staff.*;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -227,6 +228,58 @@ public class StaffServiceTest {
         List<StaffDTO> staffStaff = staffService.getStaffByPosition(Position.Staff);
         Assertions.assertNotNull(staffStaff);
         Assertions.assertEquals(5, staffStaff.size());
+    }
+
+
+    @Test
+    void shouldAddTransactionToStaff(){
+        List<TransactionDTO> transactions = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            TransactionDTO transaction = TransactionDTO.builder()
+                    .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
+                    .description(faker.lorem().sentence())
+                    .paymentMethod(PaymentMethod.Cash)
+                    .transactionType(TransactionType.Salary)
+                    .value(faker.number().randomDouble(2, 1, 1000))
+                    .build();
+
+            transactions.add(transaction);
+
+
+        }
+
+        StaffDTO staffDTO = StaffDTO.builder()
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .phone(faker.phoneNumber().cellPhone())
+                .email(faker.internet().emailAddress())
+                .gender(Gender.values()[faker.random().nextInt(Gender.values().length)])
+                .address("Cagayan de Oro City")
+                .position(Position.Trainer)
+                .birthday(faker.date().birthday())
+                .dateStarted(faker.date().past(365, TimeUnit.DAYS))
+                .status(Status.values()[faker.random().nextInt(Status.values().length)])
+                .build();
+
+        System.out.println(staffDTO);
+        Staff staff = staffService.addStaff(staffDTO);
+
+        Assertions.assertNotNull(staff);
+
+        for(int i = 0; i < transactions.size(); i++){
+            staffService.addTransactionToStaff(staff.getId(), transactions.get(i));
+        }
+
+        Optional<Staff> optionalStaff = staffRepository.findById(staff.getId());
+        Assertions.assertTrue(optionalStaff.isPresent());
+
+        staff = optionalStaff.get();
+        Assertions.assertNotNull(staff);
+
+        Assertions.assertEquals(10, staff.getTransactions().size());
+
+
     }
 }
 

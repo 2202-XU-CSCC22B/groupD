@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,8 @@ import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 import RecipientSelect from "./recipient-select";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+
 
 const staffs = [
   { value: "a@gmail.com", label: "staff1" },
@@ -27,6 +29,53 @@ const formSchema = z.object({
 });
 
 export default function EmailForm() {
+  const [allStaffData, setAllStaffData] = useState([]);
+  const [allMemberData, setALlMemberData] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(process.env.retrieve_all_staff_api);
+        if (!response.ok) {
+          throw new Error('Failed to fetch staff data');
+        }
+        const data = await response.json();
+        setAllStaffData(data.all);
+        setStaffData(staffData);
+        setAllOwnerData(data.owner);
+        setAllTrainerData(data.trainer);
+        console.log(data)
+        console.log(staffData);
+        console.log(allOwnerData);
+        console.log(allTrainerData);
+      } catch (error) {
+        console.error('Error fetching staff data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(process.env.retrieve_members_api);
+        if (!response.ok) {
+          throw new Error('Failed to fetch staff data');
+        }
+        const data = await response.json();
+          console.log(data)
+        setALlMemberData(data)
+      } catch (error) {
+        console.error('Error fetching staff data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const {
     handleSubmit,
     register,
@@ -41,7 +90,7 @@ export default function EmailForm() {
 
   const options = [
     { value: "all", label: "Select All" }, // Option to select all recipients
-    ...(selectedOption === "staffs" ? staffs : members),
+    ...(selectedOption === "staffs" ? allStaffData : members),
   ];
   const [selectValue, setSelectValue] = useState([]);
   const onSubmit = (data) => {

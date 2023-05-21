@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+
+public  abstract class Person {
+
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
