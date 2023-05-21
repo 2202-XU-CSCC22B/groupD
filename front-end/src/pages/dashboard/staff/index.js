@@ -1,5 +1,5 @@
 import Head from "next/head";
-import AllMembersContent from "@modules/components/members/new/AllMembersContent";
+import AllStaffTable from "@modules/components/staff/all-staff-table";
 
 const StaffPage = () => {
   return (
@@ -14,7 +14,7 @@ const StaffPage = () => {
             All staffs
           </h1>
         </section>
-        <AllMembersContent />
+        <AllStaffTable />
       </div>
     </div>
   );
