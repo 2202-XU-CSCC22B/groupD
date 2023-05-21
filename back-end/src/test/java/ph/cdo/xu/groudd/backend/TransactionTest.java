@@ -286,7 +286,7 @@ public class TransactionTest {
 
         Date januaryDate = new Date(randomMillis);
 
-        List<Transaction> januaryTransaction = transactionService.transactionsByMonth(januaryDate);
+        List<Transaction> januaryTransaction = transactionService.transactionsByMonth(1);
         Map<String, Object> objectMap = transactionService.getTransactionSummary(januaryTransaction);
 
 

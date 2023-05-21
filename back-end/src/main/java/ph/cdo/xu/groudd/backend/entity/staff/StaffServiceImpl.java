@@ -2,13 +2,13 @@ package ph.cdo.xu.groudd.backend.entity.staff;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
 import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionRepository;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 
@@ -23,6 +23,7 @@ public class StaffServiceImpl implements StaffService {
 
     private final StaffRepository staffRepository;
     private final TransactionService transactionService;
+    private final TransactionRepository transactionRepository;
     @Override
     public Staff addStaff(StaffDTO staffDTO) {
         if(staffRepository.existsByContactDetailsEmail(staffDTO.getEmail())){
@@ -163,7 +164,7 @@ public class StaffServiceImpl implements StaffService {
         Optional<Staff> optionalStaff = staffRepository.findById(staffID);
         if(optionalStaff.isPresent()){
             Staff staff = optionalStaff.get();
-            Transaction transaction = transactionService.DtoToEntity(transactionDTO);
+            Transaction transaction = transactionService.dtoToEntity(transactionDTO);
 
 
             staff.addToChildren(transaction);
@@ -188,5 +189,20 @@ public class StaffServiceImpl implements StaffService {
             throw new RuntimeException("Member not found!");
         }
 
+    }
+
+    @Override
+    public List<TransactionDTO> getTransactionIDByStaff(Long staffID) {
+        Optional<Staff> staff = staffRepository.findById(staffID);
+        if(staff.isEmpty())
+            throw new RuntimeException("Staff not found!");
+
+        List<Transaction> transactionList = transactionRepository.findAllByStaffId(staffID);
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for (Transaction transaction : transactionList) {
+            transactionDTOList.add(transactionService.entityToDTO(transaction));
+        }
+
+        return transactionDTOList;
     }
 }

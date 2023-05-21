@@ -47,7 +47,11 @@ public class Transaction {
     private LocalDateTime createdAt;
     private Date date;
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
+
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
     private Double value;

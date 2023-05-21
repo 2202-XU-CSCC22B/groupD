@@ -17,11 +17,11 @@ import ph.cdo.xu.groudd.backend.entity.member.MembershipDetails;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.model.enums.*;
+import ph.cdo.xu.groudd.backend.entity.staff.Staff;
 import ph.cdo.xu.groudd.backend.entity.staff.StaffDTO;
 import ph.cdo.xu.groudd.backend.entity.staff.StaffService;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.utils.DateService;
 
 import java.util.*;
@@ -126,8 +126,20 @@ public class ApplicationConfig {
                                 .gender(Gender.values()[ran.nextInt(Status.values().length)])
                                 .build();
 
-                memberService.add(temp);
+               temp =  memberService.add(temp);
 
+                for (int y = 0; y < ran.nextInt(15) + 1; y++) {
+                    TransactionDTO transaction = TransactionDTO.builder()
+                            .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
+                            .description(faker.lorem().sentence())
+                            .paymentMethod(PaymentMethod.Cash)
+                            .transactionType(TransactionType.Sales)
+                            .value(faker.number().randomDouble(2, 50, 1000))
+                            .build();
+
+                   memberService.addTransactionToMember(temp.getId(), transaction);
+
+                }
 
 
             }
@@ -162,7 +174,22 @@ public class ApplicationConfig {
                         .build();
 
                 System.out.println(staffDTO);
-                staffService.addStaff(staffDTO);
+                Staff staff = staffService.addStaff(staffDTO);
+
+
+                for (int y = 0; i < ran.nextInt(15) + 1; i++) {
+                    TransactionType[] expenseTransactions = {TransactionType.Salary, TransactionType.CashOut, TransactionType.Maintenance, TransactionType.Utilities};
+                    TransactionDTO transaction = TransactionDTO.builder()
+                            .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
+                            .description(faker.lorem().sentence())
+                            .paymentMethod(PaymentMethod.Cash)
+                            .transactionType(expenseTransactions[ran.nextInt(expenseTransactions.length)])
+                            .value(faker.number().randomDouble(2, 50, 1000))
+                            .build();
+
+                    staffService.addTransactionToStaff(staff.getId(), transaction);
+
+                }
             }
         };
     }

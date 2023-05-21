@@ -11,6 +11,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.CustomResponseBody;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.exceptions.ApiError;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 import ph.cdo.xu.groudd.backend.utils.DateService;
@@ -27,6 +29,8 @@ public class MemberController {
     private DateService dateService;
 
     private MemberService memberService;
+    private TransactionService transactionService;
+
 
     @GetMapping(value = "/test")
     public String test(){
@@ -92,7 +96,7 @@ public class MemberController {
         return ResponseEntity.ok(responseBody);
     }
 
-    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponseBody> updateMember(@PathVariable("id") Long id, @RequestBody MemberDTO memberDTO) throws MessagingException {
 
            Member updatedMember = memberService.update(id, memberDTO);
@@ -103,6 +107,23 @@ public class MemberController {
             return ResponseEntity.ok(responseBody);
         }
 
+
+    @GetMapping(value = "/{id}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> getAllTransactionByMemberID(
+            @PathVariable Long id
+    ){
+        Map<String, Object> objectMap = new HashMap<>();
+        List<TransactionDTO> transactionDTOList = memberService.getTransactionByMember(id);
+        double value = 0;
+        for (TransactionDTO transactionDTO : transactionDTOList) {
+            value += transactionDTO.getValue();
+        }
+        objectMap.put("transactions", transactionDTOList);
+        objectMap.put("total", value);
+
+        return ResponseEntity.ok(objectMap);
+
+    }
 
 
 

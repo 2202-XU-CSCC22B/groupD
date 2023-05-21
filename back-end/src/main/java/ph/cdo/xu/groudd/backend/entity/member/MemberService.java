@@ -41,6 +41,8 @@ public interface MemberService {
      @Transactional
      void addTransactionToMember(Long memberID, TransactionDTO transactionDTO);
 
+     List<TransactionDTO> getTransactionByMember(Long memberID);
+
 
 
 

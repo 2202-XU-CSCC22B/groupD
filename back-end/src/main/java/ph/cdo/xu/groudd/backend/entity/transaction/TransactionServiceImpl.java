@@ -54,7 +54,6 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         netProfit = totalSales - (totalSalary + totalUtilities + totalMaintenance + totalCashOut);
-        objectMap.put("transactions", transactionList);
         objectMap.put("cashOut", totalCashOut);
         objectMap.put("sales", totalSales);
         objectMap.put("utilities", totalUtilities);
@@ -74,18 +73,15 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> transactionsByMonth(Date date) {
+    public List<Transaction> transactionsByMonth(int month) {
         List<Transaction> transactionList = transactionRepository.findAll();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int targetMonth = calendar.get(Calendar.MONTH);
 
         List<Transaction> filteredTransactions = new ArrayList<>();
         for (Transaction transaction : transactionList) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTime(transaction.getDate());
             int transactionMonth = calendar.get(Calendar.MONTH);
-            if (transactionMonth == targetMonth) {
+            if (transactionMonth == (month - 1)) {
                 filteredTransactions.add(transaction);
             }
         }
@@ -107,7 +103,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction DtoToEntity(TransactionDTO transactionDTO) {
+    public Transaction dtoToEntity(TransactionDTO transactionDTO) {
         return Transaction
                 .builder()
                 .id(transactionDTO.getId() == null ? null : transactionDTO.getId())
@@ -116,6 +112,12 @@ public class TransactionServiceImpl implements TransactionService {
                 .transactionType(transactionDTO.getTransactionType())
                 .value(Double.parseDouble(String.format("%.2f", transactionDTO.getValue())))
                 .build();
+    }
+
+    @Override
+    public Transaction newTransaction(TransactionDTO transactionDTO) {
+        Transaction transaction = dtoToEntity(transactionDTO);
+        return transactionRepository.save(transaction);
     }
 
 
