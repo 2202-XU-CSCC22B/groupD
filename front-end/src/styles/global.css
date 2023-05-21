@@ -4,13 +4,22 @@
 @tailwind utilities;
 /* added tailwindcss -b */
 
-/* registration form input */
 @layer components {
+  /* registration form input */
   .reg-form input {
     @apply bg-white border py-1 shrink min-w-0 indent-2 outline-none rounded;
   }
-  .MuiDataGrid-row {
-    @apply !hover:bg-red-500;
+  /* new-transaction input form */
+  .new-transaction-group-input input {
+    @apply border px-2 py-1 w-full;
+  }
+
+  .new-transaction-group-input select {
+    @apply border px-2 py-1 w-full;
+  }
+
+  .new-transaction-group-input label {
+    @apply text-sm uppercase tracking-wide font-bold text-gray-500;
   }
 }
 
@@ -87,11 +96,13 @@ a {
   text-decoration: none;
 }
 
+/* removed dark mode -b */
+/* 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */
 
 .MuiDataGrid-row {
   @apply cursor-pointer hover:!bg-blue-100 transition-all duration-300 ease-linear;

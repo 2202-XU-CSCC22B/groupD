@@ -4,6 +4,87 @@ import { allMembersColumnDef } from "@modules/utils/config";
 import { DataGrid } from "@mui/x-data-grid";
 import MoreStaffInfo from "./more-staff-info";
 
+const data = [
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+  {
+    id: 1,
+    firstName: "coralie",
+    lastName: "rogahn",
+    phone: "(613) 701-9841",
+    email: "doris.hoppe@yahoo.com",
+    gender: "MALE",
+    address: "Cagayan de Oro City",
+    position: "Owner",
+    birthday: null,
+    dateStarted: "2023-05-06",
+    status: "ACTIVE",
+  },
+];
+
 const AllStaffTable = () => {
   const [row, setRow] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -13,7 +94,6 @@ const AllStaffTable = () => {
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
     console.log(row.row);
-
     setSelectedRow(row.row);
   };
   useEffect(() => {
