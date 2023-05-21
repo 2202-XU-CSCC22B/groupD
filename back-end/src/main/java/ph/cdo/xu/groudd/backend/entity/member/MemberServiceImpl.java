@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
-import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionRepository;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.utils.DateService;
-import ph.cdo.xu.groudd.backend.utils.StatusService;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,6 +23,8 @@ public class MemberServiceImpl implements MemberService{
     private MemberRepository memberRepository;
     private JavaMailSender javaMailSender;
     private DateService dateService;
+    private TransactionRepository transactionRepository;
+    private TransactionService transactionService;
 
     @Override
     public Member add(Member member) {
@@ -220,6 +224,49 @@ public class MemberServiceImpl implements MemberService{
         }
 
         return memberDTOs;
+    }
+
+    @Override
+    public void addTransactionToMember(Long memberID, TransactionDTO transactionDTO) {
+        Optional<Member> optionalMember = memberRepository.findById(memberID);
+        if(optionalMember.isPresent()){
+            Member member = optionalMember.get();
+            Transaction transaction = transactionService.dtoToEntity(transactionDTO);
+
+
+            member.addToChildren(transaction);
+
+
+            System.out.println("@addTransactionToMemberMethod");
+            System.out.println(transaction);
+           memberRepository.save(member);
+
+
+
+            System.out.println("transaction size using member.getTransaction"  + member.getTransactions().size());
+//            transactionRepository.save(transaction);
+
+//             Add the transaction to the member's transactions list
+           // Save the member and cascade the transaction
+//            return member;
+
+
+
+        }else{
+            throw new RuntimeException("Member not found!");
+        }
+
+    }
+
+    @Override
+    public List<TransactionDTO> getTransactionByMember(Long memberID) {
+        List<Transaction> transactionList = transactionRepository.findAllByMemberId(memberID);
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for (Transaction transaction : transactionList) {
+            transactionDTOList.add(transactionService.entityToDTO(transaction));
+        }
+
+        return transactionDTOList;
     }
 
     @Override

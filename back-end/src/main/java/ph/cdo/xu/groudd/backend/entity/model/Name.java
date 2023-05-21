@@ -30,7 +30,7 @@ public class Name {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Name name = (Name) o;
-        return firstName.equalsIgnoreCase(name.firstName) && lastName.equalsIgnoreCase(name.lastName);
+        return lastName.equalsIgnoreCase(name.lastName) && firstName.equalsIgnoreCase(name.firstName);
     }
 
 

@@ -22,8 +22,8 @@ const AcceptMemberModal = (props) => {
         })
             .then(response => {
                 if (response.ok) {
-                    alert(props.email + " is registered!!!")
 
+                    updateParentState(props.email)
                     // Request was successful
                     console.log('Data updated successfully!');
                 } else {
@@ -33,7 +33,7 @@ const AcceptMemberModal = (props) => {
                 }
             })
             .then(() => {
-                updateParentState(props.email)
+
                 handleOpenSuccess(true)
                 handleClose()
             })

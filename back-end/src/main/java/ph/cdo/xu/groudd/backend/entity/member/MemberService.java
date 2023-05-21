@@ -2,6 +2,8 @@ package ph.cdo.xu.groudd.backend.entity.member;
 
 import jakarta.transaction.Transactional;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -35,6 +37,11 @@ public interface MemberService {
 
      List<MemberDTO> dtoMembers(List<Member> memberList);
 
+
+     @Transactional
+     void addTransactionToMember(Long memberID, TransactionDTO transactionDTO);
+
+     List<TransactionDTO> getTransactionByMember(Long memberID);
 
 
 

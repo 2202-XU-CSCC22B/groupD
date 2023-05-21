@@ -7,11 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 import ph.cdo.xu.groudd.backend.utils.EmailService;
 import ph.cdo.xu.groudd.backend.utils.PasswordService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -74,5 +76,23 @@ public class StaffController {
 
         objectMap.put("staff", staffDTO);
         return ResponseEntity.ok(objectMap);
+    }
+
+
+    @GetMapping(value = "/{id}/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> getAllTransactionByMemberID(
+            @PathVariable Long id
+    ){
+        Map<String, Object> objectMap = new HashMap<>();
+        List<TransactionDTO> transactionDTOList = staffService.getTransactionIDByStaff(id);
+        double value = 0;
+        for (TransactionDTO transactionDTO : transactionDTOList) {
+            value += transactionDTO.getValue();
+        }
+        objectMap.put("transactions", transactionDTOList);
+        objectMap.put("total", value);
+
+        return ResponseEntity.ok(objectMap);
+
     }
 }
