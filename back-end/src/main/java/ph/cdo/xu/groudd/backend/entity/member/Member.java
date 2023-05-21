@@ -1,5 +1,6 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,13 +16,12 @@ import java.util.List;
 @ToString
 @Setter
 @Entity
-@Table
 @SuperBuilder
 @EnableJpaAuditing
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "members")
 public class Member extends Person {
-
     @Id
     @SequenceGenerator(
             name = "member_sequence",
@@ -33,6 +33,8 @@ public class Member extends Person {
             generator = "member_sequence"
     )
     private Long id;
+
+
     private double weight;
     private double height;
 
@@ -58,12 +60,36 @@ public class Member extends Person {
     }
 
 
-//    @JsonManagedReference
-//    @OneToMany(
-//            mappedBy = "member",
-//            targetEntity = Transaction.class,
-//            fetch = FetchType.EAGER,
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<Transaction> students = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    @JsonManagedReference
+    private List<Transaction> transactions = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", occupation='" + occupation + '\'' +
+                ", membershipDetails=" + membershipDetails +
+                " TransactionSize= " +  transactions.size();
+    }
+
+
+    @JsonIgnore
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+
+    @JsonIgnore
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void addToChildren(Transaction transaction){
+        transaction.setMember(this);
+        this.transactions.add(transaction);
+    }
 }

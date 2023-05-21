@@ -15,10 +15,10 @@ module.exports = {
     count_members_api:
     "http://localhost:8080/member/count",
 
-    create_staff_api: "localhost:8080/api/v1/staff/new",
-    update_staff_api: "localhost:8080/api/v1/staff/update/{id}",
-    retrieve_all_staff_api: "localhost:8080/api/v1/staff/all",
-    retrieve_staff_api: "localhost:8080/api/v1/staff/{id}",
+    create_staff_api: "http://localhost:8080/api/v1/staff/new",
+    update_staff_api: "http://localhost:8080/api/v1/staff/update/{id}",
+    retrieve_all_staff_api: "http://localhost:8080/api/v1/staff/all",
+    retrieve_staff_api: "http://localhost:8080/api/v1/staff/{id}",
 
 
 

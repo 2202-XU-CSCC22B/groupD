@@ -2,10 +2,14 @@ package ph.cdo.xu.groudd.backend.entity.staff;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.exceptions.EmailAlreadyExistsException;
 
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.stream.Collectors;
 public class StaffServiceImpl implements StaffService {
 
     private final StaffRepository staffRepository;
+    private final TransactionService transactionService;
     @Override
     public Staff addStaff(StaffDTO staffDTO) {
         if(staffRepository.existsByContactDetailsEmail(staffDTO.getEmail())){
@@ -151,5 +156,37 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public boolean doesStaffEmailExists(String email) {
         return staffRepository.existsByContactDetailsEmail(email);
+    }
+
+    @Override
+    public void addTransactionToStaff(Long staffID, TransactionDTO transactionDTO) {
+        Optional<Staff> optionalStaff = staffRepository.findById(staffID);
+        if(optionalStaff.isPresent()){
+            Staff staff = optionalStaff.get();
+            Transaction transaction = transactionService.DtoToEntity(transactionDTO);
+
+
+            staff.addToChildren(transaction);
+
+
+            System.out.println("@addTransactionToStaff");
+            System.out.println(transaction);
+            staffRepository.save(staff);
+
+
+
+            System.out.println("transaction size using staff.getTransaction"  + staff.getTransactions().size());
+//            transactionRepository.save(transaction);
+
+//             Add the transaction to the member's transactions list
+            // Save the member and cascade the transaction
+//            return member;
+
+
+
+        }else{
+            throw new RuntimeException("Member not found!");
+        }
+
     }
 }
