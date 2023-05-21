@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { TextField, FormControlLabel, Switch, Grid } from "@mui/material";
+import {
+  TextField,
+  Button,
+  FormControlLabel,
+  Switch,
+  Grid,
+  Accordion,
+} from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
 
-const MoreInformation = ({ data }) => {
+const MoreStaffInfo = ({ data }) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
@@ -201,19 +208,6 @@ const MoreInformation = ({ data }) => {
           />
         </div>
       </Grid>
-      {/* <Grid item xs={12} sm={6}>
-        <DatePicker
-          label="Start Date"
-          name="startDate"
-          value={formData.startDate}
-          onChange={(date) => handleDateChange(date, "startDate")}
-          disabled={!editable}
-          showYearDropdown
-          fullWidth
-          className=" border"
-        />
-      </Grid> */}
-      {/* Add more Grid items for other data fields */}
 
       <Grid className=" w-full space-y-4">
         <MyButton disabled={!editable} onClick={handleSaveChanges}>
@@ -253,7 +247,7 @@ const MoreInformation = ({ data }) => {
   );
 };
 
-MoreInformation.propTypes = {
+MoreStaffInfo.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
     firstName: PropTypes.string,
@@ -278,4 +272,4 @@ MoreInformation.propTypes = {
   }).isRequired,
 };
 
-export default MoreInformation;
+export default MoreStaffInfo;
