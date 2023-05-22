@@ -10,9 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,12 +179,21 @@
       </method>
     </configuration>
     <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
       <module name="back-end" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ph.cdo.xu.groudd.backend.BackEndApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.MemberTest.shouldBeAbleToAddTransactionToMembers" />
+      <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
+      <item itemvalue="JUnit.StaffServiceTest.shouldAddTransactionToStaff" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestAllTransactionSummaryByMonth" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestTransactionSummary" />
+      <item itemvalue="Spring Boot.BackEndApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
