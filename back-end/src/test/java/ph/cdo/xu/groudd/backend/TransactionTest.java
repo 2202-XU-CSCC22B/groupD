@@ -276,17 +276,9 @@ public class TransactionTest {
         Assertions.assertNotNull(member.getTransactions());
         Assertions.assertEquals(11, member.getTransactions().size());
 
-       calendar = new GregorianCalendar(2023, Calendar.JANUARY, 1);
-         startMillis = calendar.getTimeInMillis();
 
-        calendar.set(Calendar.DAY_OF_MONTH, 31);
-        endMillis = calendar.getTimeInMillis();
 
-         randomMillis = startMillis + (long) (Math.random() * (endMillis - startMillis));
-
-        Date januaryDate = new Date(randomMillis);
-
-        List<Transaction> januaryTransaction = transactionService.transactionsByMonth(1);
+        List<Transaction> januaryTransaction = transactionService.transactionsByMonth(1, 2023);
         Map<String, Object> objectMap = transactionService.getTransactionSummary(januaryTransaction);
 
 

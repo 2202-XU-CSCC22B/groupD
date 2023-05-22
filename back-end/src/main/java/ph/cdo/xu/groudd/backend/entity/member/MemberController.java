@@ -21,7 +21,7 @@ import ph.cdo.xu.groudd.backend.utils.EmailService;
 import java.util.*;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api/v1/member")
 @AllArgsConstructor
 @CrossOrigin
 public class MemberController {

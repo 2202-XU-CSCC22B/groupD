@@ -8,8 +8,11 @@ import ph.cdo.xu.groudd.backend.entity.model.Person;
 import ph.cdo.xu.groudd.backend.entity.model.enums.TransactionType;
 import ph.cdo.xu.groudd.backend.entity.staff.StaffDTO;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -73,20 +76,15 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> transactionsByMonth(int month) {
+    public List<Transaction> transactionsByMonth(int month, int year) {
         List<Transaction> transactionList = transactionRepository.findAll();
 
-        List<Transaction> filteredTransactions = new ArrayList<>();
-        for (Transaction transaction : transactionList) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(transaction.getDate());
-            int transactionMonth = calendar.get(Calendar.MONTH);
-            if (transactionMonth == (month - 1)) {
-                filteredTransactions.add(transaction);
-            }
-        }
-
-        return filteredTransactions;
+        return transactionList.stream()
+                .filter(t -> {
+                    LocalDateTime date = t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    return date.getMonthValue() == month && date.getYear() == year;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
