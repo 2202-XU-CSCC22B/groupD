@@ -11,6 +11,7 @@ import ph.cdo.xu.groudd.backend.entity.model.Person;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
 import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
+import ph.cdo.xu.groudd.backend.entity.user.User;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -70,6 +71,10 @@ public class Staff extends Person {
         transaction.setStaff(this);
         this.transactions.add(transaction);
     }
+
+
+    @OneToOne(mappedBy = "staff")
+    private User user;
 
     @Override
     public String toString() {
