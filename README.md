@@ -3,7 +3,6 @@
 - Joshua Salcedo
 - Nikko Nerri
 - Scott Baban
-- Kheil Adrian Pacamo
 
 ## Project Description
 Our project aims to develop a Gym Management System for Unscathed Fitness Gym in Cagayan de Oro. The system will automate their gym operations, from tracking memberships, managing sales, and monitoring employee salaries and expenses. The gym management system will also include a landing page for their online presence, providing a convenient and accessible way for gym members to interact with the gym and its services.
