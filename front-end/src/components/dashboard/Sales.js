@@ -1,27 +1,21 @@
-import * as React from 'react';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import Title from './Title';
+import * as React from "react";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
-function preventDefault(event) {
-    event.preventDefault();
-}
+export default function Sales({ className, ...props }) {
+  return (
+    <div
+      className={`${className} space-y-2 flex flex-col justify-between h-full`}
+      {...props}
+    >
+      <h1 className=" text-blue-500 text-xl font-medium">Total Sales</h1>
 
-export default function Sales() {
-    return (
-        <React.Fragment>
-            <Title>Total Sales</Title>
-            <Typography component="p" variant="h4">
-                $3,024.00
-            </Typography>
-            <Typography color="text.secondary" sx={{ flex: 1 }}>
-                on May 2023
-            </Typography>
-            {/*<div>*/}
-            {/*    <Link color="primary" href="#" onClick={preventDefault}>*/}
-            {/*        View transaction*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
-        </React.Fragment>
-    );
+      <div className=" w-full text-center space-y-2  py-8 h-full">
+        <RiMoneyDollarCircleFill size={48} className=" mx-auto text-blue-300" />
+        <h1 className="text-4xl lg:text-5xl font-bold ">$3,024.00</h1>
+        <p className=" text-center text-xs uppercase tracking-wide font-bold text-gray-600">
+          May 2023
+        </p>
+      </div>
+    </div>
+  );
 }

@@ -1,8 +1,6 @@
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import PointOfSaleRoundedIcon from "@mui/icons-material/PointOfSaleRounded";
 import AssignmentIndRoundedIcon from "@mui/icons-material/AssignmentIndRounded";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import { handleLogoutClick } from "@modules/utils/functions";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import FitnessCenterRoundedIcon from "@mui/icons-material/FitnessCenterRounded";
 import SportsGymnasticsRoundedIcon from "@mui/icons-material/SportsGymnasticsRounded";
@@ -14,11 +12,9 @@ import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import PeopleIcon from "@mui/icons-material/People";
 import { styled } from "@mui/system";
 import { Container } from "@mui/material";
-import cardImage1 from "../../public/images/card1.png"
-import cardImage2 from  "../../public/images/card2.png"
-import cardImage3 from  "../../public/images/card3.png"
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-const fontSize = "50px";
+import cardImage1 from "../../public/images/card1.png";
+import cardImage2 from "../../public/images/card2.png";
+import cardImage3 from "../../public/images/card3.png";
 
 const dashboardData = [
   {
@@ -47,26 +43,22 @@ const dashboardData = [
   },
 ];
 
-
-
-
-
 export const memberSummary = [
   {
     name: "Active Members",
-    icon: <Diversity3OutlinedIcon sx={{ fontSize: fontSize }} />,
+    icon: Diversity3OutlinedIcon,
     color: "#FFE2E6",
     tooltip: "Number of all registered users",
   },
   {
     name: "Monthly Members",
-    icon: <FitnessCenterRoundedIcon sx={{ fontSize: fontSize }} />,
+    icon: FitnessCenterRoundedIcon,
     color: "#DCFCE7",
     tooltip: "Number of all active monthly users",
   },
   {
     name: "Registered Students",
-    icon: <SportsGymnasticsRoundedIcon sx={{ fontSize: fontSize }} />,
+    icon: SportsGymnasticsRoundedIcon,
     color: "#FFF4DE",
     tooltip: "Number of total enrolled monthly students",
   },
@@ -238,21 +230,23 @@ export const allMembersColumnDef = [
 ];
 export default dashboardData;
 
-
-export const cardContents = [ 
+export const cardContents = [
   {
-    title: 'Personal Training',
-    description: 'Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.',
-    image: cardImage1
+    title: "Personal Training",
+    description:
+      "Our experienced trainers will design a program tailored to your fitness goals and guide you through each workout.",
+    image: cardImage1,
   },
   {
-    title: 'Muay Thai/Boxing',
-    description: 'Join our Muay Thai/Boxing classes to meet other gym-goers and challenge yourself with a different workout.',
-    image: cardImage2
+    title: "Muay Thai/Boxing",
+    description:
+      "Join our Muay Thai/Boxing classes to meet other gym-goers and challenge yourself with a different workout.",
+    image: cardImage2,
   },
   {
-    title: 'Community Building',
-    description: 'Engage in group challenges, and find motivation and support in reaching your fitness goals together.',
-    image: cardImage3
+    title: "Community Building",
+    description:
+      "Engage in group challenges, and find motivation and support in reaching your fitness goals together.",
+    image: cardImage3,
   },
-]
+];
