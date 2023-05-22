@@ -30,7 +30,7 @@ const DataTable = ({ data, columns }) => {
   return (
     <div className="max-w-6xl space-y-4 ">
       {/* table */}
-      <div className="overflow-x-scroll">
+      <div className="overflow-x-auto">
         <table className=" table-auto w-full min-w-max border">
           <thead className=" ">
             {table.getHeaderGroups().map((headerGroup) => (
