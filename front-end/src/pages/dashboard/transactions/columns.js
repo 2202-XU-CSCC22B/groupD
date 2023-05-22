@@ -2,9 +2,22 @@ import { TbArrowsDownUp } from "react-icons/tb";
 
 export const columns = [
   {
+    accessorKey: "value",
+    header: ({ column }) => {
+      return (
+        <div className=" flex items-center gap-1">
+          <p>Amount</p>
+          <TbArrowsDownUp
+            className=" cursor-pointer"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          />
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: "transactionType",
     header: ({ column }) => {
-      console.log(column);
       return (
         <div className=" flex items-center gap-1">
           <p>Type</p>
@@ -30,7 +43,6 @@ export const columns = [
   {
     accessorKey: "paymentMethod",
     header: ({ column }) => {
-      console.log(column);
       return (
         <div className=" flex items-center gap-1">
           <p>Method</p>

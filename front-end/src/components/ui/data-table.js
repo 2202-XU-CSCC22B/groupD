@@ -28,7 +28,7 @@ const DataTable = ({ data, columns }) => {
   });
 
   return (
-    <div className="max-w-6xl space-y-4 ">
+    <div className="max-w-7xl space-y-4 ">
       {/* table */}
       <div className="overflow-x-auto">
         <table className=" table-auto w-full min-w-max border">
@@ -56,16 +56,18 @@ const DataTable = ({ data, columns }) => {
 
           <tbody className="text-gray-900">
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map((row, index) => (
                 <tr
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className=" hover:bg-gray-200"
+                  className={`hover:bg-gray-200 ${
+                    index % 2 === 0 && "bg-gray-50"
+                  }`}
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map((cell, index) => (
                     <td
                       key={cell.id}
-                      className=" px-8 py-4 border-b border-t overflow-x-auto max-w-[192px]"
+                      className="px-8 py-4 border-b border-t overflow-x-auto max-w-[192px]"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -86,13 +88,13 @@ const DataTable = ({ data, columns }) => {
         </table>
       </div>
 
-      <div className=" flex justify-between items-center">
+      <div className=" flex sm:justify-between sm:items-center flex-col-reverse gap-4 sm:flex-row">
         <p className="font-medium text-gray-500">
           Page {table.getState().pagination.pageIndex + 1} of{" "}
           {table.getPageCount()}
         </p>
         {/* controls */}
-        <div className=" flex gap-2 justify-end">
+        <div className=" flex gap-2 sm:justify-end">
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}

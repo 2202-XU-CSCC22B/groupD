@@ -12,6 +12,7 @@ const ModalTransaction = ({ isOpen, setIsOpen }) => {
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="absolute w-screen h-screen min-[450px]:h-fit min-[450px]:mx-auto min-[450px]:w-[500px] min-[450px]:rounded min-[450px]:relative bg-white">
           <Dialog.Title>
+            {/* add 'add transaction' logic inside */}
             <NewTransactionForm setIsOpen={setIsOpen} />
           </Dialog.Title>
         </Dialog.Panel>

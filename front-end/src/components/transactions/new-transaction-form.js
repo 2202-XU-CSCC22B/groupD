@@ -6,10 +6,6 @@ import RecipientSelect from "../layouts/dashboard/recipient-select";
 
 const members = [
   {
-    value: "none",
-    label: "None",
-  },
-  {
     value: 456,
     label: "John Doe",
   },
@@ -20,10 +16,6 @@ const members = [
 ];
 
 const staffs = [
-  {
-    value: "none",
-    label: "None",
-  },
   {
     value: 456,
     label: "John Doe",
@@ -113,10 +105,13 @@ const NewTransactionForm = ({ setIsOpen }) => {
                 Staff
               </label>
               <select
+                required
                 id="staffID"
                 className=" bg-gray-50"
                 {...register("staffID")}
               >
+                <option hidden></option>
+
                 {staffs.map((staff) => (
                   <option
                     className=" bg-gray-50"
@@ -134,10 +129,12 @@ const NewTransactionForm = ({ setIsOpen }) => {
                 Member
               </label>
               <select
+                required
                 id="memberID"
                 className=" bg-gray-50"
                 {...register("memberID")}
               >
+                <option hidden></option>
                 {members.map((member) => (
                   <option
                     className=" bg-gray-50"
