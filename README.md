@@ -1,7 +1,7 @@
 # Unscathed Fitness Gym Information System
 ## Contributors
 - Joshua Salcedo
-- Nikko Nerri
+- Nikko Neri
 - Scott Baban
 
 ## Project Description
