@@ -9,24 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/RegisterRequest.java" afterDir="false" />
+    <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/BaseClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,6 +244,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationController.java</url>
           <line>7</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
