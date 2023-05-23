@@ -175,9 +175,9 @@ const MoreStaffInfo = ({ data }) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          label="Occupation"
-          name="occupation"
-          value={formData?.occupation}
+          label="Position"
+          name="position"
+          value={formData?.position}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth

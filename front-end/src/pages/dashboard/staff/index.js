@@ -1,5 +1,6 @@
 import Head from "next/head";
 import AllStaffTable from "@modules/components/staff/all-staff-table";
+import AllStaffTransactionTable from "@modules/components/staff/all-staff-transaction-table";
 
 const StaffPage = () => {
   return (
@@ -15,6 +16,7 @@ const StaffPage = () => {
           </h1>
         </section>
         <AllStaffTable />
+        <AllStaffTransactionTable/>
       </div>
     </div>
   );
