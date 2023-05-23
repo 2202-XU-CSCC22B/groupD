@@ -3,6 +3,7 @@ package ph.cdo.xu.groudd.backend.entity.member;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.joda.time.DateTime;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class MemberController {
 
     private MemberService memberService;
     private TransactionService transactionService;
+
 
 
     @GetMapping(value = "/test")
@@ -83,11 +85,11 @@ public class MemberController {
 
     //This API will be used to officially make a member
 
-    @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email, @RequestBody Date date, @RequestBody double paymentValue) throws MessagingException {
+    @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email, @RequestBody MembershipPaymentForm membershipPaymentForm) throws MessagingException {
 
 
-        Member member =   memberService.validateMember(email, date);
+        Member member =   memberService.validateMember(email, membershipPaymentForm.getDate());
         emailService.sendValidationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName(), member.getMembershipDetails().getMembershipEndDate().toString());
 
 
@@ -135,6 +137,7 @@ public class MemberController {
         return ResponseEntity.ok(memberService.dtoMembers(memberService.allVerified()));
 
     }
+
 
 
     @GetMapping(value = "/unverified", produces = MediaType.APPLICATION_JSON_VALUE)

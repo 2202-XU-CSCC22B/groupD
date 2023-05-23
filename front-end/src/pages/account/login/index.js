@@ -1,12 +1,14 @@
-import { TextField } from "@mui/material";
+import {CircularProgress, TextField} from "@mui/material";
 import Link from "next/link";
 import MyContainer from "@modules/components/ui/MyContainer";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // State to track loading state
   async function handleAuthenticate(e) {
+    setLoading(true);
     e.preventDefault
     try {
       const response = await fetch(process.env.user_authentication_api, {
@@ -14,7 +16,7 @@ export default function LoginPage() {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin':'*',
-          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS,GET,PUT'
         },
         body: JSON.stringify({
           username: username,
@@ -26,6 +28,9 @@ export default function LoginPage() {
         const data = await response.json();
         const token = data.token;
         alert(token)
+        sessionStorage.setItem("token", token);
+        setLoading(false)
+        window.location="/dashboard"
         // Do something with the token
       } else {
         // Handle the error case
@@ -35,6 +40,9 @@ export default function LoginPage() {
     } catch (error) {
       console.error('Error:', error);
       alert(error)
+    } finally {
+      setLoading(false)
+
     }
   };
 
@@ -77,7 +85,8 @@ export default function LoginPage() {
                 <button className="rounded-md w-full bg-gray-800 text-slate-50 font-medium tracking-widest drop-shadow-lg py-3 px-6 uppercase text-base -translate-y-2  hover:bg-gray-700 duration-300 transition-all ease-in-out"
                 onClick={handleAuthenticate}
                 >
-                  Login
+                  {loading ? <CircularProgress size={24} /> : 'Login'}
+
                 </button>
               {/*</Link>*/}
               <small className="text-sm text-center w-fit mx-auto">

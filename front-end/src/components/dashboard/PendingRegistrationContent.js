@@ -111,6 +111,9 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS,GET,PUT',
+          'Authorization': `Bearer ${sessionStorage.getItem("token")}`
           // Additional headers if required
         },
       }
@@ -186,7 +189,16 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.retrieve_unverified_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
+        const response = await fetch(process.env.retrieve_unverified_api, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET'
+            // Additional headers if required
+          }
+        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
         const jsonData = await response.json();
         setRow(jsonData);
       } catch (error) {

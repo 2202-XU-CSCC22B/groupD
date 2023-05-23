@@ -71,7 +71,16 @@ export default function MemberSummary({ className, ...props }) {
   const [summaryData, setSummaryData] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.count_members_api)
+    fetch(process.env.count_members_api, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET'
+        // Additional headers if required
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         const memberSummaryWithValues = memberSummary.map((summary) => {
