@@ -64,7 +64,12 @@ const MoreInformation = ({ data }) => {
       alert(formData.email);
       fetch(process.env.update_member_api.replace("{id}", data.id), {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'GET'
+        },
         body: JSON.stringify(formattedData),
       })
         .then((response) => {

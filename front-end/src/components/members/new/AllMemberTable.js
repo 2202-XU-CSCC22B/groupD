@@ -31,7 +31,15 @@ export default function AllMemberTable() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(process.env.retrieve_members_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
+        const response = await fetch(process.env.retrieve_members_api, {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET'
+          }
+        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
         const jsonData = await response.json();
         setRow(jsonData);
         setIsLoading(false);
