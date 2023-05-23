@@ -24,8 +24,11 @@ module.exports = {
 
     //Transaction
     retrieve_all_transactions_api: "localhost:8080/api/v1/transaction/all",
-    retrieve_all_transactions_byMonth: ""
+    retrieve_all_transactions_byMonth: "",
 
+
+    //authentication
+    user_authentication_api : "http://localhost:8080/api/v1/auth/authenticate"
 
 
     // create_members_api:

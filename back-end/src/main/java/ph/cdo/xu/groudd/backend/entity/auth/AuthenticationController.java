@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -25,7 +26,7 @@ public class AuthenticationController {
         return  ResponseEntity.ok(authenticationService.register(request));
     }
 
-    @PostMapping(value = "/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody AuthenticationRequest request
     ) throws Exception {

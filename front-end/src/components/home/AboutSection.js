@@ -30,7 +30,7 @@ const AboutSection = ({ ...props }) => {
           </h1>
           <div className="flex md:flex-row flex-col gap-20">
             {cardContents.map((content, index) => (
-              <Card sx={{ maxWidth: 345, maxHeight: 700 }}>
+              <Card sx={{ maxWidth: 345, maxHeight: 700 }} key={index}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
