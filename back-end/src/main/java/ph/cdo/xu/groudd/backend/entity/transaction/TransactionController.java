@@ -39,11 +39,11 @@ public class TransactionController {
         return ResponseEntity.ok(objectMap);
     }
 
-    @GetMapping("/{month}")
+    @GetMapping("/{year}/{month}")
     public ResponseEntity<Map<String,Object>> getAllTransactionByMonth(
-            @PathVariable @RequestBody int month){
+            @PathVariable int year, @PathVariable int month){
         Map<String, Object> objectMap = new HashMap<>();
-        List<Transaction> transactionList = transactionService.transactionsByMonth(month);
+        List<Transaction> transactionList = transactionService.transactionsByMonth(month, year);
 
         objectMap.put("transactions", transactionList);
         objectMap.put("summary", transactionService.getTransactionSummary(transactionList));
@@ -51,7 +51,7 @@ public class TransactionController {
 
 
         return ResponseEntity.ok(objectMap);
-        }
+    }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> addNewTransaction(@RequestBody TransactionDTO transactionDTO){

@@ -73,7 +73,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> transactionsByMonth(int month) {
+    public List<Transaction> transactionsByMonth(int month, int year) {
         List<Transaction> transactionList = transactionRepository.findAll();
 
         List<Transaction> filteredTransactions = new ArrayList<>();

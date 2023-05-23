@@ -8,7 +8,7 @@ public interface TransactionService {
     List<TransactionDTO> getAllDtoTransactions();
     Map<String, Object> getTransactionSummary(List<Transaction> transactions);
     List<Transaction> getAllTransactions();
-    List<Transaction> transactionsByMonth(int month);
+    List<Transaction> transactionsByMonth(int month, int year);
 
     TransactionDTO entityToDTO(Transaction transaction);
     Transaction dtoToEntity(TransactionDTO transactionDTO);
