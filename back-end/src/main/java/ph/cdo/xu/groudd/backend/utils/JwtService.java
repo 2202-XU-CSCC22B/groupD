@@ -10,7 +10,6 @@ import io.jsonwebtoken.security.Keys;
 
 
 import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +19,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "MbQeThWmZq4t7w!z%C*F-J@NcRfUjXn2";
+    private static final String SECRET_KEY = "635266556A586E3272357538782F413F4428472B4B6250655367566B59703373";
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -34,7 +33,7 @@ public class JwtService {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
@@ -48,11 +47,16 @@ public class JwtService {
     ){
         return Jwts
                 .builder()
+                .setHeaderParam("type", "JWT")
+                .claim("type", "TYPE")
+                .claim("role", userDetails.getAuthorities())
+
                 .setClaims(extraClaims)
+
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 24) * 30))
-                .signWith(getSignInKey(), SignatureAlgorithm.ES256)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
 
     }

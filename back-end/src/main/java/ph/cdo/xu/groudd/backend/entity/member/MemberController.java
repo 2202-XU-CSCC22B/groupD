@@ -21,7 +21,7 @@ import ph.cdo.xu.groudd.backend.utils.EmailService;
 import java.util.*;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api/v1/member")
 @AllArgsConstructor
 @CrossOrigin
 public class MemberController {
@@ -34,7 +34,7 @@ public class MemberController {
 
     @GetMapping(value = "/test")
     public String test(){
-        return "Hello world!";
+        return "Hello Member Controller!!";
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -73,8 +73,7 @@ public class Staff extends Person {
     }
 
 
-    @OneToOne(mappedBy = "staff")
-    private User user;
+
 
     @Override
     public String toString() {

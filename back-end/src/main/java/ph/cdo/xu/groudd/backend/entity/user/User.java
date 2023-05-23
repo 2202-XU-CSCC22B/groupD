@@ -1,12 +1,15 @@
 package ph.cdo.xu.groudd.backend.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ph.cdo.xu.groudd.backend.entity.model.enums.UserRole;
 import ph.cdo.xu.groudd.backend.entity.staff.Staff;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,12 +39,12 @@ public class User implements UserDetails {
 
 
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "staff_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Staff staff;
 
-    @Builder.Default
-    private String username = staff.getContactDetails().getEmail();
+
+    private String username;
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -66,12 +69,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
@@ -82,5 +85,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    public void addToChildren(Staff staff){
+        this.setStaff(staff);
+
     }
 }
