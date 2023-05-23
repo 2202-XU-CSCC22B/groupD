@@ -41,12 +41,15 @@ public class MembershipDetails {
 
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status membershipStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status monthlySubscriptionStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status studentStatus = Status.UNVERIFIED;
 
 

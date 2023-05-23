@@ -16,14 +16,14 @@ module.exports = {
 
 
     //Staff
-    create_staff_api: "localhost:8080/api/v1/staff/new",
-    update_staff_api: "localhost:8080/api/v1/staff/update/{id}",
-    retrieve_all_staff_api: "localhost:8080/api/v1/staff/all",
-    retrieve_staff_api: "localhost:8080/api/v1/staff/{id}",
-    retrieve_staff_transaction: "localhost:8080/staff/{id}/transactions",
+    create_staff_api: "http://localhost:8080/api/v1/staff/new",
+    update_staff_api: "http://localhost:8080/api/v1/staff/update/{id}",
+    retrieve_all_staff_api: "http://localhost:8080/api/v1/staff/all",
+    retrieve_staff_api: "http://localhost:8080/api/v1/staff/{id}",
+    retrieve_staff_transaction: "http://localhost:8080/staff/{id}/transactions",
 
     //Transaction
-    retrieve_all_transactions_api: "localhost:8080/api/v1/transaction/all",
+    retrieve_all_transactions_api: "http://localhost:8080/api/v1/transaction/all",
     retrieve_all_transactions_byMonth: "",
 
 

@@ -298,6 +298,7 @@ public class ApplicationConfig {
                         .position(Position.Owner)
                         .status(Status.ACTIVE)
                         .dateStarted(new DateTime(2020,8,1,0,0).toDate())
+                        .birthday(new DateTime(1995,2,22,0,0).toDate())
                         .userRole(UserRole.SuperAdmin)
                         .build();
 

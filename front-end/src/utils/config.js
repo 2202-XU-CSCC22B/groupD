@@ -167,6 +167,7 @@ export const StyledContainer = styled(Container)`
   background-image: url("../../public/images/background.jpg");
   background-size: cover;
   background-position: center;
+  
 `;
 
 export const allMembersColumnDef = [
@@ -250,3 +251,31 @@ export const cardContents = [
     image: cardImage3,
   },
 ];
+
+
+export const staffColumnDef = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "firstName", headerName: "First name", width: 130 },
+  { field: "lastName", headerName: "Last name", width: 130 },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 130,
+    renderCell: (params) => (
+        <span
+            className={`font-semibold px-2 py-1 rounded text-xs ${
+                params.value === "ACTIVE"
+                    ? " bg-emerald-100 text-emerald-700"
+                    : params.value === "INACTIVE"
+                        ? " bg-rose-100 text-rose-700"
+                        : " bg-gray-100 text-gray-700"
+            }`}
+        >
+        {params.value}
+      </span>
+    ),
+  },
+  {
+    field : "position", headerName: "Position", width: 130
+  }
+  ]

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { allMembersColumnDef } from "@modules/utils/config";
+import {allMembersColumnDef, staffColumnDef} from "@modules/utils/config";
 import { DataGrid } from "@mui/x-data-grid";
 import MoreStaffInfo from "./more-staff-info";
 
@@ -88,7 +88,7 @@ const data = [
 const AllStaffTable = () => {
   const [row, setRow] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
-  const column = allMembersColumnDef;
+  const column = staffColumnDef;
   const [isLoading, setIsLoading] = useState(false);
 
   const onRowDoubleClick = (row, event) => {
@@ -100,11 +100,19 @@ const AllStaffTable = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(process.env.retrieve_members_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
+        const response = await fetch(process.env.retrieve_all_staff_api, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET'
+          }
+        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
         const jsonData = await response.json();
-        setRow(jsonData);
+        setRow(jsonData.all);
         setIsLoading(false);
-        setSelectedRow(jsonData[0]);
+        setSelectedRow(jsonData.all[0]);
         setRow(updatedRow);
       } catch (error) {
         console.error("Error fetching row:", error);

@@ -109,6 +109,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .id(transactionDTO.getId() == null ? null : transactionDTO.getId())
                 .date(transactionDTO.getDate())
                 .paymentMethod(transactionDTO.getPaymentMethod())
+                .description(transactionDTO.getDescription())
                 .transactionType(transactionDTO.getTransactionType())
                 .value(Double.parseDouble(String.format("%.2f", transactionDTO.getValue())))
                 .build();

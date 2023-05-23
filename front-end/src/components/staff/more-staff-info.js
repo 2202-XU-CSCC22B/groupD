@@ -6,12 +6,13 @@ import {
   FormControlLabel,
   Switch,
   Grid,
-  Accordion,
+  Accordion, InputLabel, FormControl, MenuItem,
 } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
+import Select from "react-select";
 
 const MoreStaffInfo = ({ data }) => {
   const [editable, setEditable] = useState(false);
@@ -220,28 +221,6 @@ const MoreStaffInfo = ({ data }) => {
             </div>
           </div>
         )}
-        <MyCustomAccordion
-          data={[
-            {
-              title: "MEMBERSHIP",
-              status: formData.membershipStatus,
-              startDate: formData.membershipStartDate,
-              endDate: formData.membershipEndDate,
-            },
-            {
-              title: "MONTHLY",
-              status: formData.monthlySubscriptionStatus,
-              startDate: formData.monthlySubscriptionStartDate,
-              endDate: formData.monthlySubscriptionEndDate,
-            },
-            {
-              title: "STUDENT",
-              status: formData.studentStatus,
-              startDate: formData.studentStartDate,
-              endDate: formData.studentEndDate,
-            },
-          ]}
-        />
       </Grid>
     </Grid>
   );
@@ -253,22 +232,15 @@ MoreStaffInfo.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
-    brgy: PropTypes.string,
+    address: PropTypes.string,
     weight: PropTypes.string,
     height: PropTypes.string,
-    contactNumber: PropTypes.string,
-    occupation: PropTypes.string,
+    phone: PropTypes.string,
+    position: PropTypes.string,
     birthday: PropTypes.instanceOf(Date),
-    active: PropTypes.bool,
-    membershipStartDate: PropTypes.instanceOf(Date),
-    membershipEndDate: PropTypes.instanceOf(Date),
-    monthlySubscriptionStartDate: PropTypes.instanceOf(Date),
-    monthlySubscriptionEndDate: PropTypes.instanceOf(Date),
-    studentStartDate: PropTypes.instanceOf(Date),
-    studentEndDate: PropTypes.instanceOf(Date),
-    membershipStatus: PropTypes.string,
-    monthlySubscriptionStatus: PropTypes.string,
-    studentStatus: PropTypes.string,
+    status: PropTypes.string,
+    dateStarted: PropTypes.instanceOf(Date),
+    gender: PropTypes.string
   }).isRequired,
 };
 

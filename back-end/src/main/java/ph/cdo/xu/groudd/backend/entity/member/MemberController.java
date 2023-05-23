@@ -11,7 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.CustomResponseBody;
+import ph.cdo.xu.groudd.backend.entity.model.enums.PaymentMethod;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.model.enums.TransactionType;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.exceptions.ApiError;
@@ -90,6 +93,15 @@ public class MemberController {
 
 
         Member member =   memberService.validateMember(email, membershipPaymentForm.getDate());
+       TransactionDTO transactionDTO =  TransactionDTO
+               .builder()
+               .date(membershipPaymentForm.getDate())
+               .paymentMethod(PaymentMethod.Cash)
+               .transactionType(TransactionType.Sales)
+               .description("Membership fee")
+               .value(membershipPaymentForm.getPaymentValue())
+               .build();
+        memberService.addTransactionToMember(member.getId(), transactionDTO);
         emailService.sendValidationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName(), member.getMembershipDetails().getMembershipEndDate().toString());
 
 

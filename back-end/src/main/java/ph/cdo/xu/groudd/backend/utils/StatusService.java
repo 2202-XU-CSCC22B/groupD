@@ -9,12 +9,14 @@ import java.util.Date;
 @Service
 public class StatusService {
 
-    public static Status checkStatus(@Nullable Date startDate, @Nullable Date endDate, Status membershipStatus){
+    public  Status checkStatus(@Nullable Date startDate, @Nullable Date endDate, Status membershipStatus){
         if(membershipStatus == Status.UNVERIFIED && startDate == null){
             return Status.UNVERIFIED;
         }
         else {
-            assert startDate != null;
+            if(startDate == null){
+                return Status.INACTIVE;
+            }
             if(startDate.before(endDate)){
                     return Status.ACTIVE;
                 }else{
