@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/SecurityConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationController.java" afterDir="false" />
@@ -28,6 +29,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/user/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
