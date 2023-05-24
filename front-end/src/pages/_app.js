@@ -18,13 +18,19 @@ function App({ Component, pageProps }) {
     }
   };
 
-  return (
-    <Layout>
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools initialIsOpen={true} />
-      </QueryClientProvider>
-    </Layout>
+  return(
+    <>
+        <QueryClientProvider client={queryClient}>
+            <Layout>
+
+                <Component {...pageProps} />
+                <ReactQueryDevtools initialIsOpen={true} />
+
+            </Layout>
+        </QueryClientProvider>
+    </>
+
+
   );
 }
 

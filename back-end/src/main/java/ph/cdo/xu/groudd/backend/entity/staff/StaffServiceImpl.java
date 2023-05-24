@@ -110,6 +110,10 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDTO entityToDTO(Staff staff) {
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for(int i = 0; i < staff.getTransactions().size(); i++){
+            transactionDTOList.add(transactionService.entityToDTO(staff.getTransactions().get(i)));
+        }
           return StaffDTO
                   .builder()
                   .id(staff.getId())
@@ -124,6 +128,7 @@ public class StaffServiceImpl implements StaffService {
                   .birthday(staff.getBirthDetails().getBirthday())
                   .name(staff.getName().toString())
                   .status(staff.getStatus())
+                  .transactions(transactionDTOList)
                   .build();
 
     }

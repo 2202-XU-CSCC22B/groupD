@@ -33,7 +33,7 @@ const TransactionPage = () => {
     queryKey: ["all_transactions"],
     queryFn: getAllTransactions,
   });
-  ;
+
 
   console.log(data?.data.transactions);
 

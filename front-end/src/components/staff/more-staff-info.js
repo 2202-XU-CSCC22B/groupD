@@ -20,26 +20,18 @@ const MoreStaffInfo = ({ data }) => {
   const [isLoading, setLoading] = useState(false);
 
   const formattedData = {
-    id: data.id,
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    phone: formData.phone,
-    email: formData.email,
-    gender: formData.gender,
-    address: formData.address,
-    weight: formData.weight,
-    height: formData.height,
-    occupation: formData.occupation,
-    birthday: formData.birthday,
-    membershipStartDate: data.membershipStartDate,
-    membershipEndDate: data.membershipEndDate,
-    monthlySubscriptionStartDate: data.monthlySubscriptionStartDate,
-    monthlySubscriptionEndDate: data.monthlySubscriptionEndDate,
-    studentStartDate: data.studentStartDate,
-    studentEndDate: data.studentEndDate,
-    membershipStatus: data.membershipStatus,
-    monthlySubscriptionStatus: data.monthlySubscriptionStatus,
-    studentStatus: data.studentStatus,
+    id: data?.id,
+    firstName: formData?.firstName,
+    lastName: formData?.lastName,
+    phone: formData?.phone,
+    email: formData?.email,
+    gender: formData?.gender,
+    address: formData?.address,
+    weight: formData?.weight,
+    height: formData?.height,
+    occupation: formData?.occupation,
+    birthday: formData?.birthday,
+
   };
 
   const handleInputChange = (event) => {

@@ -13,6 +13,7 @@ module.exports = {
     validate_unverified_api: "http://localhost:8080/api/v1/member/validate/{email}",
     delete_member_api: "http://localhost:8080/api/v1/member/delete/{email}",
     count_members_api: "http://localhost:8080/api/v1/member/count",
+    retrieve_member_transaction: "http://localhost:8080/api/v1/{id}/transaction",
 
 
     //Staff

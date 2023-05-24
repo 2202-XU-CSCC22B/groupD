@@ -25,8 +25,45 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { handleLogoutClick } from "@modules/utils/functions";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import EmailModal from "./dashboard/email-modal";
+import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
 
 const drawerWidth = 240;
+
+
+const getAllMembers = async () =>{
+  try{
+    const res = axios.get(process.env.retrieve_unverified_api, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET"
+      }
+    });
+    return res;
+  }catch (error){
+    console.log(error)
+    return error
+  }
+};
+
+const getAllStaff = async () =>{
+  try{
+    const res = axios.get(process.env.retrieve_all_staff_api, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET"
+      }
+    });
+    return res;
+  }catch (error){
+    console.log(error)
+    return error
+  }
+};
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -105,7 +142,20 @@ export default function DashboardLayout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(true);
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
+
+  const { allMembers } = useQuery({
+    queryKey: ["all_members"],
+    queryFn: getAllMembers,
+  });
+
+  const {allStaff} = useQuery({
+    queryKey: ["all_staff"],
+    queryFn: getAllStaff,
+  });
+
+  console.log(allMembers?.data);
+  console.log(allStaff?.data.all);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -246,6 +296,8 @@ export default function DashboardLayout({ children }) {
       <EmailModal
         isEmailModalOpen={isEmailModalOpen}
         setIsEmailModalOpen={setIsEmailModalOpen}
+        allMembers={allMembers?.data}
+        allStaff={allStaff?.data.all}
       />
     </Box>
   );
