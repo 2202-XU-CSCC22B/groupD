@@ -10,11 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../front-end/src/components/staff/all-staff-transaction-table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/staff/more-staff-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/staff/more-staff-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +207,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="" />
+      <changelist id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="" />
       <created>1684129010785</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -229,6 +228,7 @@
       <workItem from="1684645767335" duration="15380000" />
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
+      <workItem from="1684928767627" duration="1493000" />
     </task>
     <servers />
   </component>

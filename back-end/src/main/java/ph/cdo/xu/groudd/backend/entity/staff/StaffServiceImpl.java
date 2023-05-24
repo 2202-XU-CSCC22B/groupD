@@ -193,6 +193,17 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    public void deleteStaff(Long staffID) {
+        Optional<Staff> optionalStaff = staffRepository.findById(staffID);
+        if(optionalStaff.isEmpty()){
+            throw new RuntimeException("Staff not found!");
+        }else{
+            staffRepository.deleteById(staffID);
+        }
+
+    }
+
+    @Override
     public List<TransactionDTO> getTransactionIDByStaff(Long staffID) {
         Optional<Staff> staff = staffRepository.findById(staffID);
         if(staff.isEmpty())

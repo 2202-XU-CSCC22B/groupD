@@ -27,6 +27,8 @@ public interface StaffService {
     @Transactional
     void addTransactionToStaff(Long staffID, TransactionDTO transactionDTO);
 
+    void deleteStaff(Long staffID);
+
 
     List<TransactionDTO> getTransactionIDByStaff(Long staffID);
 
