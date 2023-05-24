@@ -5,6 +5,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   getFilteredRowModel,
+  useSortBy,
 } from "@tanstack/react-table";
 import { useState } from "react";
 
@@ -25,6 +26,15 @@ const DataTable = ({ data, columns }) => {
       sorting,
       columnFilters,
     },
+    initialState: {
+      sortBy: [
+        {
+          id: "id",
+          desc: true,
+        },
+      ],
+    },
+    useSortBy,
   });
 
   return (

@@ -4,6 +4,8 @@ import DashboardLayout from "@modules/components/layouts/DashboardLayout";
 import HomeLayout from "@modules/components/layouts/home/HomeLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 function App({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
   const router = useRouter();
@@ -20,6 +22,7 @@ function App({ Component, pageProps }) {
     <Layout>
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </Layout>
   );

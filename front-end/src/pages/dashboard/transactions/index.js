@@ -144,6 +144,7 @@ const TransactionPage = () => {
     queryFn: getAllTransactions,
   });
 
+  console.log(data?.data.transactions);
   // console.log(data?.data);
 
   // const formattedData = data?.data.transactions.map((item) => {

@@ -1,66 +1,72 @@
 import { TbArrowsDownUp } from "react-icons/tb";
 
 export const columns = [
-    {
-        accessorKey: "id",
-        header: ({ column }) => {
-            return (
-                <div className="flex items-center gap-1">
-                    <p>ID</p>
-                    <TbArrowsDownUp
-                        className="cursor-pointer"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                    />
-                </div>
-            );
-        },
-        cell: ({ row }) => `${row.original.id}`,
+  {
+    accessorKey: "id",
+    header: ({ column }) => {
+      return (
+        <div className="flex items-center gap-1">
+          <p>ID</p>
+          <TbArrowsDownUp
+            className="cursor-pointer"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          />
+        </div>
+      );
     },
+    cell: ({ row }) => `${row.original.id}`,
+  },
   {
     accessorKey: "date",
     header: ({ column }) => {
       return (
-          <div className="flex items-center gap-1">
-            <p>Date</p>
-            <TbArrowsDownUp
-                className="cursor-pointer"
-                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            />
-          </div>
+        <div className="flex items-center gap-1">
+          <p>Date</p>
+          <TbArrowsDownUp
+            className="cursor-pointer"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          />
+        </div>
       );
     },
-      cell: ({ row }) => `${row.original.date}`,
+    cell: ({ row }) => `${row.original.date}`,
   },
-    {
-        accessorKey: "value",
-        header: ({ column }) => {
-            return (
-                <div className=" flex items-center gap-1">
-                    <p>Amount</p>
-                    <TbArrowsDownUp
-                        className=" cursor-pointer"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                    />
-                </div>
-            );
-        },
-        cell: ({ row }) =>{
-            return(
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
-                    <p>₱</p>
-                     <span
-                         className={`font-semibold px-2 py-1 rounded text-xs ${
-                             row.original.transactionType === "Sales"
-                                 ? " bg-emerald-100 text-emerald-700"
-                                 : " bg-rose-100 text-rose-700"}`}
-                     >
-        {row.original.value}
-                    </span>
-                </div>
-
-            )
-        }
+  {
+    accessorKey: "value",
+    header: ({ column }) => {
+      return (
+        <div className=" flex items-center gap-1">
+          <p>Amount</p>
+          <TbArrowsDownUp
+            className=" cursor-pointer"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          />
+        </div>
+      );
     },
+    cell: ({ row }) => {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <p>₱</p>
+          <span
+            className={`font-semibold px-2 py-1 rounded text-xs ${
+              row.original.transactionType === "Sales"
+                ? " bg-emerald-100 text-emerald-700"
+                : " bg-rose-100 text-rose-700"
+            }`}
+          >
+            {row.original.value}
+          </span>
+        </div>
+      );
+    },
+  },
   {
     accessorKey: "transactionType",
     header: ({ column }) => {
@@ -128,20 +134,20 @@ export const columns = [
       );
     },
   },
-    {
-        accessorKey: "entity",
-        header: ({ column }) => {
-            return (
-                <div className=" flex items-center gap-1">
-                    <p>Entity</p>
-                    <TbArrowsDownUp
-                        className=" cursor-pointer"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                    />
-                </div>
-            );
-        },
+  {
+    accessorKey: "entity",
+    header: ({ column }) => {
+      return (
+        <div className=" flex items-center gap-1">
+          <p>Entity</p>
+          <TbArrowsDownUp
+            className=" cursor-pointer"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          />
+        </div>
+      );
     },
+  },
   {
     accessorKey: "description",
     header: "Description",

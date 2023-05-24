@@ -19,6 +19,7 @@
     "@mui/x-data-grid": "^6.4.0",
     "@mui/x-date-pickers": "^6.4.0",
     "@tanstack/react-query": "^4.29.7",
+    "@tanstack/react-query-devtools": "^4.29.7",
     "@tanstack/react-table": "^8.9.1",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",

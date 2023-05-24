@@ -6,6 +6,8 @@ import RecipientSelect from "../layouts/dashboard/recipient-select";
 import { Paper } from "@mui/material";
 import PropTypes from "prop-types";
 import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
+import axios from "axios";
+import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 
 const schema = z.object({
   date: z.coerce.date(),
@@ -29,54 +31,89 @@ const schema = z.object({
     .optional(),
 });
 
+const getAllMembers = async () => {
+  try {
+    const res = await axios.get(process.env.retrieve_members_api, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const getAllStaffs = async () => {
+  try {
+    const res = await axios.get(process.env.retrieve_all_staff_api, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const addTransaction = async (transaction) => {
+  try {
+    const res = await axios.post(
+      process.env.post_new_transaction_api,
+      transaction,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST",
+        },
+      }
+    );
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 const NewTransactionForm = ({ setIsOpen }) => {
-  const [staffs, setStaff] = useState([]);
-  const [members, setMembers] = useState([]);
+  // const [staffs, setStaff] = useState([]);
+  // const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const queryClient = new QueryClient();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.retrieve_members_api, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET",
-          },
-        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        setMembers(jsonData);
-      } catch (error) {
-        console.error("Error fetching row:", error);
-      }
-    };
+  const { data: members } = useQuery({
+    queryKey: ["all_members"],
+    queryFn: getAllMembers,
+  });
 
-    fetchData();
-  }, []);
+  const { data: staffs } = useQuery({
+    queryKey: ["all_staffs"],
+    queryFn: getAllStaffs,
+  });
+  // console.log("Members: ", members?.data);
+  // console.log("Staffs: ", staffs?.data.all);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.retrieve_all_staff_api, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET",
-          },
-        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        setStaff(jsonData.all);
-      } catch (error) {
-        console.error("Error fetching row:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const transactionMutation = useMutation({
+    mutationFn: addTransaction,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["all_transactions"] });
+      setIsOpen(false);
+    },
+  });
 
   const {
     register,
@@ -93,37 +130,37 @@ const NewTransactionForm = ({ setIsOpen }) => {
     };
 
     console.log(formattedData);
-    try {
-      const response = await fetch(process.env.post_new_transaction_api, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST",
-        },
-        body: JSON.stringify(formattedData), // body data type must match "Content-Type" header
-      });
+    // try {
+    //   const response = await fetch(process.env.post_new_transaction_api, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    //       "Access-Control-Allow-Origin": "*",
+    //       "Access-Control-Allow-Methods": "POST",
+    //     },
+    //     body: JSON.stringify(formattedData), // body data type must match "Content-Type" header
+    //   });
 
-      // handle response
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        // You can add your logic here using 'jsonResponse'
-        console.log(jsonResponse);
-      } else {
-        console.error("Error: ", response.status);
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    } finally {
-      setIsLoading(false);
-      setIsOpen(false);
-    }
+    //   // handle response
+    //   if (response.ok) {
+    //     const jsonResponse = await response.json();
+    //     // You can add your logic here using 'jsonResponse'
+    //     console.log(jsonResponse);
+    //   } else {
+    //     console.error("Error: ", response.status);
+    //   }
+    // } catch (error) {
+    //   console.error("An error occurred:", error);
+    // } finally {
+    //   setIsLoading(false);
+    //   setIsOpen(false);
+    // }
 
-    console.log(formattedData);
+    transactionMutation.mutate(formattedData);
   };
 
-  const [selectedOption, setSelectedOption] = useState(staffs[0]);
+  const [selectedOption, setSelectedOption] = useState(staffs?.data.all[0]);
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     reset();
@@ -161,7 +198,7 @@ const NewTransactionForm = ({ setIsOpen }) => {
               >
                 <option hidden></option>
 
-                {staffs.map((staff) => (
+                {staffs?.data.all.map((staff) => (
                   <option
                     className=" bg-gray-50"
                     key={staff.id}
@@ -184,7 +221,7 @@ const NewTransactionForm = ({ setIsOpen }) => {
                 {...register("memberID")}
               >
                 <option hidden></option>
-                {members.map((member) => (
+                {members?.data.map((member) => (
                   <option
                     className=" bg-gray-50"
                     key={member.id}
