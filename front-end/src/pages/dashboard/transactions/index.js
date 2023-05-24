@@ -1,10 +1,11 @@
 import Head from "next/head";
 import ModalTransaction from "@modules/components/transactions/modal-transaction";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import DataTable from "@modules/components/ui/data-table";
 import { columns } from "./columns";
 import { MdOutlinePayments } from "react-icons/md";
-
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 // const data = [
 //   {
 //     firstName: "Matthew",
@@ -118,45 +119,75 @@ import { MdOutlinePayments } from "react-icons/md";
 //   },
 // ];
 
+const getAllTransactions = async () => {
+  try {
+    const res = axios.get(process.env.retrieve_all_transactions_api, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 const TransactionPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [row, setRow] = useState([]);
-  const [formattedData, setFormattedData]= useState([]);
-  const [netProfit, setNetProfit]= useState();
-  const [parentState, setParentState] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.retrieve_all_transactions_api, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods':'GET'
-            // Additional headers if required
-          }
-        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        console.log(`parent state: ${parentState}`)
-        setRow(jsonData.transactions);
-        setNetProfit(jsonData.summary.netProfit);
-        setFormattedData(row.map((item) => ({
-          ...item,
-          // don't remove
-          transactionType:
-              item.transactionType === "CashOut" ? "Cash out" : item.transactionType,
-          paymentMethod: item.paymentMethod === "GCash" ? "GC" : "CASH",
-        })));
+  const { data } = useQuery({
+    queryKey: ["all_transactions"],
+    queryFn: getAllTransactions,
+  });
 
-      } catch (error) {
-        console.error("Error fetching row:", error);
-      }
-    };
+  // console.log(data?.data);
 
-    fetchData();
-  }, []); // The empty dependency array ensures the effect runs only once on component mount
+  // const formattedData = data?.data.transactions.map((item) => {
+  //   ...item,
 
+  // })
+
+  // const [row, setRow] = useState([]);
+
+  // const [formattedData, setFormattedData]= useState([]);
+  // const [netProfit, setNetProfit]= useState();
+  // const [parentState, setParentState] = useState("");
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(process.env.retrieve_all_transactions_api, {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+  //           'Access-Control-Allow-Origin':'*',
+  //           'Access-Control-Allow-Methods':'GET'
+  //           // Additional headers if required
+  //         }
+  //       }); // Replace 'API_ENDPOINT' with the actual endpoint URL
+  //       const jsonData = await response.json();
+  //       console.log(`parent state: ${parentState}`)
+  //       setRow(jsonData.transactions);
+  //       setNetProfit(jsonData.summary.netProfit);
+  //       setFormattedData(row.map((item) => ({
+  //         ...item,
+  //         // don't remove
+  //         transactionType:
+  //             item.transactionType === "CashOut" ? "Cash out" : item.transactionType,
+  //         paymentMethod: item.paymentMethod === "GCash" ? "GC" : "CASH",
+  //       })));
+
+  //     } catch (error) {
+  //       console.error("Error fetching row:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []); // The empty dependency array ensures the effect runs only once on component mount
 
   return (
     <div>
@@ -181,11 +212,11 @@ const TransactionPage = () => {
         </section>
 
         {/* table */}
-        <DataTable columns={columns} data={formattedData} />
+        {data && <DataTable columns={columns} data={data?.data.transactions} />}
       </div>
 
       {/* add 'add transaction' logic inside */}
-      <ModalTransaction isOpen={isOpen} setIsOpen={setIsOpen} onAction={setParentState} />
+      <ModalTransaction isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

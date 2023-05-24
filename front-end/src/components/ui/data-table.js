@@ -55,7 +55,7 @@ const DataTable = ({ data, columns }) => {
           </thead>
 
           <tbody className="text-gray-900">
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows && table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row, index) => (
                 <tr
                   key={row.id}

@@ -2,7 +2,10 @@ import { useRouter } from "next/router";
 import "../styles/global.css";
 import DashboardLayout from "@modules/components/layouts/DashboardLayout";
 import HomeLayout from "@modules/components/layouts/home/HomeLayout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 function App({ Component, pageProps }) {
+  const [queryClient] = useState(() => new QueryClient());
   const router = useRouter();
 
   const Layout = ({ children }) => {
@@ -15,7 +18,9 @@ function App({ Component, pageProps }) {
 
   return (
     <Layout>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Layout>
   );
 }
