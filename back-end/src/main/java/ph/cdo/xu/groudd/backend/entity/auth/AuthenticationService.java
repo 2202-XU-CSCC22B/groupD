@@ -102,6 +102,7 @@ public class AuthenticationService {
            return AuthenticationResponse
                    .builder()
                    .token(jwtToken)
+                   .role(user.getUserRole())
                    .build();
        }catch (DisabledException e){
                 throw new DisabledException("USER_DISABLED");
