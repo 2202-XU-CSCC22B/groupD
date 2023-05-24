@@ -12,17 +12,6 @@
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MembershipPaymentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MembershipPaymentForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/transactions/modal-transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/transactions/modal-transaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/transactions/new-transaction-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/transactions/new-transaction-form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/account/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/account/login/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/columns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +227,7 @@
       <workItem from="1684645767335" duration="15380000" />
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
-      <workItem from="1684928767627" duration="13013000" />
+      <workItem from="1684928767627" duration="13722000" />
     </task>
     <servers />
   </component>

@@ -155,7 +155,7 @@ const TransactionPage = () => {
     };
 
     fetchData();
-  }, [parentState]); // The empty dependency array ensures the effect runs only once on component mount
+  }, []); // The empty dependency array ensures the effect runs only once on component mount
 
 
   return (
