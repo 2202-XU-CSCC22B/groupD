@@ -26,15 +26,7 @@ const DataTable = ({ data, columns }) => {
       sorting,
       columnFilters,
     },
-    initialState: {
-      sortBy: [
-        {
-          id: "id",
-          desc: true,
-        },
-      ],
-    },
-    useSortBy,
+
   });
 
   return (

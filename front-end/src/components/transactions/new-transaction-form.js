@@ -132,7 +132,10 @@ const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
 
     console.log(formattedData);
 
-    transactionMutation.mutate(formattedData);
+    setTimeout(()=>{
+      transactionMutation.mutate(formattedData);
+    }, 1000);
+
   };
 
   const [selectedOption, setSelectedOption] = useState(staffs?.data.all[0]);
@@ -276,7 +279,7 @@ const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
         </section>
         <input
           type="submit"
-          value="Add Transaction"
+          value={isLoading ? "Loading..." : "Add Transaction"}
           className={
             isLoading
               ? " px-4 py-2 rounded bg-gray-400 text-white text-sm w-1/2 max-w-[226px] cursor-not-allowed"

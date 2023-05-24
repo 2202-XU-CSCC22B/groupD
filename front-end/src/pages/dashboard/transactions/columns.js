@@ -1,15 +1,22 @@
 import { TbArrowsDownUp } from "react-icons/tb";
-
+var otherColumnIsSorting = false;
 export const columns = [
+
   {
     accessorKey: "id",
     header: ({ column }) => {
+        if(!column.getIsSorted() && otherColumnIsSorting === false){
+            column.toggleSorting("desc");
+        }
       return (
         <div className="flex items-center gap-1">
           <p>ID</p>
           <TbArrowsDownUp
             className="cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() =>{
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")
+            } }
           />
         </div>
       );
@@ -24,7 +31,10 @@ export const columns = [
           <p>Date</p>
           <TbArrowsDownUp
             className="cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")
+            }}
           />
         </div>
       );
@@ -39,7 +49,9 @@ export const columns = [
           <p>Amount</p>
           <TbArrowsDownUp
             className=" cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
           />
         </div>
       );
@@ -128,7 +140,9 @@ export const columns = [
           <p>Name</p>
           <TbArrowsDownUp
             className=" cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
           />
         </div>
       );
@@ -142,7 +156,9 @@ export const columns = [
           <p>Entity</p>
           <TbArrowsDownUp
             className=" cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
           />
         </div>
       );
