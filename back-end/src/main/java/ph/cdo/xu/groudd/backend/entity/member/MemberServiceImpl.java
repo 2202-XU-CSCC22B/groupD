@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
@@ -308,7 +309,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<TransactionDTO> getTransactionByMember(Long memberID) {
-        List<Transaction> transactionList = transactionRepository.findAllByMemberId(memberID);
+        List<Transaction> transactionList = transactionRepository.findAllByMemberId(memberID, Sort.by(Sort.Direction.DESC, "date"));
         List<TransactionDTO> transactionDTOList = new ArrayList<>();
         for (Transaction transaction : transactionList) {
             transactionDTOList.add(transactionService.entityToDTO(transaction));

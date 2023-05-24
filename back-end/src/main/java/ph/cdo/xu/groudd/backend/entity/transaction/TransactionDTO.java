@@ -10,6 +10,7 @@ import lombok.Data;
 import org.joda.time.DateTime;
 import org.springframework.lang.Nullable;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
+import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.PaymentMethod;
 import ph.cdo.xu.groudd.backend.entity.model.enums.TransactionType;
 import ph.cdo.xu.groudd.backend.entity.staff.Staff;
@@ -40,6 +41,12 @@ public class TransactionDTO {
     private Long memberID;
     @Nullable
     private Long staffID;
+
+    @Nullable
+    private String name;
+
+    @Nullable
+    private String entity;
 
 
 

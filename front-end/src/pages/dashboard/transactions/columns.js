@@ -2,19 +2,50 @@ import { TbArrowsDownUp } from "react-icons/tb";
 
 export const columns = [
   {
-    accessorKey: "value",
+    accessorKey: "date",
     header: ({ column }) => {
       return (
-        <div className=" flex items-center gap-1">
-          <p>Amount</p>
-          <TbArrowsDownUp
-            className=" cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          />
-        </div>
+          <div className="flex items-center gap-1">
+            <p>Date</p>
+            <TbArrowsDownUp
+                className="cursor-pointer"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            />
+          </div>
       );
     },
+      cell: ({ row }) => `${row.original.date}`,
   },
+    {
+        accessorKey: "value",
+        header: ({ column }) => {
+            return (
+                <div className=" flex items-center gap-1">
+                    <p>Amount</p>
+                    <TbArrowsDownUp
+                        className=" cursor-pointer"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    />
+                </div>
+            );
+        },
+        cell: ({ row }) =>{
+            return(
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
+                    <p>₱</p>
+                     <span
+                         className={`font-semibold px-2 py-1 rounded text-xs ${
+                             row.original.transactionType === "Sales"
+                                 ? " bg-emerald-100 text-emerald-700"
+                                 : " bg-rose-100 text-rose-700"}`}
+                     >
+        {row.original.value}
+                    </span>
+                </div>
+
+            )
+        }
+    },
   {
     accessorKey: "transactionType",
     header: ({ column }) => {
@@ -69,11 +100,11 @@ export const columns = [
   },
 
   {
-    accessorKey: "firstName",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <div className=" flex items-center gap-1">
-          <p>First name</p>
+          <p>Name</p>
           <TbArrowsDownUp
             className=" cursor-pointer"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
@@ -82,20 +113,20 @@ export const columns = [
       );
     },
   },
-  {
-    accessorKey: "lastName",
-    header: ({ column }) => {
-      return (
-        <div className=" flex items-center gap-1">
-          <p>Last name</p>
-          <TbArrowsDownUp
-            className="cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          />
-        </div>
-      );
+    {
+        accessorKey: "entity",
+        header: ({ column }) => {
+            return (
+                <div className=" flex items-center gap-1">
+                    <p>Entity</p>
+                    <TbArrowsDownUp
+                        className=" cursor-pointer"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    />
+                </div>
+            );
+        },
     },
-  },
   {
     accessorKey: "description",
     header: "Description",
@@ -103,28 +134,6 @@ export const columns = [
       return (
         <div className="">
           {row.original.description === null ? "--" : row.original.description}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "memberID",
-    header: "Member ID",
-    cell: ({ row }) => {
-      return (
-        <div className="">
-          {row.original.memberID === null ? "--" : row.original.memberID}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "staffID",
-    header: "Staff ID",
-    cell: ({ row }) => {
-      return (
-        <div className="">
-          {row.original.staffID === null ? "--" : row.original.staffID}
         </div>
       );
     },

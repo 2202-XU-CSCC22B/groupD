@@ -43,7 +43,7 @@ public class TransactionController {
     public ResponseEntity<Map<String,Object>> getAllTransactionByMonth(
             @PathVariable int year, @PathVariable int month){
         Map<String, Object> objectMap = new HashMap<>();
-        List<Transaction> transactionList = transactionService.transactionsByMonth(month, year);
+        List<TransactionDTO> transactionList = transactionService.transactionsByMonth(month, year);
 
         objectMap.put("transactions", transactionList);
         objectMap.put("summary", transactionService.getTransactionSummary(transactionList));

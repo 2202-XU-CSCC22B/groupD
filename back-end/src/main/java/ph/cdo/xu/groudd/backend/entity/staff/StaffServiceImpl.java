@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.staff;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
@@ -209,7 +210,7 @@ public class StaffServiceImpl implements StaffService {
         if(staff.isEmpty())
             throw new RuntimeException("Staff not found!");
 
-        List<Transaction> transactionList = transactionRepository.findAllByStaffId(staffID);
+        List<Transaction> transactionList = transactionRepository.findAllByStaffId(staffID, Sort.by(Sort.Direction.DESC, "date"));
         List<TransactionDTO> transactionDTOList = new ArrayList<>();
         for (Transaction transaction : transactionList) {
             transactionDTOList.add(transactionService.entityToDTO(transaction));

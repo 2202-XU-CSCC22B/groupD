@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.transaction;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
@@ -19,7 +20,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionDTO> getAllDtoTransactions() {
-        List<Transaction> transactionList = transactionRepository.findAll();
+        List<Transaction> transactionList = transactionRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
         List<TransactionDTO> transactionDTOList = new ArrayList<>();
 
         for (Transaction transaction : transactionList) {
@@ -30,7 +31,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Map<String, Object> getTransactionSummary(List<Transaction> transactionList) {
+    public Map<String, Object> getTransactionSummary(List<TransactionDTO> transactionList) {
         Map<String, Object> objectMap = new HashMap<>();
         double totalCashOut = 0;
         double totalSales = 0;
@@ -39,7 +40,7 @@ public class TransactionServiceImpl implements TransactionService {
         double totalSalary = 0;
         double netProfit = 0;
 
-        for (Transaction transaction : transactionList) {
+        for (TransactionDTO transaction : transactionList) {
             TransactionType transactionType = transaction.getTransactionType();
             double value = transaction.getValue();
             if (transactionType == TransactionType.Sales) {
@@ -68,16 +69,17 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
+    public List<TransactionDTO> getAllTransactions() {
+
+        return getAllDtoTransactions();
     }
 
     @Override
-    public List<Transaction> transactionsByMonth(int month, int year) {
-        List<Transaction> transactionList = transactionRepository.findAll();
+    public List<TransactionDTO> transactionsByMonth(int month, int year) {
+        List<TransactionDTO> transactionList = getAllDtoTransactions();
 
-        List<Transaction> filteredTransactions = new ArrayList<>();
-        for (Transaction transaction : transactionList) {
+        List<TransactionDTO> filteredTransactions = new ArrayList<>();
+        for (TransactionDTO transaction : transactionList) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(transaction.getDate());
             int transactionMonth = calendar.get(Calendar.MONTH);
@@ -99,6 +101,12 @@ public class TransactionServiceImpl implements TransactionService {
                 .description(transaction.getDescription())
                 .paymentMethod(transaction.getPaymentMethod())
                 .transactionType(transaction.getTransactionType())
+                .memberID(transaction.getMember() == null ? null : transaction.getMember().getId())
+                .staffID(transaction.getStaff() == null ? null : transaction.getStaff().getId())
+                .name(transaction.getMember() != null ? transaction.getMember().getName().toString() :
+                        transaction.getStaff() != null ? transaction.getStaff().getName().toString() : "None")
+                .entity(transaction.getMember() != null ? "Member" :
+                        transaction.getStaff() != null ? "Staff" : "None")
                 .build();
     }
 

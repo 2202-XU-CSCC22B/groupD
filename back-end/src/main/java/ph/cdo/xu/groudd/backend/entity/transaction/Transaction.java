@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.transaction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,7 +46,11 @@ public class Transaction {
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date date;
+
+
     private String description;
 
     @Enumerated(EnumType.STRING)
