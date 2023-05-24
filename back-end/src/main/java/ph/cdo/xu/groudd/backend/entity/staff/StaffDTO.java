@@ -29,7 +29,7 @@ public class StaffDTO {
     @Builder.Default
     private String phone= "000-0000-000";
 
-
+    private String name;
     private String email;
 
     @Enumerated(EnumType.STRING)

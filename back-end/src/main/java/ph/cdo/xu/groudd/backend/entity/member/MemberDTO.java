@@ -38,6 +38,7 @@ public class MemberDTO {
     private double weight;
     private double height;
 
+    private String name;
     private String occupation;
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")

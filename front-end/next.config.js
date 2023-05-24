@@ -24,7 +24,8 @@ module.exports = {
 
     //Transaction
     retrieve_all_transactions_api: "http://localhost:8080/api/v1/transaction/all",
-    retrieve_all_transactions_byMonth: "",
+    retrieve_all_transactions_byMonth: "http://localhost:8080/api/v1/transaction/{year}/{month}",
+    post_new_transaction_api : "http://localhost:8080/api/v1/transaction/new",
 
 
     //authentication

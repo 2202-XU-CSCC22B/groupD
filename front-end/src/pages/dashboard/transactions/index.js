@@ -122,7 +122,8 @@ const TransactionPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [row, setRow] = useState([]);
   const [formattedData, setFormattedData]= useState([]);
-
+  const [netProfit, setNetProfit]= useState();
+  const [parentState, setParentState] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -137,8 +138,9 @@ const TransactionPage = () => {
           }
         }); // Replace 'API_ENDPOINT' with the actual endpoint URL
         const jsonData = await response.json();
-        console.log(jsonData);
+        console.log(`parent state: ${parentState}`)
         setRow(jsonData.transactions);
+        setNetProfit(jsonData.summary.netProfit);
         setFormattedData(row.map((item) => ({
           ...item,
           // don't remove
@@ -153,7 +155,7 @@ const TransactionPage = () => {
     };
 
     fetchData();
-  }, []); // The empty dependency array ensures the effect runs only once on component mount
+  }, [parentState]); // The empty dependency array ensures the effect runs only once on component mount
 
 
   return (
@@ -183,7 +185,7 @@ const TransactionPage = () => {
       </div>
 
       {/* add 'add transaction' logic inside */}
-      <ModalTransaction isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalTransaction isOpen={isOpen} setIsOpen={setIsOpen} onAction={setParentState} />
     </div>
   );
 };

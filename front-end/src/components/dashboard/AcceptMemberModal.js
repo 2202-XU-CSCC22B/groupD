@@ -39,7 +39,7 @@ const AcceptMemberModal = (props) => {
                     console.log('Data updated successfully!');
                 } else {
                     // Handle the error if the request was not successful
-                    console.error('Error updating data:', response.statusText);
+                    console.error('Error updating data: at acceptMemberModal @ responseNotOkay', response.statusText);
                 }
             })
             .then(() => {
@@ -49,7 +49,7 @@ const AcceptMemberModal = (props) => {
             })
             .catch(error => {
                 // Handle any network or fetch-related errors
-                console.error('Error updating data:', error);
+                console.error('Error updating data: @ acceptMEmberModal @Catch', error);
             })
             .finally(() => {
                 setLoading(false); // Set loading state back to false

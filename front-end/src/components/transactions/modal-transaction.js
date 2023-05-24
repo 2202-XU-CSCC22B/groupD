@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import NewTransactionForm from "./new-transaction-form";
 
-const ModalTransaction = ({ isOpen, setIsOpen }) => {
+const ModalTransaction = ({ isOpen, setIsOpen , onAction}) => {
   return (
     <Dialog
       open={isOpen}
@@ -13,7 +13,7 @@ const ModalTransaction = ({ isOpen, setIsOpen }) => {
         <Dialog.Panel className="absolute w-screen h-screen min-[450px]:h-fit min-[450px]:mx-auto min-[450px]:w-[500px] min-[450px]:rounded min-[450px]:relative bg-white">
           <Dialog.Title>
             {/* add 'add transaction' logic inside */}
-            <NewTransactionForm setIsOpen={setIsOpen} />
+            <NewTransactionForm setIsOpen={setIsOpen} onAction={onAction} />
           </Dialog.Title>
         </Dialog.Panel>
       </div>

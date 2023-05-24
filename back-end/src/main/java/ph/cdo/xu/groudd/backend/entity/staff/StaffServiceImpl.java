@@ -122,6 +122,7 @@ public class StaffServiceImpl implements StaffService {
                   .position(staff.getPosition())
                   .dateStarted(staff.getDateStarted())
                   .birthday(staff.getBirthDetails().getBirthday())
+                  .name(staff.getName().toString())
                   .status(staff.getStatus())
                   .build();
 

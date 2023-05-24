@@ -192,6 +192,7 @@ public class MemberServiceImpl implements MemberService{
                 .weight(Double.parseDouble(String.format("%.2f", member.getWeight())))
                 .height(Double.parseDouble(String.format("%.2f", member.getHeight())))
                 .occupation(member.getOccupation())
+                .name(member.getName().toString())
                 .membershipStartDate(member.getMembershipDetails().getMembershipStartDate())
                 .membershipEndDate(member.getMembershipDetails().getMembershipEndDate())
                 .studentStartDate(member.getMembershipDetails().getStudentStartDate())

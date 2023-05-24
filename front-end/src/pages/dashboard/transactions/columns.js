@@ -1,6 +1,21 @@
 import { TbArrowsDownUp } from "react-icons/tb";
 
 export const columns = [
+    {
+        accessorKey: "id",
+        header: ({ column }) => {
+            return (
+                <div className="flex items-center gap-1">
+                    <p>ID</p>
+                    <TbArrowsDownUp
+                        className="cursor-pointer"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    />
+                </div>
+            );
+        },
+        cell: ({ row }) => `${row.original.id}`,
+    },
   {
     accessorKey: "date",
     header: ({ column }) => {

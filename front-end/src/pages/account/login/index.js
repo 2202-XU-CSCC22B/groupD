@@ -7,6 +7,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false); // State to track loading state
+
   async function handleAuthenticate(e) {
     setLoading(true);
     e.preventDefault
