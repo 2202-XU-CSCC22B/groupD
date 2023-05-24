@@ -89,7 +89,7 @@ const addTransaction = async (transaction) => {
   }
 };
 
-const NewTransactionForm = ({ setIsOpen }) => {
+const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
   // const [staffs, setStaff] = useState([]);
   // const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -112,6 +112,7 @@ const NewTransactionForm = ({ setIsOpen }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["all_transactions"] });
       setIsOpen(false);
+      refetchTransactions();
     },
   });
 
@@ -130,32 +131,6 @@ const NewTransactionForm = ({ setIsOpen }) => {
     };
 
     console.log(formattedData);
-    // try {
-    //   const response = await fetch(process.env.post_new_transaction_api, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Access-Control-Allow-Methods": "POST",
-    //     },
-    //     body: JSON.stringify(formattedData), // body data type must match "Content-Type" header
-    //   });
-
-    //   // handle response
-    //   if (response.ok) {
-    //     const jsonResponse = await response.json();
-    //     // You can add your logic here using 'jsonResponse'
-    //     console.log(jsonResponse);
-    //   } else {
-    //     console.error("Error: ", response.status);
-    //   }
-    // } catch (error) {
-    //   console.error("An error occurred:", error);
-    // } finally {
-    //   setIsLoading(false);
-    //   setIsOpen(false);
-    // }
 
     transactionMutation.mutate(formattedData);
   };
