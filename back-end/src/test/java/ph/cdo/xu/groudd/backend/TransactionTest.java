@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ph.cdo.xu.groudd.backend.configuration.ApplicationConfig;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberRepository;
@@ -32,6 +33,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
+@ActiveProfiles("test")
+
 public class TransactionTest {
 
     private final TransactionService transactionService;
