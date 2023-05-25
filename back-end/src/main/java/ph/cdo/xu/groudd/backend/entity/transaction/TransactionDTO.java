@@ -32,7 +32,7 @@ public class TransactionDTO {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod= PaymentMethod.Cash;
-    private TransactionType transactionType;
+    private String transactionType;
 
     @Enumerated(EnumType.STRING)
     private Double value;

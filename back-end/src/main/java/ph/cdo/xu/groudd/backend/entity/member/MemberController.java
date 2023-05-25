@@ -97,7 +97,7 @@ public class MemberController {
                .builder()
                .date(membershipPaymentForm.getDate())
                .paymentMethod(PaymentMethod.Cash)
-               .transactionType(TransactionType.Sales)
+               .transactionType(TransactionType.MembershipFee.getStringValue())
                .description("Membership fee")
                .value(membershipPaymentForm.getPaymentValue())
                .build();

@@ -161,13 +161,13 @@ public class ApplicationConfig {
                                 .build();
 
                temp =  memberService.add(temp);
-
+                TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
                 for (int y = 0; y < ran.nextInt(15) + 1; y++) {
                     TransactionDTO transaction = TransactionDTO.builder()
                             .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                             .description(faker.lorem().sentence())
                             .paymentMethod(PaymentMethod.Cash)
-                            .transactionType(TransactionType.Sales)
+                            .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                             .value(faker.number().randomDouble(2, 50, 1000))
                             .build();
 
@@ -217,7 +217,7 @@ public class ApplicationConfig {
                             .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                             .description(faker.lorem().sentence())
                             .paymentMethod(PaymentMethod.Cash)
-                            .transactionType(expenseTransactions[ran.nextInt(expenseTransactions.length)])
+                            .transactionType(expenseTransactions[ran.nextInt(expenseTransactions.length)].getStringValue())
                             .value(faker.number().randomDouble(2, 50, 1000))
                             .build();
 

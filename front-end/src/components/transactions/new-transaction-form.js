@@ -14,11 +14,17 @@ const schema = z.object({
   description: z.string().optional(),
   paymentMethod: z.enum(["Cash", "GCash"]),
   transactionType: z.enum([
-    "Sales",
-    "CashOut",
     "Salary",
+    "Cash Out",
+    "Trainer Fee",
+    "Muay Thai Class",
     "Utilities",
     "Maintenance",
+    "Membership Fee",
+    "Walk-in Session",
+    "Monthly Fee",
+    "Cash-in",
+    "Missing Money"
   ]),
   value: z.coerce.number().min(1, "Value too small").nonnegative(),
   memberID: z

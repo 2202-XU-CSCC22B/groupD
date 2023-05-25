@@ -5,6 +5,7 @@ import DataTable from "@modules/components/ui/data-table";
 import {columns} from "@modules/pages/dashboard/transactions/columns";
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
+import Title from "@modules/components/dashboard/Title";
 
 export const getAllMembers = async () =>{
     try{
@@ -39,12 +40,13 @@ const MemberPage = () => {
 
       <div className="container pr-4 py-8 overflow-hidden">
         <section className="">
-          <h1 className=" text-3xl font-bold xl:text-left xl:pl-4 text-gray-800">
+          <h2 className=" text-3xl font-bold xl:text-left xl:pl-4 text-gray-800">
             All members
-          </h1>
+          </h2>
+
         </section>
         <AllMembersContent setSelectedMember={setSelectedMember} data={data?.data} refetchTransactions={refetch} selectedMember={selectedMember}/>
-          {selectedMember !== null && <DataTable data={selectedMember?.transactions} columns={columns}/>}
+          {selectedMember !== null && <DataTable data={selectedMember?.transactions} columns={columns} title={"All Transactions"}/>}
       </div>
     </div>
   );

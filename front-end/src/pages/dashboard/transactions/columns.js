@@ -68,7 +68,11 @@ export const columns = [
           <p>₱</p>
           <span
             className={`font-semibold px-2 py-1 rounded text-xs ${
-              row.original.transactionType === "Sales"
+              row.original.transactionType === "Monthly Fee" ||
+              row.original.transactionType === "Muay Thai Class" ||
+              row.original.transactionType === "Membership Fee" ||
+              row.original.transactionType === "Walk-in Session" ||
+              row.original.transactionType === "Cash-in"    
                 ? " bg-emerald-100 text-emerald-700"
                 : " bg-rose-100 text-rose-700"
             }`}
@@ -93,11 +97,19 @@ export const columns = [
             >
               <option hidden></option>
               <option value="">All</option>
-              <option value="sales">Sales</option>
-              <option value="cash out">Cash Out</option>
-              <option value="Salary">Salary</option>
-              <option value="maintenance">Maintenance</option>
-              <option value="utilities">Utilities</option>
+                <option value="Salary">Salary</option>
+                <option value="Cash Out">Cash Out</option>
+                <option value="Trainer Fee">Trainer Fee</option>
+                <option value="Muay Thai Class">Muay Thai Class</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Membership Fee">Membership Fee</option>
+                <option value="Walk-in Session">Walk-in Session</option>
+                <option value="Monthly Fee">Monthly Fee</option>
+                <option value="Cash-in">Cash-in</option>
+                <option value="Missing Money">Missing Money</option>
+
+
             </select>
           </div>
         </div>

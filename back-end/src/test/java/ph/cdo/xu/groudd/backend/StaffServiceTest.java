@@ -242,7 +242,7 @@ public class StaffServiceTest {
                     .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Salary)
+                    .transactionType(TransactionType.Salary.getStringValue())
                     .value(faker.number().randomDouble(2, 1, 1000))
                     .build();
 

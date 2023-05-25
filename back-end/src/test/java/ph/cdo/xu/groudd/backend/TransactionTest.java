@@ -123,13 +123,13 @@ public class TransactionTest {
 
 
         List<TransactionDTO> transactions = new ArrayList<>();
-
+        TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
         for (int i = 0; i < 10; i++) {
             TransactionDTO transaction = TransactionDTO.builder()
                     .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Sales)
+                    .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                     .value(500.0)
                     .build();
 
@@ -163,7 +163,7 @@ public class TransactionTest {
 
 
 
-         Assertions.assertEquals(5000.0, objectMap.get("sales"));
+         Assertions.assertEquals(5000.0, objectMap.get("grossProfit"));
     }
 
     @Test
@@ -225,6 +225,7 @@ public class TransactionTest {
 
         List<TransactionDTO> transactions = new ArrayList<>();
 
+        TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
         for (int i = 0; i < 10; i++) {
             Calendar calendar = new GregorianCalendar(2023, Calendar.JANUARY, 1);
             long startMillis = calendar.getTimeInMillis();
@@ -240,7 +241,7 @@ public class TransactionTest {
                     .date(randomDate)
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Sales)
+                    .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                     .value(300.0)
                     .build();
 
@@ -262,7 +263,7 @@ public class TransactionTest {
                 .date(februaryDate)
                 .description(faker.lorem().sentence())
                 .paymentMethod(PaymentMethod.Cash)
-                .transactionType(TransactionType.Utilities)
+                .transactionType(TransactionType.Utilities.getStringValue())
                 .value(200.0)
                 .build();
 
@@ -314,6 +315,6 @@ public class TransactionTest {
             System.out.println(key + " : " + value);
         }
 
-        Assertions.assertEquals(3000.0, objectMap.get("sales"));
+        Assertions.assertEquals(3000.0, objectMap.get("grossProfit"));
     }
 }

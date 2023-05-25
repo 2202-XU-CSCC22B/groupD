@@ -11,10 +11,7 @@ import {useState} from "react";
 
 const StaffPage = () => {
     const [selectedStaff, setSelectedStaff] = useState(null)
-
-
-
-
+    
   return (
     <div>
       <Head>
@@ -28,7 +25,7 @@ const StaffPage = () => {
           </h1>
         </section>
         <AllStaffTable setSelectedStaff={setSelectedStaff} />
-          {selectedStaff !== null && <DataTable data={selectedStaff?.transactions} columns={columns}/>}
+          {selectedStaff !== null && <DataTable data={selectedStaff?.transactions} columns={columns} title={"All Transactions"}/>}
       </div>
     </div>
   );

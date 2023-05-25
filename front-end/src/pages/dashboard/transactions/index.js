@@ -62,7 +62,7 @@ const TransactionPage = () => {
         </section>
 
         {/* table */}
-        {data && <DataTable columns={columns} data={data?.data.transactions} />}
+        {data && <DataTable columns={columns} data={data?.data.transactions} title={"All Transactions"}/>}
       </div>
 
       {/* add 'add transaction' logic inside */}
