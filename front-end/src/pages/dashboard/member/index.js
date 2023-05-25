@@ -1,7 +1,36 @@
 import Head from "next/head";
 import AllMembersContent from "@modules/components/members/new/AllMembersContent";
+import {useState} from "react";
+import DataTable from "@modules/components/ui/data-table";
+import {columns} from "@modules/pages/dashboard/transactions/columns";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
+
+export const getAllMembers = async () =>{
+    try{
+        const res = axios.get(process.env.retrieve_members_api, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+            }
+        });
+
+        return res;
+    }catch (error){
+        console.log("Error here at getAllMember ")
+        console.log(error)
+        return error;
+    }
+}
 
 const MemberPage = () => {
+    const [selectedMember, setSelectedMember] = useState(null);
+    const {data, refetch} = useQuery({
+        queryKey: ["all_members"],
+        queryFn: getAllMembers,
+    });
   return (
     <div>
       <Head>
@@ -14,7 +43,8 @@ const MemberPage = () => {
             All members
           </h1>
         </section>
-        <AllMembersContent />
+        <AllMembersContent setSelectedMember={setSelectedMember} data={data?.data} refetchTransactions={refetch} selectedMember={selectedMember}/>
+          {selectedMember !== null && <DataTable data={selectedMember?.transactions} columns={columns}/>}
       </div>
     </div>
   );

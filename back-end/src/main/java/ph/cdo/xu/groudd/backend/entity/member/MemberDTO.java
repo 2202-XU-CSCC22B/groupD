@@ -7,8 +7,10 @@ import lombok.Data;
 import org.springframework.lang.Nullable;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -45,6 +47,8 @@ public class MemberDTO {
 
     private Date birthday;
 
+
+    private List<TransactionDTO> transactions;
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date membershipStartDate;

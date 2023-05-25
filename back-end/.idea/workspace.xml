@@ -11,18 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/staff/StaffServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/dashboard/email-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/dashboard/email-form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/dashboard/email-modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/dashboard/email-modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMemberTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMemberTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMembersContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/AllMembersContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/members/new/MoreInformation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/staff/all-staff-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/staff/all-staff-table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/staff/more-staff-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/staff/more-staff-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +236,7 @@
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
       <workItem from="1684928767627" duration="16353000" />
-      <workItem from="1684969903207" duration="1354000" />
+      <workItem from="1684969903207" duration="3435000" />
     </task>
     <servers />
   </component>

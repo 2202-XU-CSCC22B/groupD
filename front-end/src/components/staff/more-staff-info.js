@@ -13,12 +13,37 @@ import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
 import Select from "react-select";
+import {QueryClient, useMutation} from "@tanstack/react-query";
+import axios from "axios";
 
-const MoreStaffInfo = ({ data }) => {
+
+export const updateStaff = async (data) =>{
+  try{
+    const res = await axios.put(process.env.update_staff_api.replace("{id}", data.id),
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "PUT",
+          },
+        });
+    return res;
+  }catch (error){
+    console.log("error here at UPDATE Staff")
+    console.log(error)
+    return error;
+  }
+
+
+}
+
+const MoreStaffInfo = ({ data , refetchTransaction}) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
-
+  const queryClient = new QueryClient();
   const formattedData = {
     id: data?.id,
     firstName: formData?.firstName,
@@ -53,36 +78,24 @@ const MoreStaffInfo = ({ data }) => {
     setEditable(!editable);
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
     setLoading(true); // Start the loading animation
 
-    // Simulate an asynchronous API call
-    setTimeout(() => {
-      // Send the updated data to the API endpoint for saving
-      // Here, you would typically use a fetch or axios to make the API call
-      // Replace <API_ENDPOINT> with your actual endpoint
-      alert(formData.email);
-      fetch(process.env.update_member_api.replace("{id}", data.id), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formattedData),
-      })
-        .then((response) => {
-          // Handle the API response if needed
-          console.log(response);
-          console.log("Data saved successfully!");
-          alert("Changes were successful");
-          setLoading(false); // Stop the loading animation
-        })
-        .catch((error) => {
-          // Handle any errors that occurred during the API call
-          console.error("Error saving data:", error);
+       setTimeout(()=>{
+         editStaffMutation.mutate(formattedData);
+       },1000);
 
-          setLoading(false); // Stop the loading animation
-        });
-    }, 2000); // Simulating 1 second delay for the API call
   };
 
+  const editStaffMutation = useMutation({
+    mutationFn: updateStaff,
+    onSuccess: () => {
+      setLoading(false)
+      queryClient.invalidateQueries({ queryKey: ["all_staff"] });
+      refetchTransaction();
+    }
+  })
   return (
     <Grid
       container
@@ -203,7 +216,7 @@ const MoreStaffInfo = ({ data }) => {
       </Grid>
 
       <Grid className=" w-full space-y-4">
-        <MyButton disabled={!editable} onClick={handleSaveChanges}>
+        <MyButton disabled={!editable} onClick={(e) => handleSaveChanges(e)}>
           Save Changes
         </MyButton>
         {isLoading && (

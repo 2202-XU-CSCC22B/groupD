@@ -27,43 +27,11 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import EmailModal from "./dashboard/email-modal";
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
-
+import {getAllMembers} from "@modules/components/members/new/AllMemberTable";
+import {getAllStaff} from "@modules/components/staff/all-staff-table";
 const drawerWidth = 240;
 
 
-const getAllMembers = async () =>{
-  try{
-    const res = axios.get(process.env.retrieve_unverified_api, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET"
-      }
-    });
-    return res;
-  }catch (error){
-    console.log(error)
-    return error
-  }
-};
-
-const getAllStaff = async () =>{
-  try{
-    const res = axios.get(process.env.retrieve_all_staff_api, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET"
-      }
-    });
-    return res;
-  }catch (error){
-    console.log(error)
-    return error
-  }
-};
 
 const openedMixin = (theme) => ({
   width: drawerWidth,

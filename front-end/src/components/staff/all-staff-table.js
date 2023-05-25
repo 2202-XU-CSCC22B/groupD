@@ -26,13 +26,14 @@ export const getAllStaff = async () =>{
 }
 const AllStaffTable = ({setSelectedStaff}) => {
 
-  const {data} = useQuery({
+  const {data, refetch} = useQuery({
     queryKey: ["all_staff"],
     queryFn: getAllStaff,
   });
   const [selectedRow, setSelectedRow] = useState(data?.data.all[0]);
   const column = staffColumnDef;
   const [isLoading, setIsLoading] = useState(false);
+
 
 
   const onRowDoubleClick = (row, event) => {
@@ -68,7 +69,7 @@ const AllStaffTable = ({setSelectedStaff}) => {
         />
       </div>
 
-      <MoreStaffInfo data={selectedRow} key={selectedRow?.id} />
+      <MoreStaffInfo data={selectedRow} key={selectedRow?.id} refetchTransaction={refetch} />
     </div>
   );
 };

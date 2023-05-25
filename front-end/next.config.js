@@ -7,7 +7,7 @@ module.exports = {
 
     //members
     create_members_api: "http://localhost:8080/api/v1/member/new",
-    retrieve_members_api: "http://localhost:8080/api/v1/member/all",
+    retrieve_members_api : "http://localhost:8080/api/v1/member/all",
     retrieve_unverified_api: "http://localhost:8080/api/v1/member/unverified",
     update_member_api: "http://localhost:8080/api/v1/member/update/{id}",
     validate_unverified_api: "http://localhost:8080/api/v1/member/validate/{email}",

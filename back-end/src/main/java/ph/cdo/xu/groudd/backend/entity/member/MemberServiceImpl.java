@@ -180,6 +180,10 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO entityToDTO(Member member) {
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for(int i = 0; i < member.getTransactions().size(); i++){
+            transactionDTOList.add(transactionService.entityToDTO(member.getTransactions().get(i)));
+        }
         return MemberDTO
                 .builder()
                 .id(member.getId())
@@ -197,6 +201,7 @@ public class MemberServiceImpl implements MemberService{
                 .membershipEndDate(member.getMembershipDetails().getMembershipEndDate())
                 .studentStartDate(member.getMembershipDetails().getStudentStartDate())
                 .studentEndDate(member.getMembershipDetails().getStudentEndDate())
+                .transactions(transactionDTOList)
                 .monthlySubscriptionStartDate(member.getMembershipDetails().getMonthlySubscriptionStartDate())
                 .monthlySubscriptionEndDate(member.getMembershipDetails().getMonthlySubscriptionEndDate())
                 .membershipStatus(

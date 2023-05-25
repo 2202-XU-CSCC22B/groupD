@@ -7,6 +7,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Paper, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import MoreInformation from "@modules/components/members/new/MoreInformation";
+import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
+import {getAllStaff} from "@modules/components/staff/all-staff-table";
 
 const ActionButton = () => {
   return (
@@ -14,71 +17,60 @@ const ActionButton = () => {
       <AddTaskIcon />
     </IconButton>
   );
-};
-export default function AllMemberTable() {
-  const [row, setRow] = useState(null);
-  const [selectedRow, setSelectedRow] = useState(null);
+}
+
+
+export default function AllMemberTable({setSelectedMember, data, refetchTransactions, selectedMember}) {
+
+
+  const [selectedRow, setSelectedRow] = useState();
   const column = allMembersColumnDef;
   const [isLoading, setIsLoading] = useState(false);
 
+
+  console.log("data here " + data);
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
     console.log(row.row);
 
     setSelectedRow(row.row);
+    setSelectedMember(row.row)
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(process.env.retrieve_members_api, {
-          method: "GET",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods':'GET'
-          }
-        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        setRow(jsonData);
-        setIsLoading(false);
-        setSelectedRow(jsonData[0]);
-        setRow(updatedRow);
-      } catch (error) {
-        console.error("Error fetching row:", error);
-        setIsLoading(false);
-      }
-    };
 
-    fetchData();
-  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!row) {
+  if (!data) {
     return <div>No data available.</div>;
   }
+
+  const sortModel = [
+    {
+      field: "id",
+      sort: "desc", // Set the initial sort direction ("asc" for ascending, "desc" for descending)
+    },
+  ];
 
   return (
     <div className=" flex flex-col xl:flex-row gap-12 py-8 ">
       <div className=" h-[500px] min-[800px]:w-fit">
         <DataGrid
-          rows={row}
+          rows={data}
           columns={column}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
             },
           }}
+          sortModel={sortModel}
           pageSizeOptions={[10, 20]}
           onRowDoubleClick={(row, event) => onRowDoubleClick(row, event)}
         />
       </div>
 
-      <MoreInformation data={selectedRow} key={selectedRow?.id} />
+      <MoreInformation data={selectedRow} key={selectedRow?.id} refetchTransactions={refetchTransactions} />
     </div>
   );
 }
