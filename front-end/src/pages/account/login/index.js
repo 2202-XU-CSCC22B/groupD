@@ -1,8 +1,54 @@
-import { TextField } from "@mui/material";
+import {CircularProgress, TextField} from "@mui/material";
 import Link from "next/link";
 import MyContainer from "@modules/components/ui/MyContainer";
+import React, {useState} from "react";
 
 export default function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // State to track loading state
+
+  async function handleAuthenticate(e) {
+    setLoading(true);
+    e.preventDefault
+    try {
+      const response = await fetch(process.env.user_authentication_api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS,GET,PUT'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+        alert(token)
+        sessionStorage.setItem("token", token);
+        setLoading(false)
+        window.location="/dashboard"
+        // Do something with the token
+      } else {
+        // Handle the error case
+        console.error('Error:', response.status);
+        alert(response.status)
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert(error)
+    } finally {
+      setLoading(false)
+
+    }
+  };
+
+
+
   return (
     <>
       <MyContainer className="pt-[87px] text-black min-h-screen ">
@@ -17,6 +63,8 @@ export default function LoginPage() {
               type="email"
               variant="outlined"
               sx={{ width: "100%", marginBottom: 2 }}
+              value={username}
+              onChange={(e)=> setUsername(e.target.value)}
             />
 
             <TextField
@@ -24,19 +72,24 @@ export default function LoginPage() {
               type="password"
               variant="outlined"
               sx={{ width: "100%", marginBottom: 4 }}
+              value={password}
+              onChange={(e)=> setPassword(e.target.value)}
             />
 
             <div className=" flex flex-col gap-2 items-center">
-              <Link
-                className="w-full mx-auto"
-                href={"/dashboard"}
-                passHref
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <button className="rounded-md w-full bg-gray-800 text-slate-50 font-medium tracking-widest drop-shadow-lg py-3 px-6 uppercase text-base -translate-y-2  hover:bg-gray-700 duration-300 transition-all ease-in-out">
-                  Login
+              {/*<Link*/}
+              {/*  className="w-full mx-auto"*/}
+              {/*  href={"/dashboard"}*/}
+              {/*  passHref*/}
+              {/*  style={{ textDecoration: "none", color: "black" }}*/}
+              {/*>*/}
+                <button className="rounded-md w-full bg-gray-800 text-slate-50 font-medium tracking-widest drop-shadow-lg py-3 px-6 uppercase text-base -translate-y-2  hover:bg-gray-700 duration-300 transition-all ease-in-out"
+                onClick={handleAuthenticate}
+                >
+                  {loading ? <CircularProgress size={24} /> : 'Login'}
+
                 </button>
-              </Link>
+              {/*</Link>*/}
               <small className="text-sm text-center w-fit mx-auto">
                 Forgot your password?{" "}
                 <a href="/account/forgot_password" className="text-blue-500 underline">

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ph.cdo.xu.groudd.backend.configuration.ApplicationConfig;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberRepository;
@@ -32,6 +33,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
+@ActiveProfiles("test")
+
 public class TransactionTest {
 
     private final TransactionService transactionService;
@@ -120,13 +123,13 @@ public class TransactionTest {
 
 
         List<TransactionDTO> transactions = new ArrayList<>();
-
+        TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
         for (int i = 0; i < 10; i++) {
             TransactionDTO transaction = TransactionDTO.builder()
                     .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Sales)
+                    .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                     .value(500.0)
                     .build();
 
@@ -160,7 +163,7 @@ public class TransactionTest {
 
 
 
-         Assertions.assertEquals(5000.0, objectMap.get("sales"));
+         Assertions.assertEquals(5000.0, objectMap.get("grossProfit"));
     }
 
     @Test
@@ -222,6 +225,7 @@ public class TransactionTest {
 
         List<TransactionDTO> transactions = new ArrayList<>();
 
+        TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
         for (int i = 0; i < 10; i++) {
             Calendar calendar = new GregorianCalendar(2023, Calendar.JANUARY, 1);
             long startMillis = calendar.getTimeInMillis();
@@ -237,7 +241,7 @@ public class TransactionTest {
                     .date(randomDate)
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Sales)
+                    .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                     .value(300.0)
                     .build();
 
@@ -259,7 +263,7 @@ public class TransactionTest {
                 .date(februaryDate)
                 .description(faker.lorem().sentence())
                 .paymentMethod(PaymentMethod.Cash)
-                .transactionType(TransactionType.Utilities)
+                .transactionType(TransactionType.Utilities.getStringValue())
                 .value(200.0)
                 .build();
 
@@ -276,9 +280,17 @@ public class TransactionTest {
         Assertions.assertNotNull(member.getTransactions());
         Assertions.assertEquals(11, member.getTransactions().size());
 
+       calendar = new GregorianCalendar(2023, Calendar.JANUARY, 1);
+         startMillis = calendar.getTimeInMillis();
 
+        calendar.set(Calendar.DAY_OF_MONTH, 31);
+        endMillis = calendar.getTimeInMillis();
 
-        List<Transaction> januaryTransaction = transactionService.transactionsByMonth(1, 2023);
+         randomMillis = startMillis + (long) (Math.random() * (endMillis - startMillis));
+
+        Date januaryDate = new Date(randomMillis);
+
+        List<TransactionDTO> januaryTransaction = transactionService.transactionsByMonth(1,2023);
         Map<String, Object> objectMap = transactionService.getTransactionSummary(januaryTransaction);
 
 
@@ -303,6 +315,6 @@ public class TransactionTest {
             System.out.println(key + " : " + value);
         }
 
-        Assertions.assertEquals(3000.0, objectMap.get("sales"));
+        Assertions.assertEquals(3000.0, objectMap.get("grossProfit"));
     }
 }

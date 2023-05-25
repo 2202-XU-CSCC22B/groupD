@@ -25,8 +25,13 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { handleLogoutClick } from "@modules/utils/functions";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import EmailModal from "./dashboard/email-modal";
-
+import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
+import {getAllMembers} from "@modules/components/members/new/AllMemberTable";
+import {getAllStaff} from "@modules/components/staff/all-staff-table";
 const drawerWidth = 240;
+
+
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -105,7 +110,20 @@ export default function DashboardLayout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(true);
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
+
+  const { allMembers } = useQuery({
+    queryKey: ["all_members"],
+    queryFn: getAllMembers,
+  });
+
+  const {allStaff} = useQuery({
+    queryKey: ["all_staff"],
+    queryFn: getAllStaff,
+  });
+
+  console.log(allMembers?.data);
+  console.log(allStaff?.data.all);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -246,6 +264,8 @@ export default function DashboardLayout({ children }) {
       <EmailModal
         isEmailModalOpen={isEmailModalOpen}
         setIsEmailModalOpen={setIsEmailModalOpen}
+        allMembers={allMembers?.data}
+        allStaff={allStaff?.data.all}
       />
     </Box>
   );

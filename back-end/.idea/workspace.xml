@@ -9,14 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="">
+    <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/TransactionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/TransactionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +26,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -182,12 +180,21 @@
       </method>
     </configuration>
     <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
       <module name="back-end" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ph.cdo.xu.groudd.backend.BackEndApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.MemberTest.shouldBeAbleToAddTransactionToMembers" />
+      <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
+      <item itemvalue="JUnit.StaffServiceTest.shouldAddTransactionToStaff" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestAllTransactionSummaryByMonth" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestTransactionSummary" />
+      <item itemvalue="Spring Boot.BackEndApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
@@ -201,7 +208,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="709decc8-0f7f-4204-b9f3-ca01ed512b2d" name="Changes" comment="" />
+      <changelist id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="" />
       <created>1684129010785</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -222,7 +229,8 @@
       <workItem from="1684645767335" duration="15380000" />
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
-      <workItem from="1684728122688" duration="2286000" />
+      <workItem from="1684928767627" duration="16353000" />
+      <workItem from="1684969903207" duration="9970000" />
     </task>
     <servers />
   </component>
@@ -234,8 +242,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
-          <line>46</line>
+          <line>51</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationController.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

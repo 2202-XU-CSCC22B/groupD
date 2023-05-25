@@ -17,36 +17,39 @@ import java.util.Date;
 public class MembershipDetails {
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date membershipStartDate;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date membershipEndDate;
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date monthlySubscriptionStartDate;
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date monthlySubscriptionEndDate;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date studentStartDate;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
 
     private Date studentEndDate;
 
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status membershipStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status monthlySubscriptionStatus = Status.UNVERIFIED;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Status studentStatus = Status.UNVERIFIED;
 
 

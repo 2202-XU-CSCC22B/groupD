@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ph.cdo.xu.groudd.backend.configuration.ApplicationConfig;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberRepository;
@@ -28,6 +29,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class MemberTest {
 
     private final MemberService memberService;
@@ -165,13 +167,13 @@ public class MemberTest {
     @Test
     void shouldBeAbleToAddTransactionToMembers() {
         List<TransactionDTO> transactions = new ArrayList<>();
-
+        TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
         for (int i = 0; i < 10; i++) {
             TransactionDTO transaction = TransactionDTO.builder()
                     .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Sales)
+                    .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                     .value(faker.number().randomDouble(2, 1, 1000))
                     .build();
 

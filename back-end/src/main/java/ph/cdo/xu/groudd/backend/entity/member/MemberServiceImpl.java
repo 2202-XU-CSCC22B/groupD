@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.member;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
@@ -12,6 +13,7 @@ import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionRepository;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.utils.DateService;
+import ph.cdo.xu.groudd.backend.utils.StatusService;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +27,7 @@ public class MemberServiceImpl implements MemberService{
     private DateService dateService;
     private TransactionRepository transactionRepository;
     private TransactionService transactionService;
+    private StatusService statusService;
 
     @Override
     public Member add(Member member) {
@@ -58,6 +61,28 @@ public class MemberServiceImpl implements MemberService{
             temp.setBirthDetails(BirthDetails.builder()
                     .birthday(memberDTO.getBirthday())
                     .build());
+            temp.getMembershipDetails()
+                    .setMembershipStatus(
+                            statusService
+                                    .checkStatus
+                                            (
+                                                    temp.getMembershipDetails().getMembershipStartDate(),
+                                                    temp.getMembershipDetails().getMembershipEndDate(),
+                                                    temp.getMembershipDetails().getMembershipStatus()));
+            temp.getMembershipDetails()
+                    .setStudentStatus(
+                            statusService
+                                    .checkStatus(
+                                            temp.getMembershipDetails().getStudentStartDate(),
+                                            temp.getMembershipDetails().getStudentEndDate(),
+                                            temp.getMembershipDetails().getMembershipStatus()));
+            temp.getMembershipDetails()
+                    .setMonthlySubscriptionStatus(
+                            statusService
+                                    .checkStatus(
+                                            temp.getMembershipDetails().getMonthlySubscriptionStartDate(),
+                                            temp.getMembershipDetails().getMonthlySubscriptionEndDate(),
+                                            temp.getMembershipDetails().getMonthlySubscriptionStatus()));
 
             return memberRepository.save(temp);
         }else{
@@ -155,6 +180,10 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO entityToDTO(Member member) {
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for(int i = 0; i < member.getTransactions().size(); i++){
+            transactionDTOList.add(transactionService.entityToDTO(member.getTransactions().get(i)));
+        }
         return MemberDTO
                 .builder()
                 .id(member.getId())
@@ -167,15 +196,29 @@ public class MemberServiceImpl implements MemberService{
                 .weight(Double.parseDouble(String.format("%.2f", member.getWeight())))
                 .height(Double.parseDouble(String.format("%.2f", member.getHeight())))
                 .occupation(member.getOccupation())
+                .name(member.getName().toString())
                 .membershipStartDate(member.getMembershipDetails().getMembershipStartDate())
                 .membershipEndDate(member.getMembershipDetails().getMembershipEndDate())
                 .studentStartDate(member.getMembershipDetails().getStudentStartDate())
                 .studentEndDate(member.getMembershipDetails().getStudentEndDate())
+                .transactions(transactionDTOList)
                 .monthlySubscriptionStartDate(member.getMembershipDetails().getMonthlySubscriptionStartDate())
                 .monthlySubscriptionEndDate(member.getMembershipDetails().getMonthlySubscriptionEndDate())
-                .membershipStatus(member.getMembershipDetails().getMembershipStatus())
-                .studentStatus(member.getMembershipDetails().getStudentStatus())
-                .monthlySubscriptionStatus(member.getMembershipDetails().getMonthlySubscriptionStatus())
+                .membershipStatus(
+                        statusService.checkStatus(
+                                member.getMembershipDetails().getMembershipStartDate(),
+                                member.getMembershipDetails().getMembershipEndDate(),
+                                member.getMembershipDetails().getMembershipStatus()))
+                .studentStatus(
+                        statusService.checkStatus(
+                                member.getMembershipDetails().getStudentStartDate(),
+                                member.getMembershipDetails().getStudentEndDate(),
+                                member.getMembershipDetails().getStudentStatus()))
+                .monthlySubscriptionStatus(
+                        statusService.checkStatus(
+                                member.getMembershipDetails().getMonthlySubscriptionStartDate(),
+                                member.getMembershipDetails().getMonthlySubscriptionEndDate(),
+                                member.getMembershipDetails().getMonthlySubscriptionStatus()))
                 .birthday(member.getBirthDetails().getBirthday())
                 .build();
     }
@@ -199,9 +242,21 @@ public class MemberServiceImpl implements MemberService{
                                 .monthlySubscriptionEndDate(memberDTO.getMonthlySubscriptionEndDate())
                                 .studentStartDate(memberDTO.getStudentStartDate())
                                 .studentEndDate(memberDTO.getStudentEndDate())
-                                .membershipStatus(memberDTO.getMembershipStatus())
-                                .monthlySubscriptionStatus(memberDTO.getMonthlySubscriptionStatus())
-                                .studentStatus(memberDTO.getStudentStatus())
+                                .membershipStatus(
+                                        statusService.checkStatus(
+                                                memberDTO.getMembershipStartDate(),
+                                                memberDTO.getMembershipEndDate(),
+                                                memberDTO.getMembershipStatus()))
+                                .monthlySubscriptionStatus(
+                                        statusService.checkStatus(
+                                                memberDTO.getMonthlySubscriptionStartDate(),
+                                                memberDTO.getMonthlySubscriptionEndDate(),
+                                                memberDTO.getMonthlySubscriptionStatus()))
+                                .studentStatus(
+                                        statusService.checkStatus(
+                                                memberDTO.getStudentStartDate(),
+                                                memberDTO.getStudentEndDate(),
+                                                memberDTO.getStudentStatus()))
                                 .build())
                 .birthDetails(BirthDetails
                         .builder()
@@ -260,7 +315,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<TransactionDTO> getTransactionByMember(Long memberID) {
-        List<Transaction> transactionList = transactionRepository.findAllByMemberId(memberID);
+        List<Transaction> transactionList = transactionRepository.findAllByMemberId(memberID, Sort.by(Sort.Direction.DESC, "date"));
         List<TransactionDTO> transactionDTOList = new ArrayList<>();
         for (Transaction transaction : transactionList) {
             transactionDTOList.add(transactionService.entityToDTO(transaction));

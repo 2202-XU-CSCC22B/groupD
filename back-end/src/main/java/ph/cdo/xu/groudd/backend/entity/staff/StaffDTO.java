@@ -8,8 +8,10 @@ import lombok.Data;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Gender;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Position;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -29,7 +31,7 @@ public class StaffDTO {
     @Builder.Default
     private String phone= "000-0000-000";
 
-
+    private String name;
     private String email;
 
     @Enumerated(EnumType.STRING)
@@ -53,6 +55,7 @@ public class StaffDTO {
     private Date dateStarted;
 
 
+    private List<TransactionDTO> transactions;
     @Enumerated(EnumType.STRING)
     private Status status;
 }

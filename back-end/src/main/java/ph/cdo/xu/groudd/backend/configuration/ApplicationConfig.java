@@ -1,15 +1,30 @@
 package ph.cdo.xu.groudd.backend.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import ph.cdo.xu.groudd.backend.entity.auth.AuthenticationService;
+import ph.cdo.xu.groudd.backend.entity.auth.RegisterRequest;
 import ph.cdo.xu.groudd.backend.entity.member.Member;
 import ph.cdo.xu.groudd.backend.entity.member.MemberDTO;
 import ph.cdo.xu.groudd.backend.entity.member.MemberService;
@@ -20,16 +35,26 @@ import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.*;
 import ph.cdo.xu.groudd.backend.entity.staff.Staff;
 import ph.cdo.xu.groudd.backend.entity.staff.StaffDTO;
+import ph.cdo.xu.groudd.backend.entity.staff.StaffRepository;
 import ph.cdo.xu.groudd.backend.entity.staff.StaffService;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
+import ph.cdo.xu.groudd.backend.entity.user.User;
+import ph.cdo.xu.groudd.backend.entity.user.UserRepository;
 import ph.cdo.xu.groudd.backend.utils.DateService;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
+    private final UserRepository userRepository;
+
+
+
+
+
 
     @Bean
     public CommandLineRunner commandLineRunner(
@@ -37,9 +62,18 @@ public class ApplicationConfig {
             @Autowired Random ran,
             @Autowired MemberService memberService,
             @Autowired DateService dateService,
-            @Autowired StaffService staffService
+            @Autowired StaffRepository staffRepository,
+            @Autowired  StaffService staffService,
+
+            @Autowired AuthenticationService authenticationService
+
     ){
         return args -> {
+            User superAdmin = createSuperAdmin(authenticationService, staffRepository);
+            if(superAdmin != null){
+                System.out.println("Super admin : " + superAdmin.getUsername());
+            }
+
             double minimum = 50.0;
             double maximum = 100.0;
             for(int i = 0; i < 50; i++){
@@ -127,13 +161,13 @@ public class ApplicationConfig {
                                 .build();
 
                temp =  memberService.add(temp);
-
+                TransactionType[] sales = {TransactionType.MembershipFee, TransactionType.MonthlyFee, TransactionType.WalkInSession, TransactionType.MuaythaiClass};
                 for (int y = 0; y < ran.nextInt(15) + 1; y++) {
                     TransactionDTO transaction = TransactionDTO.builder()
                             .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                             .description(faker.lorem().sentence())
                             .paymentMethod(PaymentMethod.Cash)
-                            .transactionType(TransactionType.Sales)
+                            .transactionType(sales[ran.nextInt(sales.length)].getStringValue())
                             .value(faker.number().randomDouble(2, 50, 1000))
                             .build();
 
@@ -183,7 +217,7 @@ public class ApplicationConfig {
                             .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                             .description(faker.lorem().sentence())
                             .paymentMethod(PaymentMethod.Cash)
-                            .transactionType(expenseTransactions[ran.nextInt(expenseTransactions.length)])
+                            .transactionType(expenseTransactions[ran.nextInt(expenseTransactions.length)].getStringValue())
                             .value(faker.number().randomDouble(2, 50, 1000))
                             .build();
 
@@ -243,5 +277,68 @@ public class ApplicationConfig {
         return mailSender;
     }
 
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return username -> userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+
+
+    public User createSuperAdmin(
+            @Autowired AuthenticationService authenticationService,
+            @Autowired StaffRepository staffRepository
+
+    ){
+        RegisterRequest registerRequest =
+
+                RegisterRequest
+                        .builder()
+                        .firstName("joshua")
+                        .lastName("salcedo")
+                        .email("joshuagarrysalcedo@gmail.com")
+                        .password("password")
+                        .phone("09059208736")
+                        .gender(Gender.MALE)
+                        .address("block 8 lot 16 , scions kauswagan, cdo")
+                        .position(Position.Owner)
+                        .status(Status.ACTIVE)
+                        .dateStarted(new DateTime(2020,8,1,0,0).toDate())
+                        .birthday(new DateTime(1995,2,22,0,0).toDate())
+                        .userRole(UserRole.SuperAdmin)
+                        .build();
+
+      Optional<Staff> optionalStaff = staffRepository.findByContactDetailsEmail(registerRequest.getEmail());
+      Optional<User> optionalUser = userRepository.findByUsername(registerRequest.getEmail());
+
+      if(optionalStaff.isPresent() && optionalUser.isPresent()){
+          return optionalUser.get();
+      }else{
+          authenticationService.register(registerRequest);
+          optionalUser = userRepository.findByUsername(registerRequest.getEmail());
+      }
+
+        return optionalUser.orElse(null);
+    }
+
+
+    @Bean
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

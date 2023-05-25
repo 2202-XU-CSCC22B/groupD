@@ -5,34 +5,75 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
+import {QueryClient, useMutation} from "@tanstack/react-query";
+import axios from "axios";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import z from "zod";
 
-const MoreInformation = ({ data }) => {
+
+
+
+
+export const updateMember = async (data) =>{
+  try{
+    const res = await axios.put(process.env.update_member_api.replace("{id}", data.id),
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "PUT",
+          },
+        });
+    return res;
+  }catch (error){
+    console.log("error here at UPDATE MEMBER")
+    console.log(error)
+    return error;
+  }
+
+
+}
+
+const MoreInformation = ({ data , refetchTransactions}) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
+  const queryClient = new QueryClient();
+
 
   const formattedData = {
-    id: data.id,
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    phone: formData.phone,
-    email: formData.email,
-    gender: formData.gender,
-    address: formData.address,
-    weight: formData.weight,
-    height: formData.height,
-    occupation: formData.occupation,
-    birthday: formData.birthday,
-    membershipStartDate: data.membershipStartDate,
-    membershipEndDate: data.membershipEndDate,
-    monthlySubscriptionStartDate: data.monthlySubscriptionStartDate,
-    monthlySubscriptionEndDate: data.monthlySubscriptionEndDate,
-    studentStartDate: data.studentStartDate,
-    studentEndDate: data.studentEndDate,
-    membershipStatus: data.membershipStatus,
-    monthlySubscriptionStatus: data.monthlySubscriptionStatus,
-    studentStatus: data.studentStatus,
+    id: data?.id,
+    firstName: formData?.firstName,
+    lastName: formData?.lastName,
+    phone: formData?.phone,
+    email: formData?.email,
+    gender: formData?.gender,
+    address: formData?.address,
+    weight: formData?.weight,
+    height: formData?.height,
+    occupation: formData?.occupation,
+    birthday: formData?.birthday,
+
   };
+
+
+
+
+  const editMembersMutation = useMutation({
+    mutationFn: updateMember,
+    onSuccess: () => {
+      setLoading(false);
+      queryClient.invalidateQueries({ queryKey: ["all_members"] });
+      refetchTransactions()
+
+
+
+
+    },
+  },);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,37 +94,23 @@ const MoreInformation = ({ data }) => {
     setEditable(!editable);
   };
 
-  const handleSaveChanges = () => {
-    setLoading(true); // Start the loading animation
 
-    // Simulate an asynchronous API call
-    setTimeout(() => {
-      // Send the updated data to the API endpoint for saving
-      // Here, you would typically use a fetch or axios to make the API call
-      // Replace <API_ENDPOINT> with your actual endpoint
-      alert(formData.email);
-      fetch(process.env.update_member_api.replace("{id}", data.id), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formattedData),
-      })
-        .then((response) => {
-          // Handle the API response if needed
-          console.log(response);
-          console.log("Data saved successfully!");
-          alert("Changes were successful");
-          setLoading(false); // Stop the loading animation
-        })
-        .catch((error) => {
-          // Handle any errors that occurred during the API call
-          console.error("Error saving data:", error);
 
-          setLoading(false); // Stop the loading animation
-        });
-    }, 2000); // Simulating 1 second delay for the API call
-  };
+  const onSubmit = (e) =>{
+    e.preventDefault();
+      setLoading(true)
+
+
+    setTimeout(()=>{
+      editMembersMutation.mutate(formattedData);
+    }, 1000);
+
+  }
+
 
   return (
+
+
     <Grid
       container
       spacing={1}
@@ -97,36 +124,45 @@ const MoreInformation = ({ data }) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          label="First Name"
-          name="firstName"
-          value={formData?.firstName}
-          onChange={handleInputChange}
-          disabled={!editable}
-          fullWidth
+            id={"firstName"}
+            label="First Name"
+            name="firstName"
+            value={formData?.firstName}
+            onChange={handleInputChange}
+            disabled={!editable}
+            fullWidth
         />
+
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          label="Last Name"
-          name="lastName"
-          value={formData?.lastName}
-          onChange={handleInputChange}
-          disabled={!editable}
-          fullWidth
+            label="Last Name"
+            name="lastName"
+            id={"lastName"}
+            value={formData?.lastName}
+            disabled={!editable}
+            fullWidth
+            onChange={handleInputChange}
+
         />
+
       </Grid>
       <Grid item xs={12}>
         <TextField
+          id={"email"}
           label="Email"
           name="email"
           value={formData?.email}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
+
         />
+
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
+            id={"address"}
           label="Address"
           name="address"
           value={formData?.address}
@@ -134,9 +170,11 @@ const MoreInformation = ({ data }) => {
           disabled={!editable}
           fullWidth
         />
+
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
+            id={"weight"}
           label="Weight"
           name="weight"
           value={formData?.weight}
@@ -144,19 +182,24 @@ const MoreInformation = ({ data }) => {
           disabled={!editable}
           fullWidth
         />
+
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
+            id={"height"}
           label="Height"
           name="height"
           value={formData?.height}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
+
         />
+
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
+            id={"phone"}
           label="Contact Number"
           name="phone"
           value={formData?.phone}
@@ -167,13 +210,16 @@ const MoreInformation = ({ data }) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
+            id="occupation"
           label="Occupation"
           name="occupation"
           value={formData?.occupation}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
+
         />
+
       </Grid>
       <Grid item xs={12} sm={6} className="">
         <div
@@ -190,6 +236,7 @@ const MoreInformation = ({ data }) => {
             Birthday
           </label>
           <DatePicker
+              id="birthday"
             label="Birthday"
             name="birthday"
             value={formData?.birthday}
@@ -199,24 +246,13 @@ const MoreInformation = ({ data }) => {
             className={"text-gray-400"}
             fullWidth
           />
+
         </div>
       </Grid>
-      {/* <Grid item xs={12} sm={6}>
-        <DatePicker
-          label="Start Date"
-          name="startDate"
-          value={formData.startDate}
-          onChange={(date) => handleDateChange(date, "startDate")}
-          disabled={!editable}
-          showYearDropdown
-          fullWidth
-          className=" border"
-        />
-      </Grid> */}
-      {/* Add more Grid items for other data fields */}
+
 
       <Grid className=" w-full space-y-4">
-        <MyButton disabled={!editable} onClick={handleSaveChanges}>
+        <MyButton disabled={!editable} onClick={(e)=> onSubmit(e)}>
           Save Changes
         </MyButton>
         {isLoading && (
@@ -230,26 +266,27 @@ const MoreInformation = ({ data }) => {
           data={[
             {
               title: "MEMBERSHIP",
-              status: formData.membershipStatus,
-              startDate: formData.membershipStartDate,
-              endDate: formData.membershipEndDate,
+              status: formData?.membershipStatus,
+              startDate: formData?.membershipStartDate,
+              endDate: formData?.membershipEndDate,
             },
             {
               title: "MONTHLY",
-              status: formData.monthlySubscriptionStatus,
-              startDate: formData.monthlySubscriptionStartDate,
-              endDate: formData.monthlySubscriptionEndDate,
+              status: formData?.monthlySubscriptionStatus,
+              startDate: formData?.monthlySubscriptionStartDate,
+              endDate: formData?.monthlySubscriptionEndDate,
             },
             {
               title: "STUDENT",
-              status: formData.studentStatus,
-              startDate: formData.studentStartDate,
-              endDate: formData.studentEndDate,
+              status: formData?.studentStatus,
+              startDate: formData?.studentStartDate,
+              endDate: formData?.studentEndDate,
             },
           ]}
         />
       </Grid>
     </Grid>
+
   );
 };
 
@@ -259,10 +296,10 @@ MoreInformation.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
-    brgy: PropTypes.string,
+    address: PropTypes.string,
     weight: PropTypes.string,
     height: PropTypes.string,
-    contactNumber: PropTypes.string,
+    phone: PropTypes.string,
     occupation: PropTypes.string,
     birthday: PropTypes.instanceOf(Date),
     active: PropTypes.bool,

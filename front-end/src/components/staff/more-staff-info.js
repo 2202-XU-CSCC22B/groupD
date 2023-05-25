@@ -6,39 +6,57 @@ import {
   FormControlLabel,
   Switch,
   Grid,
-  Accordion,
+  Accordion, InputLabel, FormControl, MenuItem,
 } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
+import Select from "react-select";
+import {QueryClient, useMutation} from "@tanstack/react-query";
+import axios from "axios";
 
-const MoreStaffInfo = ({ data }) => {
+
+export const updateStaff = async (data) =>{
+  try{
+    const res = await axios.put(process.env.update_staff_api.replace("{id}", data.id),
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "PUT",
+          },
+        });
+    return res;
+  }catch (error){
+    console.log("error here at UPDATE Staff")
+    console.log(error)
+    return error;
+  }
+
+
+}
+
+const MoreStaffInfo = ({ data , refetchTransaction}) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
-
+  const queryClient = new QueryClient();
   const formattedData = {
-    id: data.id,
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    phone: formData.phone,
-    email: formData.email,
-    gender: formData.gender,
-    address: formData.address,
-    weight: formData.weight,
-    height: formData.height,
-    occupation: formData.occupation,
-    birthday: formData.birthday,
-    membershipStartDate: data.membershipStartDate,
-    membershipEndDate: data.membershipEndDate,
-    monthlySubscriptionStartDate: data.monthlySubscriptionStartDate,
-    monthlySubscriptionEndDate: data.monthlySubscriptionEndDate,
-    studentStartDate: data.studentStartDate,
-    studentEndDate: data.studentEndDate,
-    membershipStatus: data.membershipStatus,
-    monthlySubscriptionStatus: data.monthlySubscriptionStatus,
-    studentStatus: data.studentStatus,
+    id: data?.id,
+    firstName: formData?.firstName,
+    lastName: formData?.lastName,
+    phone: formData?.phone,
+    email: formData?.email,
+    gender: formData?.gender,
+    address: formData?.address,
+    weight: formData?.weight,
+    height: formData?.height,
+    occupation: formData?.occupation,
+    birthday: formData?.birthday,
+
   };
 
   const handleInputChange = (event) => {
@@ -60,36 +78,24 @@ const MoreStaffInfo = ({ data }) => {
     setEditable(!editable);
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
     setLoading(true); // Start the loading animation
 
-    // Simulate an asynchronous API call
-    setTimeout(() => {
-      // Send the updated data to the API endpoint for saving
-      // Here, you would typically use a fetch or axios to make the API call
-      // Replace <API_ENDPOINT> with your actual endpoint
-      alert(formData.email);
-      fetch(process.env.update_member_api.replace("{id}", data.id), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formattedData),
-      })
-        .then((response) => {
-          // Handle the API response if needed
-          console.log(response);
-          console.log("Data saved successfully!");
-          alert("Changes were successful");
-          setLoading(false); // Stop the loading animation
-        })
-        .catch((error) => {
-          // Handle any errors that occurred during the API call
-          console.error("Error saving data:", error);
+       setTimeout(()=>{
+         editStaffMutation.mutate(formattedData);
+       },1000);
 
-          setLoading(false); // Stop the loading animation
-        });
-    }, 2000); // Simulating 1 second delay for the API call
   };
 
+  const editStaffMutation = useMutation({
+    mutationFn: updateStaff,
+    onSuccess: () => {
+      setLoading(false)
+      queryClient.invalidateQueries({ queryKey: ["all_staff"] });
+      refetchTransaction();
+    }
+  })
   return (
     <Grid
       container
@@ -174,9 +180,9 @@ const MoreStaffInfo = ({ data }) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          label="Occupation"
-          name="occupation"
-          value={formData?.occupation}
+          label="Position"
+          name="position"
+          value={formData?.position}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
@@ -210,7 +216,7 @@ const MoreStaffInfo = ({ data }) => {
       </Grid>
 
       <Grid className=" w-full space-y-4">
-        <MyButton disabled={!editable} onClick={handleSaveChanges}>
+        <MyButton disabled={!editable} onClick={(e) => handleSaveChanges(e)}>
           Save Changes
         </MyButton>
         {isLoading && (
@@ -220,28 +226,6 @@ const MoreStaffInfo = ({ data }) => {
             </div>
           </div>
         )}
-        <MyCustomAccordion
-          data={[
-            {
-              title: "MEMBERSHIP",
-              status: formData.membershipStatus,
-              startDate: formData.membershipStartDate,
-              endDate: formData.membershipEndDate,
-            },
-            {
-              title: "MONTHLY",
-              status: formData.monthlySubscriptionStatus,
-              startDate: formData.monthlySubscriptionStartDate,
-              endDate: formData.monthlySubscriptionEndDate,
-            },
-            {
-              title: "STUDENT",
-              status: formData.studentStatus,
-              startDate: formData.studentStartDate,
-              endDate: formData.studentEndDate,
-            },
-          ]}
-        />
       </Grid>
     </Grid>
   );
@@ -253,22 +237,15 @@ MoreStaffInfo.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
-    brgy: PropTypes.string,
+    address: PropTypes.string,
     weight: PropTypes.string,
     height: PropTypes.string,
-    contactNumber: PropTypes.string,
-    occupation: PropTypes.string,
+    phone: PropTypes.string,
+    position: PropTypes.string,
     birthday: PropTypes.instanceOf(Date),
-    active: PropTypes.bool,
-    membershipStartDate: PropTypes.instanceOf(Date),
-    membershipEndDate: PropTypes.instanceOf(Date),
-    monthlySubscriptionStartDate: PropTypes.instanceOf(Date),
-    monthlySubscriptionEndDate: PropTypes.instanceOf(Date),
-    studentStartDate: PropTypes.instanceOf(Date),
-    studentEndDate: PropTypes.instanceOf(Date),
-    membershipStatus: PropTypes.string,
-    monthlySubscriptionStatus: PropTypes.string,
-    studentStatus: PropTypes.string,
+    status: PropTypes.string,
+    dateStarted: PropTypes.instanceOf(Date),
+    gender: PropTypes.string
   }).isRequired,
 };
 

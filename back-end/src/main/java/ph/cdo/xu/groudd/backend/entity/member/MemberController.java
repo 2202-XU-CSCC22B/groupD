@@ -3,6 +3,7 @@ package ph.cdo.xu.groudd.backend.entity.member;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.joda.time.DateTime;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ph.cdo.xu.groudd.backend.entity.CustomResponseBody;
+import ph.cdo.xu.groudd.backend.entity.model.enums.PaymentMethod;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.model.enums.TransactionType;
+import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionService;
 import ph.cdo.xu.groudd.backend.exceptions.ApiError;
@@ -32,9 +36,10 @@ public class MemberController {
     private TransactionService transactionService;
 
 
+
     @GetMapping(value = "/test")
     public String test(){
-        return "Hello world!";
+        return "Hello Member Controller!!";
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -83,11 +88,20 @@ public class MemberController {
 
     //This API will be used to officially make a member
 
-    @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email, @RequestBody Date date, @RequestBody double paymentValue) throws MessagingException {
+    @PutMapping(value = "/validate/{email}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomResponseBody> verifyMember(@PathVariable("email") String email, @RequestBody MembershipPaymentForm membershipPaymentForm) throws MessagingException {
 
 
-        Member member =   memberService.validateMember(email, date);
+        Member member =   memberService.validateMember(email, membershipPaymentForm.getDate());
+       TransactionDTO transactionDTO =  TransactionDTO
+               .builder()
+               .date(membershipPaymentForm.getDate())
+               .paymentMethod(PaymentMethod.Cash)
+               .transactionType(TransactionType.MembershipFee.getStringValue())
+               .description("Membership fee")
+               .value(membershipPaymentForm.getPaymentValue())
+               .build();
+        memberService.addTransactionToMember(member.getId(), transactionDTO);
         emailService.sendValidationEmail(member.getContactDetails().getEmail(), member.getName().getFirstName(), member.getMembershipDetails().getMembershipEndDate().toString());
 
 
@@ -135,6 +149,7 @@ public class MemberController {
         return ResponseEntity.ok(memberService.dtoMembers(memberService.allVerified()));
 
     }
+
 
 
     @GetMapping(value = "/unverified", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -13,12 +13,23 @@ const AcceptMemberModal = (props) => {
         setLoading(true); // Set loading state to true
 
         // Handle payment acceptance logic here
+        // alert(process.env.validate_unverified_api.replace("{email}", email))
+        alert(sessionStorage.getItem("token"))
+        console.log(process.env.validate_unverified_api.replace("{email}", email))
         fetch(process.env.validate_unverified_api.replace("{email}", email), {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'PUT'
+
                 // Additional headers if required
             },
+            body:   JSON.stringify({
+                date: new Date(),
+                paymentValue: value
+            })
         })
             .then(response => {
                 if (response.ok) {
@@ -28,8 +39,7 @@ const AcceptMemberModal = (props) => {
                     console.log('Data updated successfully!');
                 } else {
                     // Handle the error if the request was not successful
-                    alert(process.env.validate_unverified_api.replace("{email}", email))
-                    console.error('Error updating data:', response.statusText);
+                    console.error('Error updating data: at acceptMemberModal @ responseNotOkay', response.statusText);
                 }
             })
             .then(() => {
@@ -39,7 +49,7 @@ const AcceptMemberModal = (props) => {
             })
             .catch(error => {
                 // Handle any network or fetch-related errors
-                console.error('Error updating data:', error);
+                console.error('Error updating data: @ acceptMEmberModal @Catch', error);
             })
             .finally(() => {
                 setLoading(false); // Set loading state back to false

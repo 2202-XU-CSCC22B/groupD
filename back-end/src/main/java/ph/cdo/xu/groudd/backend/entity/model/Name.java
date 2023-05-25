@@ -21,11 +21,6 @@ public class Name {
     }
 
     @Override
-    public String toString() {
-        return String.format("%s %s", getFirstName(), getLastName());
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -33,5 +28,10 @@ public class Name {
         return lastName.equalsIgnoreCase(name.lastName) && firstName.equalsIgnoreCase(name.firstName);
     }
 
-
+    @Override
+    public String toString() {
+        String formattedFirstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        String formattedLastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+        return String.format("%s, %s", formattedLastName, formattedFirstName );
+    }
 }

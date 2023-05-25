@@ -1,6 +1,7 @@
 package ph.cdo.xu.groudd.backend.entity.staff;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
@@ -109,6 +110,10 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDTO entityToDTO(Staff staff) {
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for(int i = 0; i < staff.getTransactions().size(); i++){
+            transactionDTOList.add(transactionService.entityToDTO(staff.getTransactions().get(i)));
+        }
           return StaffDTO
                   .builder()
                   .id(staff.getId())
@@ -120,7 +125,10 @@ public class StaffServiceImpl implements StaffService {
                   .address(staff.getAddress())
                   .position(staff.getPosition())
                   .dateStarted(staff.getDateStarted())
+                  .birthday(staff.getBirthDetails().getBirthday())
+                  .name(staff.getName().toString())
                   .status(staff.getStatus())
+                  .transactions(transactionDTOList)
                   .build();
 
     }
@@ -192,12 +200,23 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    public void deleteStaff(Long staffID) {
+        Optional<Staff> optionalStaff = staffRepository.findById(staffID);
+        if(optionalStaff.isEmpty()){
+            throw new RuntimeException("Staff not found!");
+        }else{
+            staffRepository.deleteById(staffID);
+        }
+
+    }
+
+    @Override
     public List<TransactionDTO> getTransactionIDByStaff(Long staffID) {
         Optional<Staff> staff = staffRepository.findById(staffID);
         if(staff.isEmpty())
             throw new RuntimeException("Staff not found!");
 
-        List<Transaction> transactionList = transactionRepository.findAllByStaffId(staffID);
+        List<Transaction> transactionList = transactionRepository.findAllByStaffId(staffID, Sort.by(Sort.Direction.DESC, "date"));
         List<TransactionDTO> transactionDTOList = new ArrayList<>();
         for (Transaction transaction : transactionList) {
             transactionDTOList.add(transactionService.entityToDTO(transaction));

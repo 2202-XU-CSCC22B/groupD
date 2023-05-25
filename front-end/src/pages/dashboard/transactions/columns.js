@@ -1,10 +1,91 @@
 import { TbArrowsDownUp } from "react-icons/tb";
-
+var otherColumnIsSorting = false;
 export const columns = [
+
+  {
+    accessorKey: "id",
+    header: ({ column }) => {
+        if(!column.getIsSorted() && otherColumnIsSorting === false){
+            column.toggleSorting("desc");
+        }
+      return (
+        <div className="flex items-center gap-1">
+          <p>ID</p>
+          <TbArrowsDownUp
+            className="cursor-pointer"
+            onClick={() =>{
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")
+            } }
+          />
+        </div>
+      );
+    },
+    cell: ({ row }) => `${row.original.id}`,
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <div className="flex items-center gap-1">
+          <p>Date</p>
+          <TbArrowsDownUp
+            className="cursor-pointer"
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")
+            }}
+          />
+        </div>
+      );
+    },
+    cell: ({ row }) => `${row.original.date}`,
+  },
+  {
+    accessorKey: "value",
+    header: ({ column }) => {
+      return (
+        <div className=" flex items-center gap-1">
+          <p>Amount</p>
+          <TbArrowsDownUp
+            className=" cursor-pointer"
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
+          />
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <p>₱</p>
+          <span
+            className={`font-semibold px-2 py-1 rounded text-xs ${
+              row.original.transactionType === "Monthly Fee" ||
+              row.original.transactionType === "Muay Thai Class" ||
+              row.original.transactionType === "Membership Fee" ||
+              row.original.transactionType === "Walk-in Session" ||
+              row.original.transactionType === "Cash-in"    
+                ? " bg-emerald-100 text-emerald-700"
+                : " bg-rose-100 text-rose-700"
+            }`}
+          >
+            {row.original.value}
+          </span>
+        </div>
+      );
+    },
+  },
   {
     accessorKey: "transactionType",
     header: ({ column }) => {
-      console.log(column);
       return (
         <div className=" flex items-center gap-1">
           <p>Type</p>
@@ -16,11 +97,19 @@ export const columns = [
             >
               <option hidden></option>
               <option value="">All</option>
-              <option value="sales">Sales</option>
-              <option value="cash out">Cash Out</option>
-              <option value="Salary">Salary</option>
-              <option value="maintenance">Maintenance</option>
-              <option value="utilities">Utilities</option>
+                <option value="Salary">Salary</option>
+                <option value="Cash Out">Cash Out</option>
+                <option value="Trainer Fee">Trainer Fee</option>
+                <option value="Muay Thai Class">Muay Thai Class</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Membership Fee">Membership Fee</option>
+                <option value="Walk-in Session">Walk-in Session</option>
+                <option value="Monthly Fee">Monthly Fee</option>
+                <option value="Cash-in">Cash-in</option>
+                <option value="Missing Money">Missing Money</option>
+
+
             </select>
           </div>
         </div>
@@ -30,7 +119,6 @@ export const columns = [
   {
     accessorKey: "paymentMethod",
     header: ({ column }) => {
-      console.log(column);
       return (
         <div className=" flex items-center gap-1">
           <p>Method</p>
@@ -57,28 +145,32 @@ export const columns = [
   },
 
   {
-    accessorKey: "firstName",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <div className=" flex items-center gap-1">
-          <p>First name</p>
+          <p>Name</p>
           <TbArrowsDownUp
             className=" cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
           />
         </div>
       );
     },
   },
   {
-    accessorKey: "lastName",
+    accessorKey: "entity",
     header: ({ column }) => {
       return (
         <div className=" flex items-center gap-1">
-          <p>Last name</p>
+          <p>Entity</p>
           <TbArrowsDownUp
-            className="cursor-pointer"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className=" cursor-pointer"
+            onClick={() => {
+                otherColumnIsSorting = !otherColumnIsSorting;
+                column.toggleSorting(column.getIsSorted() === "asc")}}
           />
         </div>
       );
@@ -91,28 +183,6 @@ export const columns = [
       return (
         <div className="">
           {row.original.description === null ? "--" : row.original.description}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "memberID",
-    header: "Member ID",
-    cell: ({ row }) => {
-      return (
-        <div className="">
-          {row.original.memberID === null ? "--" : row.original.memberID}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "staffID",
-    header: "Staff ID",
-    cell: ({ row }) => {
-      return (
-        <div className="">
-          {row.original.staffID === null ? "--" : row.original.staffID}
         </div>
       );
     },

@@ -1,125 +1,55 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { allMembersColumnDef } from "@modules/utils/config";
+import {allMembersColumnDef, staffColumnDef} from "@modules/utils/config";
 import { DataGrid } from "@mui/x-data-grid";
 import MoreStaffInfo from "./more-staff-info";
+import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
 
-const data = [
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-  {
-    id: 1,
-    firstName: "coralie",
-    lastName: "rogahn",
-    phone: "(613) 701-9841",
-    email: "doris.hoppe@yahoo.com",
-    gender: "MALE",
-    address: "Cagayan de Oro City",
-    position: "Owner",
-    birthday: null,
-    dateStarted: "2023-05-06",
-    status: "ACTIVE",
-  },
-];
+export const getAllStaff = async () =>{
+  try{
+    const res = axios.get(process.env.retrieve_all_staff_api, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      }
+    });
 
-const AllStaffTable = () => {
-  const [row, setRow] = useState(null);
-  const [selectedRow, setSelectedRow] = useState(null);
-  const column = allMembersColumnDef;
+    return res;
+  }catch (error){
+    console.log("Error here at getAllStaff ")
+    console.log(error)
+    return error;
+  }
+}
+const AllStaffTable = ({setSelectedStaff}) => {
+
+  const {data, refetch} = useQuery({
+    queryKey: ["all_staff"],
+    queryFn: getAllStaff,
+  });
+  const [selectedRow, setSelectedRow] = useState(data?.data.all[0]);
+  const column = staffColumnDef;
   const [isLoading, setIsLoading] = useState(false);
+
+
 
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
     console.log(row.row);
     setSelectedRow(row.row);
+    setSelectedStaff(row.row);
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(process.env.retrieve_members_api); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        setRow(jsonData);
-        setIsLoading(false);
-        setSelectedRow(jsonData[0]);
-        setRow(updatedRow);
-      } catch (error) {
-        console.error("Error fetching row:", error);
-        setIsLoading(false);
-      }
-    };
 
-    fetchData();
-  }, []);
+  console.log("data here " + data);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!row) {
+  if (!data) {
     return <div>No data available.</div>;
   }
 
@@ -127,7 +57,7 @@ const AllStaffTable = () => {
     <div className=" flex flex-col xl:flex-row gap-12 py-8 ">
       <div className=" h-[500px] min-[800px]:w-fit">
         <DataGrid
-          rows={row}
+          rows={data?.data.all}
           columns={column}
           initialState={{
             pagination: {
@@ -139,7 +69,7 @@ const AllStaffTable = () => {
         />
       </div>
 
-      <MoreStaffInfo data={selectedRow} key={selectedRow?.id} />
+      <MoreStaffInfo data={selectedRow} key={selectedRow?.id} refetchTransaction={refetch} />
     </div>
   );
 };

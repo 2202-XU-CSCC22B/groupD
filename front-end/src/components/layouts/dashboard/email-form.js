@@ -6,6 +6,8 @@ import { z } from "zod";
 import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 import RecipientSelect from "./recipient-select";
+import axios from "axios";
+import {QueryClient, QueryClientProvider, useQuery} from "@tanstack/react-query";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 
@@ -28,53 +30,14 @@ const formSchema = z.object({
   message: z.string().nonempty("Enter message"),
 });
 
-export default function EmailForm() {
-  const [allStaffData, setAllStaffData] = useState([]);
-  const [allMemberData, setALlMemberData] = useState([]);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.retrieve_all_staff_api);
-        if (!response.ok) {
-          throw new Error('Failed to fetch staff data');
-        }
-        const data = await response.json();
-        setAllStaffData(data.all);
-        setStaffData(staffData);
-        setAllOwnerData(data.owner);
-        setAllTrainerData(data.trainer);
-        console.log(data)
-        console.log(staffData);
-        console.log(allOwnerData);
-        console.log(allTrainerData);
-      } catch (error) {
-        console.error('Error fetching staff data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+export default function EmailForm({allMembers, allStaff}) {
+  const [quantity, setQuantity] = useState(0);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.retrieve_members_api);
-        if (!response.ok) {
-          throw new Error('Failed to fetch staff data');
-        }
-        const data = await response.json();
-          console.log(data)
-        setALlMemberData(data)
-      } catch (error) {
-        console.error('Error fetching staff data:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
+
 
   const {
     handleSubmit,
@@ -90,7 +53,9 @@ export default function EmailForm() {
 
   const options = [
     { value: "all", label: "Select All" }, // Option to select all recipients
-    ...(selectedOption === "staffs" ? allStaffData : members),
+    ...(Array.isArray(selectedOption === "staffs" ? allStaff : allMembers)
+        ? (selectedOption === "staffs" ? allStaff  : allMembers )
+        : []),
   ];
   const [selectValue, setSelectValue] = useState([]);
   const onSubmit = (data) => {
@@ -106,6 +71,7 @@ export default function EmailForm() {
   console.log(errors);
 
   return (
+
     <form onSubmit={handleSubmit(onSubmit)} className="p-4 max-w-lg space-y-6">
       {/* Recipients */}
       <div className=" space-y-8">
@@ -215,5 +181,6 @@ export default function EmailForm() {
         className=" w-full py-2 bg-blue-700 text-white cusror-pointer hover:scale-95 hover:bg-blue-600 transition-all duration-300 ease-in-out"
       />
     </form>
+
   );
 }

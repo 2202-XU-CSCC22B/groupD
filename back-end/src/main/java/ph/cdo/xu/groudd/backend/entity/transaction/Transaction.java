@@ -45,13 +45,12 @@ public class Transaction {
     private Long id;
     @Column(updatable = false)
     @CreationTimestamp
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime createdAt;
-
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM-dd-yyyy")
     private Date date;
+
+
     private String description;
 
     @Enumerated(EnumType.STRING)

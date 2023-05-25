@@ -1,7 +1,17 @@
 import Head from "next/head";
 import AllStaffTable from "@modules/components/staff/all-staff-table";
+import AllStaffTransactionTable from "@modules/components/staff/all-staff-transaction-table";
+import DataTable from "@modules/components/ui/data-table";
+import { columns} from "@modules/pages/dashboard/transactions/columns";
+import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
+import {useState} from "react";
+
+
 
 const StaffPage = () => {
+    const [selectedStaff, setSelectedStaff] = useState(null)
+    
   return (
     <div>
       <Head>
@@ -14,7 +24,8 @@ const StaffPage = () => {
             All staffs
           </h1>
         </section>
-        <AllStaffTable />
+        <AllStaffTable setSelectedStaff={setSelectedStaff} />
+          {selectedStaff !== null && <DataTable data={selectedStaff?.transactions} columns={columns} title={"All Transactions"}/>}
       </div>
     </div>
   );

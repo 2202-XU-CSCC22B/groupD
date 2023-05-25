@@ -1,8 +1,15 @@
 import { Dialog } from "@headlessui/react";
 import React from "react";
 import EmailForm from "./email-form";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
 
-const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen }) => {
+
+
+const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen , allMembers, allStaff}) => {
+
+
+
   return (
     <Dialog
       open={isEmailModalOpen}
@@ -19,7 +26,7 @@ const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen }) => {
             >
               Back
             </button>
-            <EmailForm />
+            <EmailForm allMembers={allMembers} allStaff={allStaff}/>
           </Dialog.Title>
         </Dialog.Panel>
       </div>

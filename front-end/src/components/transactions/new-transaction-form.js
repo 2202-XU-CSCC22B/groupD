@@ -1,49 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import RecipientSelect from "../layouts/dashboard/recipient-select";
-
-const members = [
-  {
-    value: "none",
-    label: "None",
-  },
-  {
-    value: 456,
-    label: "John Doe",
-  },
-  {
-    value: 789,
-    label: "Jane Smith",
-  },
-];
-
-const staffs = [
-  {
-    value: "none",
-    label: "None",
-  },
-  {
-    value: 456,
-    label: "John Doe",
-  },
-  {
-    value: 789,
-    label: "Jane Smith",
-  },
-];
+import { Paper } from "@mui/material";
+import PropTypes from "prop-types";
+import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
+import axios from "axios";
+import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 
 const schema = z.object({
   date: z.coerce.date(),
   description: z.string().optional(),
   paymentMethod: z.enum(["Cash", "GCash"]),
   transactionType: z.enum([
-    "Sales",
-    "CashOut",
     "Salary",
+    "Cash Out",
+    "Trainer Fee",
+    "Muay Thai Class",
     "Utilities",
     "Maintenance",
+    "Membership Fee",
+    "Walk-in Session",
+    "Monthly Fee",
+    "Cash-in",
+    "Missing Money"
   ]),
   value: z.coerce.number().min(1, "Value too small").nonnegative(),
   memberID: z
@@ -56,7 +37,91 @@ const schema = z.object({
     .optional(),
 });
 
-const NewTransactionForm = ({ setIsOpen }) => {
+const getAllMembers = async () => {
+  try {
+    const res = await axios.get(process.env.retrieve_members_api, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const getAllStaffs = async () => {
+  try {
+    const res = await axios.get(process.env.retrieve_all_staff_api, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const addTransaction = async (transaction) => {
+  try {
+    const res = await axios.post(
+      process.env.post_new_transaction_api,
+      transaction,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST",
+        },
+      }
+    );
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
+  // const [staffs, setStaff] = useState([]);
+  // const [members, setMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const queryClient = new QueryClient();
+
+  const { data: members } = useQuery({
+    queryKey: ["all_members"],
+    queryFn: getAllMembers,
+  });
+
+  const { data: staffs } = useQuery({
+    queryKey: ["all_staffs"],
+    queryFn: getAllStaffs,
+  });
+  // console.log("Members: ", members?.data);
+  // console.log("Staffs: ", staffs?.data.all);
+
+  const transactionMutation = useMutation({
+    mutationFn: addTransaction,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["all_transactions"] });
+      setIsOpen(false);
+      refetchTransactions();
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -64,25 +129,22 @@ const NewTransactionForm = ({ setIsOpen }) => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setIsLoading(true);
     const formattedData = {
       ...data,
       date: data.date.toISOString().split("T")[0],
-      memberID:
-        selectedOption === "staffs" || data.memberID === "none"
-          ? null
-          : data.memberID,
-      staffID:
-        selectedOption === "members" || data.staffID === "none"
-          ? null
-          : data.staffID,
     };
 
-    // POST logic here
     console.log(formattedData);
+
+    setTimeout(()=>{
+      transactionMutation.mutate(formattedData);
+    }, 1000);
+
   };
 
-  const [selectedOption, setSelectedOption] = useState("staffs");
+  const [selectedOption, setSelectedOption] = useState(staffs?.data.all[0]);
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     reset();
@@ -113,17 +175,20 @@ const NewTransactionForm = ({ setIsOpen }) => {
                 Staff
               </label>
               <select
+                required
                 id="staffID"
                 className=" bg-gray-50"
                 {...register("staffID")}
               >
-                {staffs.map((staff) => (
+                <option hidden></option>
+
+                {staffs?.data.all.map((staff) => (
                   <option
                     className=" bg-gray-50"
-                    key={staff.value}
-                    value={staff.value}
+                    key={staff.id}
+                    value={staff.id}
                   >
-                    {staff.label}
+                    {staff.name}
                   </option>
                 ))}
               </select>
@@ -134,17 +199,19 @@ const NewTransactionForm = ({ setIsOpen }) => {
                 Member
               </label>
               <select
+                required
                 id="memberID"
                 className=" bg-gray-50"
                 {...register("memberID")}
               >
-                {members.map((member) => (
+                <option hidden></option>
+                {members?.data.map((member) => (
                   <option
                     className=" bg-gray-50"
-                    key={member.value}
-                    value={member.value}
+                    key={member.id}
+                    value={member.id}
                   >
-                    {member.label}
+                    {member.name}
                   </option>
                 ))}
               </select>
@@ -218,8 +285,12 @@ const NewTransactionForm = ({ setIsOpen }) => {
         </section>
         <input
           type="submit"
-          value="Add Transaction"
-          className=" px-4 py-2 rounded bg-blue-600 text-white text-sm w-1/2 max-w-[226px] cursor-pointer hover:bg-blue-500 hover:scale-95 transition-all duration-300 ease-in-out"
+          value={isLoading ? "Loading..." : "Add Transaction"}
+          className={
+            isLoading
+              ? " px-4 py-2 rounded bg-gray-400 text-white text-sm w-1/2 max-w-[226px] cursor-not-allowed"
+              : " px-4 py-2 rounded bg-blue-600 text-white text-sm w-1/2 max-w-[226px] cursor-pointer hover:bg-blue-500 hover:scale-95 transition-all duration-300 ease-in-out"
+          }
         />
       </div>
     </form>

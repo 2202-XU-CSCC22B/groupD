@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ph.cdo.xu.groudd.backend.entity.model.enums.*;
 import ph.cdo.xu.groudd.backend.entity.staff.*;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class StaffServiceTest {
 
     private final StaffService staffService;
@@ -240,7 +242,7 @@ public class StaffServiceTest {
                     .date(new DateTime(faker.date().past(365, TimeUnit.DAYS)).toDate())
                     .description(faker.lorem().sentence())
                     .paymentMethod(PaymentMethod.Cash)
-                    .transactionType(TransactionType.Salary)
+                    .transactionType(TransactionType.Salary.getStringValue())
                     .value(faker.number().randomDouble(2, 1, 1000))
                     .build();
 
