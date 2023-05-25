@@ -10,21 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/model/enums/TransactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/model/enums/TransactionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/transaction/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/MemberTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/MemberTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/StaffServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/StaffServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/TransactionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ph/cdo/xu/groudd/backend/TransactionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/transactions/new-transaction-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/transactions/new-transaction-form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/ui/data-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/ui/data-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/member/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/staff/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/dashboard/transactions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +231,7 @@
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
       <workItem from="1684928767627" duration="16353000" />
-      <workItem from="1684969903207" duration="6843000" />
+      <workItem from="1684969903207" duration="8610000" />
     </task>
     <servers />
   </component>

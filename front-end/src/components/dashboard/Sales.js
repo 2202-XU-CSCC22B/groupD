@@ -1,57 +1,74 @@
 import * as React from "react";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import {useEffect, useState} from "react";
+import Divider from "@mui/material/Divider";
+export const FormattedNumber = ({ number }) => {
+    const formattedNumber = Number(number).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
 
-export default function Sales({ className, ...props }) {
-  const [summary, setSummary] = useState({});
-  const date = new Date(); // Create a new Date object
-  const month = date.getMonth() + 1; // getMonth() returns a zero-based month index, so add 1
-  const year = date.getFullYear();
-  const [netProfit, setNetProfit] = useState("");
+    return (
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: "1rem" , flexDirection: "row", marginRight: '1rem'}}>
+      <span style={{textAlign: 'left'}}>₱</span>
+      <span style={{ textAlign: 'right' }}>{formattedNumber}</span>
+    </div>
+    );
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log(process.env.retrieve_all_transactions_byMonth.replace("{year}", year).replace("{month}", month))
-        const response = await fetch(process.env.retrieve_all_transactions_byMonth.replace("{year}", year).replace("{month}", month), {
-          method: "GET",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods':'GET'
-          }
-        }); // Replace 'API_ENDPOINT' with the actual endpoint URL
-        const jsonData = await response.json();
-        setSummary(jsonData.summary);
-        const value = summary.netProfit;
-        const numberValue = parseFloat(value);
-        const roundedValue = Math.round(numberValue);
-        const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'PHP' }).format(roundedValue);
+export const FormattedMonth = ({ month, year }) => {
+    const longMonth = new Date(2000, month - 1).toLocaleString('en-US', {
+        month: 'long',
+    });
 
-        setNetProfit(formattedValue)
-      } catch (error) {
-        console.error("Error fetching row:", error);
+    return <div>{`${longMonth} ${year}`}</div>;
+};
 
-      }
+
+export default function Sales({ className, data , month, year}) {
+
+
+  const netProfitColor = data?.summary.netProfit >= 0 ? 'text-green-600' : 'text-red-600';
+  const cashOnHandColor = data?.summary.cashOnHand >= 0 ? 'text-green-600' : 'text-red-600';
+
+    const dividerStyle = {
+        height: 2,
+        background: 'transparent',
+        borderBottom: '1px dashed #A9A9A9', // Customize the color if needed
+        margin: '16px 0', // Customize the margin if needed
     };
 
-    fetchData();
-  }, [netProfit]);
   return (
-    <div
-      className={`${className} space-y-2 flex flex-col justify-between h-full`}
-      {...props}
-    >
-      <h1 className=" text-blue-500 text-xl font-medium">Total Sales</h1>
+      <div >
+        <h1 className="text-2xl font-bold mb-4"><FormattedMonth month={month} year={year}/></h1>
 
-      <div className=" w-full text-center space-y-2  py-8 h-full">
-        <RiMoneyDollarCircleFill size={48} className=" mx-auto text-blue-300" />
-        <h1 className="text-4xl lg:text-5xl font-bold ">{netProfit}</h1>
-        <p className=" text-center text-xs uppercase tracking-wide font-bold text-gray-600">
-          May 2023
-        </p>
+            <div className="flex items-center justify-between mb-4">
+                <p className="text-gray-600">Gross Profit</p>
+                <span className="text-green-600 font-semi-bold"><FormattedNumber number={data?.summary.grossProfit}/></span>
+            </div>
+          <div className="flex items-center justify-between mb-4">
+              <p className="text-gray-600">Total Expense</p>
+              <span className="text-red-600 font-semi-bold"><FormattedNumber number={data?.summary.expense}/></span>
+          </div>
+            <Divider style={dividerStyle}/>
+
+          <div className="flex items-center justify-between mb-4">
+              <p className="text-gray-600">Net Profit</p>
+              <span className={`font-semi-bold ${netProfitColor}`}><FormattedNumber number={data?.summary.netProfit}/></span>
+          </div>
+
+          <div className="flex items-center justify-between mb-4">
+              <p className="text-gray-600">Cash Out</p>
+              <span className="text-red-600 font-semi-bold"><FormattedNumber number={data?.summary.cashOut}/></span>
+          </div>
+          <Divider style={dividerStyle}/>
+          <div className="flex items-center justify-between mb-4">
+              <p className="text-gray-600">Cash on Hand</p>
+              <span className={`font-semi-bold ${cashOnHandColor}`}><FormattedNumber number={data?.summary.cashOnHand}/></span>
+          </div>
+
       </div>
-    </div>
   );
-}
+};
+
+
