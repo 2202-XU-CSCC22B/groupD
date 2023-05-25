@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import Box from "@mui/material/Box";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
@@ -77,10 +78,10 @@ class TransactionTypeSummaryPieChart extends React.Component {
 
         const salesSummary = {
             labels: [
-                'Muay Thai Class',
-                'Membership Fee',
-                'Walk-in Session',
-                'Monthly Fee',
+                'Muay-Thai 🥊',
+                'Membership Fee🏋️‍',
+                'Walk-in',
+                'Monthly Fee 📆',
             ],
             datasets: [{
                 label: 'Sales summary',
@@ -97,42 +98,51 @@ class TransactionTypeSummaryPieChart extends React.Component {
         };
 
         return (
-            <Pie
-                type="pie"
-                data={salesSummary}
-                style={{fontSize: 'xx-small'}}
-                options={{
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'left',
-                            display: false,
+            <Box>
+                <Pie
+                    type="pie"
+                    data={salesSummary}
+                    style={{display: 'flex', textAlign: 'center', flexWrap: 'wrap'}}
+                    options={{
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                display: true,
+                                textDirection: 'rtl',
 
-                        },
-                        title: {
-                            display: true,
-                            text: 'Sales Summary',
-                            position: 'top',
-                        },
-                        datalabels: {
-                            color: '#000',
-                            textAlign: 'center',
 
-                            formatter: (value, ctx) => {
-                                let sum = 0;
-                                let dataArr = ctx.chart.data.datasets[0].data;
-                                dataArr.map(data => {
-                                    sum += data;
-                                });
-                                let percentage = (value*100 / sum).toFixed(2)+"%";
-                                return  `(${percentage})`;
                             },
-                        },
+                            title: {
+                                display: true,
+                                text: 'Sales Summary',
+                                position: 'top',
+                            },
+                            datalabels: {
+                                color: '#000',
+                                textAlign: 'center',
+                                formatter: (value, ctx) => {
+                                    let sum = 0;
+                                    let dataArr = ctx.chart.data.datasets[0].data;
+                                    dataArr.map(data => {
+                                        sum += data;
+                                    });
+                                    let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    return  `₱${Number(Math.round(value)).toLocaleString('en-US', {
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0,
+                                    })}`;
+                                },
+                            },
 
-                    }
-                }}
+                        }
+                    }}
 
-            />
+                />
+            </Box>
+
+
+
         );
     }
 }

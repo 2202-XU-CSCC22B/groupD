@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/AcceptMemberModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/DashboardContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/Sales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/TransactionTypeSummaryPieChart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +230,7 @@
       <workItem from="1684661433620" duration="9741000" />
       <workItem from="1684671453777" duration="1999000" />
       <workItem from="1684928767627" duration="16353000" />
-      <workItem from="1684969903207" duration="8610000" />
+      <workItem from="1684969903207" duration="9970000" />
     </task>
     <servers />
   </component>
@@ -255,6 +254,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java</url>
           <line>47</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
