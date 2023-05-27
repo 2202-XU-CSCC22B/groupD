@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        /* Add your basic CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        p{
+            text-indent: 2em;
+            text-align: justify;
+        }
+        .container {
+            background-color: #bbdefb;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .banner {
+            background-color: #42a5f5;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            color: #000000;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="banner">
+        Unscathed Fitness<br>
+        <span style="font-size: 16px; font-weight: normal;">"Build your body, Transform your Life"</span>
+    </div>
+    <div class="message">
+        <p>Dear <span th:text="${firstName}"></span>,</p>
+        <p>Congratulations! Your membership registration has been successfully processed, and we are thrilled to welcome you to our vibrant community. Thank you for choosing to be a part of our membership program.</p>
+        <p>We would like to express our sincere appreciation for your payment, which has ensured that your membership is now active and valid. Your membership benefits will be available to you until <b><span th:text="${expirationDate}"></span></b>.</p>
+        <p>To enhance your experience and foster engagement within our community, we invite you to join our exclusive Member's Group Chat on Messenger. By clicking on the following link, you will be directed to the group:</p>
+        <p class="info"><a href="https://m.me/j/AbZgI_7rp3GHKb8I/">Here</a> </p>
+        <p>In the group chat, you will have the opportunity to connect with fellow members, engage in discussions, seek advice, and stay up-to-date with the latest updates and exclusive offers. We encourage active participation as it will greatly enrich your membership experience.</p>
+        <p>Once again, thank you for becoming a valued member of our community.</p>
+    </div>
+    <div class="footer">
+        <p>For more information, please visit our Facebook page:</p>
+        <p><a href="https://www.facebook.com/unscthdfitness">https://www.facebook.com/unscthdfitness</a></p>
+    </div>
+</div>
+</body>
+</html>

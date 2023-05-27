@@ -1,15 +1,15 @@
-import {Container, Paper, Typography} from "@mui/material";
-import Link from "next/link";
+import AboutSection from "@modules/components/home/AboutSection";
+import ContactSection from "@modules/components/home/ContactSection";
+import HomeSection from "@modules/components/home/HomeSection";
 
-export default function LandingPage(){
-  return(
-      <Paper>
-          <Container sx={{display: "flex", flexDirection: "column"}}>
-              <Typography> Landing Page</Typography>
-              <Link href={"/login"}> <Typography variant={"h3"}> Login here!</Typography></Link>
-          </Container>
+const index = () => {
+  return (
+    <section className=" md:h-screen bg-white md:snap-mandatory md:snap-y md:overflow-scroll md:snap-always  md:scroll-pt-[87px] ">
+      <HomeSection id="home" />
+      <AboutSection id="about" />
+      <ContactSection id="contact" className="md:mb-[194.17px]" />
+    </section>
+  );
+};
 
-
-      </Paper>
-  )
-}
+export default index;

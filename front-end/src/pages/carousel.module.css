@@ -1,0 +1,17 @@
+.carouselSliderWrapper {
+  max-height: 100px; /* Adjust the max-height as needed */
+  overflow: hidden;
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px; /* Adjust the width as needed */
+  height: fit-content; /* Set the height to fit the content */
+  margin-bottom: -80px;
+  border: 2px solid #000; /* Adjust the border properties as needed */
+  border-radius: 8px; /* Adjust the border radius as needed */
+  box-sizing: content-box; /* Set box-sizing to content-box */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adjust the shadow properties as needed */
+}

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="back-end:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/layouts/DashboardLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/utils/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/utils/functions.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2PogmT26IcwfXrhFq5uH2ILOXCG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Documents/GitHub/finals&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a115a25065b29adfe4c0b73391cd5b3a&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Documents\GitHub\groupD\back-end\src\main\resources\static\images" />
+      <recent name="C:\Users\admin\Documents\GitHub\groupD\back-end\src\main\resources\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Documents\GitHub\groupD\back-end\src\main\resources\static\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BackEndApplication">
+    <configuration name="MemberTest.shouldBeAbleToAddTransactionToMembers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.MemberTest" />
+      <option name="METHOD_NAME" value="shouldBeAbleToAddTransactionToMembers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaffServiceTest.shouldAddTransactionToStaff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.StaffServiceTest" />
+      <option name="METHOD_NAME" value="shouldAddTransactionToStaff" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionTest.shouldTestAllTransactionSummaryByMonth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.TransactionTest" />
+      <option name="METHOD_NAME" value="shouldTestAllTransactionSummaryByMonth" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionTest.shouldTestTransactionSummary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="MAIN_CLASS_NAME" value="ph.cdo.xu.groudd.backend.TransactionTest" />
+      <option name="METHOD_NAME" value="shouldTestTransactionSummary" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ph.cdo.xu.groudd.backend in back-end" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-end" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ph.cdo.xu.groudd.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ph.cdo.xu.groudd.backend" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <module name="back-end" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ph.cdo.xu.groudd.backend.BackEndApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.MemberTest.shouldBeAbleToAddTransactionToMembers" />
+      <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
+      <item itemvalue="JUnit.StaffServiceTest.shouldAddTransactionToStaff" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestAllTransactionSummaryByMonth" />
+      <item itemvalue="JUnit.TransactionTest.shouldTestTransactionSummary" />
+      <item itemvalue="Spring Boot.BackEndApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ph.cdo.xu.groudd.backend in back-end" />
+        <item itemvalue="JUnit.TransactionTest.shouldTestAllTransactionSummaryByMonth" />
+        <item itemvalue="JUnit.TransactionTest.shouldTestTransactionSummary" />
+        <item itemvalue="JUnit.StaffServiceTest.shouldAddTransactionToStaff" />
+        <item itemvalue="JUnit.MemberTest.shouldBeAbleToAddTransactionToMembers" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="" />
+      <created>1684129010785</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684129010785</updated>
+      <workItem from="1684129012141" duration="17735000" />
+      <workItem from="1684148614985" duration="2385000" />
+      <workItem from="1684155811290" duration="302000" />
+      <workItem from="1684156160964" duration="1047000" />
+      <workItem from="1684161056826" duration="2683000" />
+      <workItem from="1684172398578" duration="12676000" />
+      <workItem from="1684267092030" duration="314000" />
+      <workItem from="1684345176528" duration="16162000" />
+      <workItem from="1684394576925" duration="9689000" />
+      <workItem from="1684445308957" duration="526000" />
+      <workItem from="1684462776503" duration="5676000" />
+      <workItem from="1684553825396" duration="1715000" />
+      <workItem from="1684582871179" duration="24676000" />
+      <workItem from="1684645767335" duration="15380000" />
+      <workItem from="1684661433620" duration="9741000" />
+      <workItem from="1684671453777" duration="1999000" />
+      <workItem from="1684928767627" duration="16353000" />
+      <workItem from="1684969903207" duration="9970000" />
+      <workItem from="1685104323500" duration="1809000" />
+      <workItem from="1685197909024" duration="2622000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/auth/AuthenticationController.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/utils/JwtService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ph/cdo/xu/groudd/backend/entity/member/MemberController.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/back_end$BackEndApplication.ic" NAME="BackEndApplication Coverage Results" MODIFIED="1684203101663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
