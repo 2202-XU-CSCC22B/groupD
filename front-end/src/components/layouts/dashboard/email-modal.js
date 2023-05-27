@@ -1,14 +1,32 @@
 import { Dialog } from "@headlessui/react";
 import React from "react";
 import EmailForm from "./email-form";
-import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import { getAllMembers, getAllStaff } from "@modules/utils/axiosApi";
 
+const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen }) => {
+  const queryClient = new QueryClient();
+  const { data: allStaff } = useQuery({
+    queryKey: ["all_staff"],
+    queryFn: getAllStaff,
+  });
 
+  const { data: allMembers } = useQuery({
+    queryKey: ["all_members"],
+    queryFn: getAllMembers,
+  });
 
-const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen , allMembers, allStaff}) => {
+  const formattedAllMembers = allMembers?.data.map((member) => ({
+    id: member.id,
+    label: member.name,
+    value: member.email,
+  }));
 
-
+  const formattedallStaff = allStaff?.data.all.map((staff) => ({
+    id: staff.id,
+    label: staff.name,
+    value: staff.email,
+  }));
 
   return (
     <Dialog
@@ -26,7 +44,10 @@ const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen , allMembers, allSta
             >
               Back
             </button>
-            <EmailForm allMembers={allMembers} allStaff={allStaff}/>
+            <EmailForm
+              allMembers={formattedAllMembers}
+              allStaff={formattedallStaff}
+            />
           </Dialog.Title>
         </Dialog.Panel>
       </div>

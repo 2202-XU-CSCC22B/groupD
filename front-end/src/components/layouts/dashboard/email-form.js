@@ -14,6 +14,18 @@ const formSchema = z.object({
   message: z.string().nonempty("Enter message"),
 });
 
+const staffs = [
+  { value: "a@gmail.com", label: "staff1" },
+  { value: "b@gmail.com", label: "staff2" },
+  { value: "c@gmail.com", label: "staff3" },
+];
+
+const members = [
+  { value: "a@gmail.com", label: "member1" },
+  { value: "b@gmail.com", label: "member2" },
+  { value: "c@gmail.com", label: "member3" },
+];
+
 export default function EmailForm({ allMembers, allStaff }) {
   const {
     handleSubmit,
@@ -74,6 +86,13 @@ export default function EmailForm({ allMembers, allStaff }) {
             defaultValue={[]}
             render={({ field }) => (
               <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    maxHeight: "150px",
+                    overflowY: "auto",
+                  }),
+                }}
                 {...field}
                 {...register("recipients")}
                 autoFocus={false}
