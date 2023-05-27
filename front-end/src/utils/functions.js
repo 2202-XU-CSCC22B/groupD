@@ -1,9 +1,5 @@
-const handleLogoutClick = () => {
-  alert("Logout clicked");
-  window.location.href = "/";
-};
 
-export { handleLogoutClick };
+
 
 export function titleCase(string) {
   const words = string.split(" ");
