@@ -19,7 +19,6 @@ export const getAllStaff = async () => {
 
     return res;
   } catch (error) {
-    console.log("Error here at getAllStaff ");
     console.log(error);
     return error;
   }
@@ -29,18 +28,15 @@ const AllStaffTable = ({ setSelectedStaff }) => {
     queryKey: ["all_staff"],
     queryFn: getAllStaff,
   });
-  const [selectedRow, setSelectedRow] = useState(data?.data.all[0]);
+  const [selectedRow, setSelectedRow] = useState(data?.data?.all[0]);
   const column = staffColumnDef;
   const [isLoading, setIsLoading] = useState(false);
 
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
-    console.log(row.row);
     setSelectedRow(row.row);
     setSelectedStaff(row.row);
   };
-
-  console.log("data here " + data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -54,7 +50,7 @@ const AllStaffTable = ({ setSelectedStaff }) => {
     <div className=" flex flex-col xl:flex-row gap-12 py-8 ">
       <div className=" h-[500px] min-[800px]:w-fit">
         <DataGrid
-          rows={data?.data.all}
+          rows={data?.data?.all}
           columns={column}
           initialState={{
             pagination: {

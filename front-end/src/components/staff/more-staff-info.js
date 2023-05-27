@@ -23,7 +23,6 @@ export const updateStaff = async (data) => {
     );
     return res;
   } catch (error) {
-    console.log("error here at UPDATE Staff");
     console.log(error);
     return error;
   }

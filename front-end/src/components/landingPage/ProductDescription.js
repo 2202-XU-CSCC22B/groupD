@@ -6,17 +6,15 @@ import { styled } from "@mui/system";
 export default function ProductDescription(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-    console.log("Open");
     setOpen(!open);
   };
 
   const CenteredIcon = styled("div")`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-  line-height: 0;
-`;
-
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    line-height: 0;
+  `;
 
   return (
     <Paper
@@ -32,11 +30,11 @@ export default function ProductDescription(props) {
         <Typography variant="h5" sx={{ marginBottom: 2 }}>
           {props.title}
         </Typography>
-        <Box sx={{ fontSize: "2rem", transform: "scale(2)", marginTop:4}}>
+        <Box sx={{ fontSize: "2rem", transform: "scale(2)", marginTop: 4 }}>
           <CenteredIcon>
-  <Icon>{props.icon}</Icon>
-  </CenteredIcon>
-</Box>
+            <Icon>{props.icon}</Icon>
+          </CenteredIcon>
+        </Box>
         <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
           {props.description}
         </Typography>

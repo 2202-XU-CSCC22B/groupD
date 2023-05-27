@@ -10,13 +10,11 @@ export default function AllMemberTable({
   setSelectedMember,
   data,
   refetchTransactions,
-  selectedMember,
 }) {
   const [selectedRow, setSelectedRow] = useState();
   const column = allMembersColumnDef;
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("data here " + data);
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
     console.log(row.row);

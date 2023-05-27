@@ -7,9 +7,6 @@ import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
 
 export const updateMember = async (data) => {
   try {
@@ -27,7 +24,6 @@ export const updateMember = async (data) => {
     );
     return res;
   } catch (error) {
-    console.log("error here at UPDATE MEMBER");
     console.log(error);
     return error;
   }

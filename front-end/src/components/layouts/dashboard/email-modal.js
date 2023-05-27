@@ -22,7 +22,7 @@ const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen }) => {
     value: member.email,
   }));
 
-  const formattedallStaff = allStaff?.data.all.map((staff) => ({
+  const formattedAllStaff = allStaff?.data?.all.map((staff) => ({
     id: staff.id,
     label: staff.name,
     value: staff.email,
@@ -46,7 +46,7 @@ const EmailModal = ({ isEmailModalOpen, setIsEmailModalOpen }) => {
             </button>
             <EmailForm
               allMembers={formattedAllMembers}
-              allStaff={formattedallStaff}
+              allStaff={formattedAllStaff}
             />
           </Dialog.Title>
         </Dialog.Panel>
