@@ -35,7 +35,7 @@ const NavigationBar = ({ className, ...props }) => {
             <Link
               className="text-sm transition-all duration-300 ease-in-out p-2 text-gray-50 uppercase font-medium tracking-wide hover:bg-gray-700 rounded-lg"
               key={index}
-              href={link.href}
+              href={`/${link.href}`}
             >
               {link.label}
             </Link>
