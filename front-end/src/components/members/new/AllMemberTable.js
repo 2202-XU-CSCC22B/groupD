@@ -1,32 +1,20 @@
 import * as React from "react";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import IconButton from "@mui/material/IconButton";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { allMembersColumnDef } from "@modules/utils/config";
 import { DataGrid } from "@mui/x-data-grid";
-import { Paper, Typography } from "@mui/material";
-import Divider from "@mui/material/Divider";
 import MoreInformation from "@modules/components/members/new/MoreInformation";
-import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
-import {getAllStaff} from "@modules/components/staff/all-staff-table";
 
-const ActionButton = () => {
-  return (
-    <IconButton color="primary" aria-label="actions" component="label">
-      <AddTaskIcon />
-    </IconButton>
-  );
-}
-
-
-export default function AllMemberTable({setSelectedMember, data, refetchTransactions, selectedMember}) {
-
-
+export default function AllMemberTable({
+  setSelectedMember,
+  data,
+  refetchTransactions,
+  selectedMember,
+}) {
   const [selectedRow, setSelectedRow] = useState();
   const column = allMembersColumnDef;
   const [isLoading, setIsLoading] = useState(false);
-
 
   console.log("data here " + data);
   const onRowDoubleClick = (row, event) => {
@@ -34,9 +22,8 @@ export default function AllMemberTable({setSelectedMember, data, refetchTransact
     console.log(row.row);
 
     setSelectedRow(row.row);
-    setSelectedMember(row.row)
+    setSelectedMember(row.row);
   };
-
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -70,7 +57,11 @@ export default function AllMemberTable({setSelectedMember, data, refetchTransact
         />
       </div>
 
-      <MoreInformation data={selectedRow} key={selectedRow?.id} refetchTransactions={refetchTransactions} />
+      <MoreInformation
+        data={selectedRow}
+        key={selectedRow?.id}
+        refetchTransactions={refetchTransactions}
+      />
     </div>
   );
 }

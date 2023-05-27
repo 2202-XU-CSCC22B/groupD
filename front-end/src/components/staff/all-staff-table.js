@@ -1,40 +1,37 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import {allMembersColumnDef, staffColumnDef} from "@modules/utils/config";
+import { allMembersColumnDef, staffColumnDef } from "@modules/utils/config";
 import { DataGrid } from "@mui/x-data-grid";
 import MoreStaffInfo from "./more-staff-info";
 import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
-export const getAllStaff = async () =>{
-  try{
+export const getAllStaff = async () => {
+  try {
     const res = axios.get(process.env.retrieve_all_staff_api, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
-      }
+      },
     });
 
     return res;
-  }catch (error){
-    console.log("Error here at getAllStaff ")
-    console.log(error)
+  } catch (error) {
+    console.log("Error here at getAllStaff ");
+    console.log(error);
     return error;
   }
-}
-const AllStaffTable = ({setSelectedStaff}) => {
-
-  const {data, refetch} = useQuery({
+};
+const AllStaffTable = ({ setSelectedStaff }) => {
+  const { data, refetch } = useQuery({
     queryKey: ["all_staff"],
     queryFn: getAllStaff,
   });
   const [selectedRow, setSelectedRow] = useState(data?.data.all[0]);
   const column = staffColumnDef;
   const [isLoading, setIsLoading] = useState(false);
-
-
 
   const onRowDoubleClick = (row, event) => {
     event.preventDefault();
@@ -69,7 +66,11 @@ const AllStaffTable = ({setSelectedStaff}) => {
         />
       </div>
 
-      <MoreStaffInfo data={selectedRow} key={selectedRow?.id} refetchTransaction={refetch} />
+      <MoreStaffInfo
+        data={selectedRow}
+        key={selectedRow?.id}
+        refetchTransaction={refetch}
+      />
     </div>
   );
 };

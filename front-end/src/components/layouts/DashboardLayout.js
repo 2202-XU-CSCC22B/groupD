@@ -122,8 +122,6 @@ export default function DashboardLayout({ children }) {
     queryFn: getAllStaff,
   });
 
-  console.log(allMembers?.data);
-  console.log(allStaff?.data.all);
 
   const handleDrawerOpen = () => {
     setOpen(true);

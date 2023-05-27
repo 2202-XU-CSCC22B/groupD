@@ -6,12 +6,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
-import image1 from "../../../public/images/AddSale.png";
 import { cardContents } from "@modules/utils/config";
 import homeBG2 from "../../../public/images/gymbg2.png";
 
 const AboutSection = ({ ...props }) => {
-  console.log(image1);
   return (
     <Section
       {...props}

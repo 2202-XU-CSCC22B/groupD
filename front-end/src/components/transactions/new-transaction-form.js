@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import RecipientSelect from "../layouts/dashboard/recipient-select";
-import { Paper } from "@mui/material";
-import PropTypes from "prop-types";
-import ResponsiveAppBar from "@modules/components/layouts/ResponsiveAppBar";
 import axios from "axios";
 import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 
@@ -24,7 +21,7 @@ const schema = z.object({
     "Walk-in Session",
     "Monthly Fee",
     "Cash-in",
-    "Missing Money"
+    "Missing Money",
   ]),
   value: z.coerce.number().min(1, "Value too small").nonnegative(),
   memberID: z
@@ -95,9 +92,7 @@ const addTransaction = async (transaction) => {
   }
 };
 
-const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
-  // const [staffs, setStaff] = useState([]);
-  // const [members, setMembers] = useState([]);
+const NewTransactionForm = ({ setIsOpen, refetchTransactions }) => {
   const [isLoading, setIsLoading] = useState(false);
   const queryClient = new QueryClient();
 
@@ -110,8 +105,6 @@ const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
     queryKey: ["all_staffs"],
     queryFn: getAllStaffs,
   });
-  // console.log("Members: ", members?.data);
-  // console.log("Staffs: ", staffs?.data.all);
 
   const transactionMutation = useMutation({
     mutationFn: addTransaction,
@@ -138,10 +131,9 @@ const NewTransactionForm = ({ setIsOpen, refetchTransactions}) => {
 
     console.log(formattedData);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       transactionMutation.mutate(formattedData);
     }, 1000);
-
   };
 
   const [selectedOption, setSelectedOption] = useState(staffs?.data.all[0]);

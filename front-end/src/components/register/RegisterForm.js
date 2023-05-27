@@ -62,61 +62,7 @@ const RegisterForm = () => {
       },
       membershipDetails: {},
     };
-    //
-    // "id": 1,
-    //     "firstName": "leeann",
-    //     "lastName": "koepp",
-    //     "phone": "1-642-434-6252",
-    //     "email": "leeannkoepp@gmail.com",
-    //     "gender": "FEMALE",
-    //     "address": "cronin turnpike",
-    //     "weight": 94.86,
-    //     "height": 64.85,
-    //     "occupation": "Investor Design Consultant",
-    //     "birthday": "2017-02-07",
-    //     "membershipStartDate": "2023-12-17",
-    //     "membershipEndDate": "2024-12-17",
-    //     "monthlySubscriptionStartDate": "2023-12-17",
-    //     "monthlySubscriptionEndDate": "2024-01-17",
-    //     "studentStartDate": null,
-    //     "studentEndDate": null,
-    //     "membershipStatus": "ACTIVE",
-    //     "monthlySubscriptionStatus": "ACTIVE",
-    //     "studentStatus": "INACTIVE"
 
-    // fetch(process.env.create_members_api, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formattedData),
-    // })
-    //   .then((response) => {
-    //     console.log("Response status code:", response.status);
-    //     if (response.ok) {
-    //       setIsLoading(false);
-    //       setIsSent(true);
-
-    //       return response.json();
-    //     } else if (response.status === 409) {
-    //       setIsDuplicate(true);
-    //       setIsLoading(false);
-    //     } else {
-    //       return response.json().then((errorData) => {
-    //         throw new Error(errorData.message || "Request failed");
-    //       });
-    //     }
-    //   })
-    //   .then((data) => {
-    //     console.log("Response data:", data);
-    //     reset();
-    //     setTimeout(() => {
-    //       setIsSent(false);
-    //     }, 5000);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error:", error);
-    //   });
     try {
       const response = await axios.post(
         process.env.create_members_api,
