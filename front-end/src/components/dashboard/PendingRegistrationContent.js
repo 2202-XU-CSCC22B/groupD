@@ -245,6 +245,12 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
+        sortModel={[
+        {
+          field: 'id',
+          sort: 'desc',
+        },
+      ]}
           pageSizeOptions={[5]}
         />
         <Snackbar

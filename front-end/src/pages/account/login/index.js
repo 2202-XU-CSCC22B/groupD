@@ -90,12 +90,12 @@ export default function LoginPage() {
 
                 </button>
               {/*</Link>*/}
-              <small className="text-sm text-center w-fit mx-auto">
-                Forgot your password?{" "}
-                <a href="/account/forgot_password" className="text-blue-500 underline">
-                  Click here.
-                </a>
-              </small>
+              {/*<small className="text-sm text-center w-fit mx-auto">*/}
+              {/*  Forgot your password?{" "}*/}
+              {/*  <a href="/account/forgot_password" className="text-blue-500 underline">*/}
+              {/*    Click here.*/}
+              {/*  </a>*/}
+              {/*</small>*/}
             </div>
           </div>
         </div>

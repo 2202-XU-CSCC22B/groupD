@@ -10,8 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4da09e-fe7a-4579-9f3c-bb73e68f6264" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/register/RegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/components/dashboard/PendingRegistrationContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/src/pages/account/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/src/pages/account/login/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +229,7 @@
       <workItem from="1684928767627" duration="16353000" />
       <workItem from="1684969903207" duration="9970000" />
       <workItem from="1685104323500" duration="1809000" />
-      <workItem from="1685197909024" duration="2089000" />
+      <workItem from="1685197909024" duration="2451000" />
     </task>
     <servers />
   </component>
