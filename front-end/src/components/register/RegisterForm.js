@@ -45,28 +45,26 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     setIsLoading(true);
     const formattedData = {
-      name: {
         firstName: data.firstName,
         lastName: data.lastName,
-      },
-      contactDetails: {
         email: data.email,
         phone: data.phone,
-      },
       address: data.address,
       weight: data.weight,
       height: data.height,
       occupation: data.occupation,
-      birthDetails: {
-        birthday: data.birthday.toISOString().split("T")[0],
-      },
-      membershipDetails: {},
+      birthday: data.birthday.toISOString().split("T")[0],
     };
 
     try {
       const response = await axios.post(
         process.env.create_members_api,
-        formattedData
+          JSON.stringify(formattedData),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          }
       );
       // response successs
       if (response.status === 200) {
@@ -78,6 +76,8 @@ const RegisterForm = () => {
         }, 5000);
       } else {
         console.log(response);
+        setIsLoading(false);
+        alert(error);
       }
     } catch (error) {
       // email already exists
@@ -90,6 +90,8 @@ const RegisterForm = () => {
       } else {
         // other error
         console.log(error);
+        setIsLoading(false);
+        alert(error);
       }
     }
   };
