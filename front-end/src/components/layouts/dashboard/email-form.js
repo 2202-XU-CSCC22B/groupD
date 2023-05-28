@@ -6,6 +6,8 @@ import { z } from "zod";
 import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 import RecipientSelect from "./recipient-select";
+import {sendEmail} from "@modules/utils/axiosApi";
+import {useMutation} from "@tanstack/react-query";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const formSchema = z.object({
@@ -27,6 +29,8 @@ const members = [
 ];
 
 export default function EmailForm({ allMembers, allStaff }) {
+
+
   const {
     handleSubmit,
     register,
@@ -49,6 +53,9 @@ export default function EmailForm({ allMembers, allStaff }) {
   ];
   const [selectValue, setSelectValue] = useState([]);
   const onSubmit = (data) => {
+
+    sendEmail(data).then(r => alert("Email is sent"));
+
     console.log(data);
   };
 

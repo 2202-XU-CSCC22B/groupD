@@ -38,11 +38,25 @@ export const createNewStaff = async (data) => {
         "Access-Control-Allow-Methods": "POST",
       },
     });
-    alert("response create new staff");
     return res;
   } catch (error) {
-    alert("rasdasdasdas");
-
     return error;
   }
 };
+
+export const sendEmail = async (data) => {
+  try {
+    const res = await axios.post(process.env.send_announcement_email_api, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+      },
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+

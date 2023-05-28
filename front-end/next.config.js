@@ -22,6 +22,7 @@ module.exports = {
     retrieve_all_staff_api: "http://localhost:8080/api/v1/staff/all",
     retrieve_staff_api: "http://localhost:8080/api/v1/staff/{id}",
     retrieve_staff_transaction: "http://localhost:8080/staff/{id}/transactions",
+    send_announcement_email_api: "http://localhost:8080/announcement/new",
 
     //Transaction
     retrieve_all_transactions_api: "http://localhost:8080/api/v1/transaction/all",

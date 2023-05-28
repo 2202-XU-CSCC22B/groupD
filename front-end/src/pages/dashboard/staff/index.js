@@ -2,6 +2,8 @@ import Head from "next/head";
 import AllStaffTable from "@modules/components/staff/all-staff-table";
 import { useState } from "react";
 import ModalAddStaff from "@modules/components/staff/modal-add-staff";
+import DataTable from "@modules/components/ui/data-table";
+import { columns } from "@modules/pages/dashboard/transactions/columns";
 
 const StaffPage = () => {
   const [selectedStaff, setSelectedStaff] = useState(null);
@@ -28,6 +30,11 @@ const StaffPage = () => {
           </button>
         </section>
         <AllStaffTable setSelectedStaff={setSelectedStaff} />
+        {/*<DataTable*/}
+        {/*data={selectedStaff?.transactions}*/}
+        {/*columns={columns}*/}
+        {/*title={"All Transactions"}*/}
+        {/*/>*/}
 
         <ModalAddStaff isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>

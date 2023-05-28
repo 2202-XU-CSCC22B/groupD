@@ -79,10 +79,9 @@ public class EmailService {
         mailSender.send(message);
     }
 
-    public void sendAnnouncementEmail(String email, String firstName, String body, String subject) throws MessagingException {
+    public void sendAnnouncementEmail(String email, String body, String subject) throws MessagingException {
         Context context = new Context();
 
-        context.setVariable("firstName", firstName);
         context.setVariable("body", body);
 
 

@@ -95,4 +95,19 @@ public class StaffController {
         return ResponseEntity.ok(objectMap);
 
     }
+
+
+    @PostMapping(value = "/announcement/new", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> sendAnnouncementEmail(@RequestBody AnnouncementEmailBody announcementEmailBody) throws MessagingException {
+        Map<String, Object> objectMap = new HashMap<>();
+
+        for(int i = 0; i < announcementEmailBody.emailAddress.length; i++){
+            emailService.sendAnnouncementEmail(announcementEmailBody.emailAddress[i], announcementEmailBody.message, announcementEmailBody.subject);
+        }
+
+        objectMap.put("announcementEmail", announcementEmailBody);
+
+        return ResponseEntity.ok(objectMap);
+
+    }
 }

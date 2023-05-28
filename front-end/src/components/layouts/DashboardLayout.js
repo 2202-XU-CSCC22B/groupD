@@ -157,12 +157,12 @@ export default function DashboardLayout({ children }) {
     setIsEmailModalOpen(!isEmailModalOpen);
   };
   const dashBoardAction = [
-    {
-      name: "Email",
-      onClick: toggleDrawer,
-      tooltip: "Click to send email",
-      icon: <EmailRoundedIcon />,
-    },
+    // {
+    //   name: "Email",
+    //   onClick: toggleDrawer,
+    //   tooltip: "Click to send email",
+    //   icon: <EmailRoundedIcon />,
+    // },
     {
       name: "Logout",
       onClick: handleLogoutClick,

@@ -6,7 +6,10 @@ import MoreStaffInfo from "./more-staff-info";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
+
 export const getAllStaff = async () => {
+
+
   try {
     const res = axios.get(process.env.retrieve_all_staff_api, {
       headers: {
@@ -24,6 +27,7 @@ export const getAllStaff = async () => {
   }
 };
 const AllStaffTable = ({ setSelectedStaff }) => {
+
   const { data, refetch } = useQuery({
     queryKey: ["all_staff"],
     queryFn: getAllStaff,
@@ -50,7 +54,7 @@ const AllStaffTable = ({ setSelectedStaff }) => {
     <div className=" flex flex-col xl:flex-row gap-12 py-8 ">
       <div className=" h-[500px] min-[800px]:w-fit">
         <DataGrid
-          rows={data?.data?.all}
+          rows={data?.data.all}
           columns={column}
           initialState={{
             pagination: {
