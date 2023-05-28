@@ -8,6 +8,7 @@ import ph.cdo.xu.groudd.backend.entity.model.BirthDetails;
 import ph.cdo.xu.groudd.backend.entity.model.ContactDetails;
 import ph.cdo.xu.groudd.backend.entity.model.Name;
 import ph.cdo.xu.groudd.backend.entity.model.enums.Status;
+import ph.cdo.xu.groudd.backend.entity.model.enums.TransactionType;
 import ph.cdo.xu.groudd.backend.entity.transaction.Transaction;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionDTO;
 import ph.cdo.xu.groudd.backend.entity.transaction.TransactionRepository;
@@ -288,6 +289,13 @@ public class MemberServiceImpl implements MemberService{
             Member member = optionalMember.get();
             Transaction transaction = transactionService.dtoToEntity(transactionDTO);
 
+            if(transaction.getTransactionType() == TransactionType.MonthlyFee){
+                member.getMembershipDetails().setMonthlySubscriptionStartDate(transaction.getDate());
+                member.getMembershipDetails().setMonthlySubscriptionEndDate(dateService.addMonthsToDate(transaction.getDate(), 1));
+            }else if(transaction.getTransactionType() == TransactionType.MuaythaiClass){
+                member.getMembershipDetails().setStudentStartDate(transaction.getDate());
+                member.getMembershipDetails().setStudentEndDate(dateService.addMonthsToDate(transaction.getDate(), 1));
+            }
 
             member.addToChildren(transaction);
 
