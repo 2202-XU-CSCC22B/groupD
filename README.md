@@ -45,10 +45,13 @@ Unfortunately our API request does not have an SSL certificate yet.
 - JWT Authentication is used. 
 [VIEW ALL MEMBERS](http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/all) 
 
-### Disclaimer
+### Disclaimer 
 - Our JWT Token was stored via Session Storage. We are completely aware that this is a bad practice as this is vulnerable to attacks. 
 - We can configure this by storing the Token Via HTTPS COOKIE-Only header. 
-- Honestly , nalimtan lang gyud namu ug butang sir. Sorry ✌
+- Honestly , nalimtan lang gyud namu ug butang sir. Sorry ✌ 
+- Medyo hasol man gud kaayo mag update ug changes sa akong deployment kay beginners pa.
+- This made us realize why Docker is important. Mag study nmi ani next time.
+- Thank you sir!!!
 
 
 
