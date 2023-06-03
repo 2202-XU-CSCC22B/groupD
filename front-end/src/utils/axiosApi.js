@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getAllStaff = async () => {
   try {
-    const res = await axios.get(process.env.retrieve_staff_api, {
+    const res = await axios.get(process.env.retrieve_all_staff_api, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },

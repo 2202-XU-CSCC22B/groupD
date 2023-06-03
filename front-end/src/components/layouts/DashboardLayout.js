@@ -27,10 +27,10 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import EmailModal from "./dashboard/email-modal";
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
-import {getAllMembers} from "@modules/components/members/new/AllMemberTable";
 import {getAllStaff} from "@modules/components/staff/all-staff-table";
 const drawerWidth = 240;
 import { useRouter } from 'next/navigation';
+import {getAllMembers} from "@modules/utils/axiosApi";
 
 
 const openedMixin = (theme) => ({

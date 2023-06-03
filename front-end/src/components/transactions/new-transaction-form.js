@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import RecipientSelect from "../layouts/dashboard/recipient-select";
 import axios from "axios";
 import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
+import {getAllMembers} from "@modules/utils/axiosApi";
 
 const schema = z.object({
   date: z.coerce.date(),
@@ -34,23 +35,7 @@ const schema = z.object({
     .optional(),
 });
 
-const getAllMembers = async () => {
-  try {
-    const res = await axios.get(process.env.retrieve_members_api, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET",
-      },
-    });
 
-    return res;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
 
 const getAllStaffs = async () => {
   try {

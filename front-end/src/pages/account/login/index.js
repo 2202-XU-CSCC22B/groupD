@@ -5,8 +5,8 @@ import React, {useState} from "react";
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState(window.localStorage.getItem("username") === false ? '' : window.localStorage.getItem("username"));
-  const [password, setPassword] = useState(window.localStorage.getItem("password")=== false ? '' : window.localStorage.getItem("password"));
+  const [username, setUsername] = useState(typeof window === 'undefined' ? null : window.localStorage.getItem("username") === false ? '' : window.localStorage.getItem("username"));
+  const [password, setPassword] = useState(typeof window === 'undefined' ? null : window.localStorage.getItem("password")=== false ? '' : window.localStorage.getItem("password"));
   const [loading, setLoading] = useState(false); // State to track loading state
   const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
@@ -31,13 +31,19 @@ export default function LoginPage() {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
-        sessionStorage.setItem("token", token);
+        if(typeof window !== 'undefined') {
+          sessionStorage.setItem("token", token);
+        }
 
-        if(rememberMe) {
+
+        if(rememberMe && typeof window !== 'undefined') {
           localStorage.setItem("username", username);
           localStorage.setItem("password", password);
         } else {
-          sessionStorage.setItem("token", token);
+          if( typeof window !== 'undefined') {
+            sessionStorage.setItem("token", token);
+          }
+
         }
 
         setLoading(false)

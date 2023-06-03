@@ -97,67 +97,23 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
     setRow((prevRows) => prevRows.filter((row) => row.id !== id));
   };
 
-  const handleAccept = (params, e) => {
-    e.preventDefault();
-    const selectedObject = row.find((item) => item.id === params.id);
-    // handleRemoveRow(params.id);
-
-    fetch(
-      process.env.validate_unverified_api.replace(
-        "{email}",
-        selectedObject.email
-      ),
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS,GET,PUT",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          // Additional headers if required
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          setMessage(
-            selectedObject.firstName +
-              " " +
-              selectedObject.lastName +
-              " is now  a member"
-          );
-          setOpenSuccess(true);
-
-          // Request was successful
-          console.log("Data updated successfully!");
-        } else {
-          // Handle the error if the request was not successful
-          console.error("Error updating data:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        // Handle any network or fetch-related errors
-        console.error("Error updating data:", error);
-      });
-
-    // Handle button click event here
-    console.log("Button clicked:", params.row.id);
-  };
 
   const handleReject = (params, e) => {
     e.preventDefault();
-    const selectedObject = row.find((item) => item.id === params.id);
+    const selectedObject = params.row;
     handleRemoveRow(params.id);
     fetch(
       process.env.delete_member_api.replace(
         "{email}",
-        selectedObject.email.email
+          params.row.email
       ),
       {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          // Additional headers if required
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST",
         },
       }
     )

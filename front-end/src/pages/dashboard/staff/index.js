@@ -30,11 +30,13 @@ const StaffPage = () => {
           </button>
         </section>
         <AllStaffTable setSelectedStaff={setSelectedStaff} />
-        {/*<DataTable*/}
-        {/*data={selectedStaff?.transactions}*/}
-        {/*columns={columns}*/}
-        {/*title={"All Transactions"}*/}
-        {/*/>*/}
+
+        {selectedStaff !== null &&  <DataTable
+            data={selectedStaff?.transactions}
+            columns={columns}
+            title={"All Transactions"}
+        />}
+
 
         <ModalAddStaff isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>

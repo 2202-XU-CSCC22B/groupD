@@ -6,25 +6,9 @@ import { columns } from "@modules/pages/dashboard/transactions/columns";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Title from "@modules/components/dashboard/Title";
+import {getAllMembers} from "@modules/utils/axiosApi";
 
-export const getAllMembers = async () => {
-  try {
-    const res = axios.get(process.env.retrieve_members_api, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET",
-      },
-    });
 
-    return res;
-  } catch (error) {
-    console.log("Error here at getAllMember ");
-    error;
-    return error;
-  }
-};
 
 const MemberPage = () => {
   const [selectedMember, setSelectedMember] = useState(null);

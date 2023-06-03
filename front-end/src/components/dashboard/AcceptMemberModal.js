@@ -28,7 +28,6 @@ const AcceptMemberModal = (props) => {
     setLoading(true);
 
     // Handle payment acceptance logic here
-    alert(sessionStorage.getItem("token"));
     fetch(process.env.validate_unverified_api.replace("{email}", email), {
       method: "PUT",
       headers: {
@@ -48,7 +47,6 @@ const AcceptMemberModal = (props) => {
         if (response.ok) {
           updateParentState(props.email);
           // Request was successful
-          console.log("Data updated successfully!");
         } else {
           // Handle the error if the request was not successful
           console.error(
@@ -142,7 +140,7 @@ const AcceptMemberModal = (props) => {
           <Button variant="contained" onClick={handleAccept} disabled={loading}>
             {loading ? <CircularProgress size={24} /> : "Accept"}
           </Button>
-          <Button sx={{ ml: 2 }} onClick={handleClose}>
+          <Button sx={{ ml: 2 }} onClick={handleClose} variant={"outlined"}>
             Cancel
           </Button>
         </Box>

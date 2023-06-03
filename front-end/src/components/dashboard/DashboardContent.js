@@ -61,7 +61,7 @@ export default function DashboardContent() {
     });
 
   return (
-    <div className="max-w-7xl gap-8 grid-cols-1 grid md:grid-cols-12 pr-24">
+    <div className=" gap-8 grid-cols-1 grid md:grid-cols-12 pr-24">
       {/* Chart */}
       <div className={`${cardClassName} md:col-span-8`}>
         <MemberSummary data={summaryOfMembers?.data} />

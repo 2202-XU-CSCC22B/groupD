@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const DashboardPage = () => {
   return (
-    <div>
+    <div className={"max-w-fit"}>
       <Head>
         <title>Dashboard</title>
       </Head>

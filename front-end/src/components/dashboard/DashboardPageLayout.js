@@ -18,7 +18,10 @@ export default function DashboardPageLayout({children}){
                 p: '1rem',
             }}
         >
-            {children}
+            <div className={"w-fit mx-auto"}>
+                {children}
+            </div>
+
 
             <Copyright sx={{ pt: 4 }} />
         </Box>

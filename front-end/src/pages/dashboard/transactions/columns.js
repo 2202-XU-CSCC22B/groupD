@@ -188,3 +188,8 @@ export const columns = [
     },
   },
 ];
+
+
+export default function ColumnsPage() {
+    return null; // or any other placeholder component
+}
