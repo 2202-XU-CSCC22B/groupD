@@ -28,7 +28,11 @@ https://unscathedfitness.vercel.app/
 # Make sure to allow insecure Content on site settings 
 ![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/2fc5ae59-07ee-41f5-9ca1-41cc29ac8ecc)
 
-![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/bb27dd2e-8ab9-49f7-a315-dcf12445eae7)
+![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/1c8dd6f9-5695-44be-86c9-9d067012145c)
+
+### dashboard page
+![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/61e2ba62-3ed4-40c2-a5e3-ac2ad5b788d8)
+
 
 Unfortunately our API request does not have an SSL certificate yet.
 
