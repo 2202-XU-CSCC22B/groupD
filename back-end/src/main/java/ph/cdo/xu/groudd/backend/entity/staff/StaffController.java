@@ -65,6 +65,7 @@ public class StaffController {
 
         String randomPassword = passwordService.generatePassword(8);
         emailService.sendStaffRegistrationEmail(staffDTO.getEmail(), staffDTO.getFirstName(), randomPassword);
+
         return ResponseEntity.ok(objectMap);
     }
 
