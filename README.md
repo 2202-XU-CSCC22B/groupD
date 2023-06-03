@@ -16,3 +16,12 @@ We chose NextJS as our front-end framework because of its numerous advantages. N
 
 ### Why Spring Boot?
 For the back-end development of our Gym Management System, we opted for Spring Boot. Spring Boot is a robust Java-based framework that simplifies the development of enterprise-grade applications. It provides essential features such as dependency injection, auto-configuration, and a wide range of libraries and modules, making it highly efficient and productive for building RESTful APIs. Spring Boot's emphasis on convention over configuration enables rapid development, and its strong ecosystem and community support ensure the availability of extensive resources and documentation. With Spring Boot, we can create a secure, scalable, and maintainable back-end system for our Gym Management System.
+
+
+#### Open here
+https://unscathedfitness.vercel.app/
+
+### Use to log in :
+username : joshuagarrysalcedo@gmail.com
+password : password
+
