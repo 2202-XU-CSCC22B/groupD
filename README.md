@@ -22,6 +22,18 @@ For the back-end development of our Gym Management System, we opted for Spring B
 https://unscathedfitness.vercel.app/
 
 ### Use to log in :
-username : joshuagarrysalcedo@gmail.com
-password : password
+- username : joshuagarrysalcedo@gmail.com
+- password : password
+
+# Make sure to allow insecure Content on site settings 
+![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/2fc5ae59-07ee-41f5-9ca1-41cc29ac8ecc)
+
+![image](https://github.com/2202-XU-CSCC22B/groupD/assets/129421068/bb27dd2e-8ab9-49f7-a315-dcf12445eae7)
+
+Unfortunately our API request does not have an SSL certificate yet.
+
+###Our Public API deployed in AWS using EC2 Instance
+[Test API](http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/test)
+
+
 
