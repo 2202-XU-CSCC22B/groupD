@@ -5,44 +5,35 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
 import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
-import {QueryClient, useMutation} from "@tanstack/react-query";
+import { QueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import z from "zod";
 
-
-
-
-
-export const updateMember = async (data) =>{
-  try{
-    const res = await axios.put(process.env.update_member_api.replace("{id}", data.id),
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "PUT",
-          },
-        });
+export const updateMember = async (data) => {
+  try {
+    const res = await axios.put(
+      process.env.update_member_api.replace("{id}", data.id),
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "PUT",
+        },
+      }
+    );
     return res;
-  }catch (error){
-    console.log("error here at UPDATE MEMBER")
-    console.log(error)
+  } catch (error) {
+    console.log(error);
     return error;
   }
+};
 
-
-}
-
-const MoreInformation = ({ data , refetchTransactions}) => {
+const MoreInformation = ({ data, refetchTransactions }) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
   const queryClient = new QueryClient();
-
 
   const formattedData = {
     id: data?.id,
@@ -56,24 +47,16 @@ const MoreInformation = ({ data , refetchTransactions}) => {
     height: formData?.height,
     occupation: formData?.occupation,
     birthday: formData?.birthday,
-
   };
-
-
-
 
   const editMembersMutation = useMutation({
     mutationFn: updateMember,
     onSuccess: () => {
       setLoading(false);
       queryClient.invalidateQueries({ queryKey: ["all_members"] });
-      refetchTransactions()
-
-
-
-
+      refetchTransactions();
     },
-  },);
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -94,23 +77,16 @@ const MoreInformation = ({ data , refetchTransactions}) => {
     setEditable(!editable);
   };
 
-
-
-  const onSubmit = (e) =>{
+  const onSubmit = (e) => {
     e.preventDefault();
-      setLoading(true)
+    setLoading(true);
 
-
-    setTimeout(()=>{
+    setTimeout(() => {
       editMembersMutation.mutate(formattedData);
     }, 1000);
-
-  }
-
+  };
 
   return (
-
-
     <Grid
       container
       spacing={1}
@@ -124,28 +100,25 @@ const MoreInformation = ({ data , refetchTransactions}) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id={"firstName"}
-            label="First Name"
-            name="firstName"
-            value={formData?.firstName}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
+          id={"firstName"}
+          label="First Name"
+          name="firstName"
+          value={formData?.firstName}
+          onChange={handleInputChange}
+          disabled={!editable}
+          fullWidth
         />
-
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            label="Last Name"
-            name="lastName"
-            id={"lastName"}
-            value={formData?.lastName}
-            disabled={!editable}
-            fullWidth
-            onChange={handleInputChange}
-
+          label="Last Name"
+          name="lastName"
+          id={"lastName"}
+          value={formData?.lastName}
+          disabled={!editable}
+          fullWidth
+          onChange={handleInputChange}
         />
-
       </Grid>
       <Grid item xs={12}>
         <TextField
@@ -156,13 +129,11 @@ const MoreInformation = ({ data , refetchTransactions}) => {
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
-
         />
-
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id={"address"}
+          id={"address"}
           label="Address"
           name="address"
           value={formData?.address}
@@ -170,11 +141,10 @@ const MoreInformation = ({ data , refetchTransactions}) => {
           disabled={!editable}
           fullWidth
         />
-
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id={"weight"}
+          id={"weight"}
           label="Weight"
           name="weight"
           value={formData?.weight}
@@ -182,24 +152,21 @@ const MoreInformation = ({ data , refetchTransactions}) => {
           disabled={!editable}
           fullWidth
         />
-
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id={"height"}
+          id={"height"}
           label="Height"
           name="height"
           value={formData?.height}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
-
         />
-
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id={"phone"}
+          id={"phone"}
           label="Contact Number"
           name="phone"
           value={formData?.phone}
@@ -210,16 +177,14 @@ const MoreInformation = ({ data , refetchTransactions}) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-            id="occupation"
+          id="occupation"
           label="Occupation"
           name="occupation"
           value={formData?.occupation}
           onChange={handleInputChange}
           disabled={!editable}
           fullWidth
-
         />
-
       </Grid>
       <Grid item xs={12} sm={6} className="">
         <div
@@ -236,7 +201,7 @@ const MoreInformation = ({ data , refetchTransactions}) => {
             Birthday
           </label>
           <DatePicker
-              id="birthday"
+            id="birthday"
             label="Birthday"
             name="birthday"
             value={formData?.birthday}
@@ -246,13 +211,11 @@ const MoreInformation = ({ data , refetchTransactions}) => {
             className={"text-gray-400"}
             fullWidth
           />
-
         </div>
       </Grid>
 
-
       <Grid className=" w-full space-y-4">
-        <MyButton disabled={!editable} onClick={(e)=> onSubmit(e)}>
+        <MyButton disabled={!editable} onClick={(e) => onSubmit(e)}>
           Save Changes
         </MyButton>
         {isLoading && (
@@ -286,7 +249,6 @@ const MoreInformation = ({ data , refetchTransactions}) => {
         />
       </Grid>
     </Grid>
-
   );
 };
 

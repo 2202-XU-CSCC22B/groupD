@@ -1,85 +1,18 @@
 import { memberSummary } from "@modules/utils/config";
 import { useEffect, useState } from "react";
 
-const fakeData = [
-  {
-    name: "Active Members",
-    icon: {
-      type: {
-        type: {},
-        compare: null,
-      },
-      key: null,
-      ref: null,
-      props: {
-        sx: {
-          fontSize: "50px",
-        },
-      },
-      _owner: null,
-      _store: {},
-    },
-    color: "#FFE2E6",
-    tooltip: "Number of all registered users",
-    value: 51,
-  },
-  {
-    name: "Monthly Members",
-    icon: {
-      type: {
-        type: {},
-        compare: null,
-      },
-      key: null,
-      ref: null,
-      props: {
-        sx: {
-          fontSize: "50px",
-        },
-      },
-      _owner: null,
-      _store: {},
-    },
-    color: "#DCFCE7",
-    tooltip: "Number of all active monthly users",
-    value: 12,
-  },
-  {
-    name: "Registered Students",
-    icon: {
-      type: {
-        type: {},
-        compare: null,
-      },
-      key: null,
-      ref: null,
-      props: {
-        sx: {
-          fontSize: "50px",
-        },
-      },
-      _owner: null,
-      _store: {},
-    },
-    color: "#FFF4DE",
-    tooltip: "Number of total enrolled monthly students",
-    value: 18,
-  },
-];
-
 export default function MemberSummary({ className, ...props }) {
   const [summaryData, setSummaryData] = useState([]);
 
   useEffect(() => {
     fetch(process.env.count_members_api, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Methods':'GET'
-        // Additional headers if required
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+      },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -102,7 +35,6 @@ export default function MemberSummary({ className, ...props }) {
       });
   }, []);
 
-  console.log(summaryData);
   return (
     <div className={`${className} space-y-2`} {...props}>
       <h1 className=" text-blue-500 text-xl font-medium">Summary</h1>

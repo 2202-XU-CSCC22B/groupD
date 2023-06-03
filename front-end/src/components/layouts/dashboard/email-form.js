@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,11 +6,15 @@ import { z } from "zod";
 import Select from "react-select";
 import "react-quill/dist/quill.snow.css";
 import RecipientSelect from "./recipient-select";
-import axios from "axios";
-import {QueryClient, QueryClientProvider, useQuery} from "@tanstack/react-query";
+import {sendEmail} from "@modules/utils/axiosApi";
+import {useMutation} from "@tanstack/react-query";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-
+const formSchema = z.object({
+  recipients: z.array(z.string()).nonempty("Choose recipient"),
+  subject: z.string().nonempty("Enter subject"),
+  message: z.string().nonempty("Enter message"),
+});
 
 const staffs = [
   { value: "a@gmail.com", label: "staff1" },
@@ -24,19 +28,7 @@ const members = [
   { value: "c@gmail.com", label: "member3" },
 ];
 
-const formSchema = z.object({
-  recipients: z.array(z.string()).nonempty("Choose recipient"),
-  subject: z.string().nonempty("Enter subject"),
-  message: z.string().nonempty("Enter message"),
-});
-
-
-
-export default function EmailForm({allMembers, allStaff}) {
-  const [quantity, setQuantity] = useState(0);
-
-
-
+export default function EmailForm({ allMembers, allStaff }) {
 
 
   const {
@@ -54,11 +46,16 @@ export default function EmailForm({allMembers, allStaff}) {
   const options = [
     { value: "all", label: "Select All" }, // Option to select all recipients
     ...(Array.isArray(selectedOption === "staffs" ? allStaff : allMembers)
-        ? (selectedOption === "staffs" ? allStaff  : allMembers )
-        : []),
+      ? selectedOption === "staffs"
+        ? allStaff
+        : allMembers
+      : []),
   ];
   const [selectValue, setSelectValue] = useState([]);
   const onSubmit = (data) => {
+
+    sendEmail(data).then(r => alert("Email is sent"));
+
     console.log(data);
   };
 
@@ -68,10 +65,7 @@ export default function EmailForm({allMembers, allStaff}) {
     setValue("recipients", []);
   };
 
-  console.log(errors);
-
   return (
-
     <form onSubmit={handleSubmit(onSubmit)} className="p-4 max-w-lg space-y-6">
       {/* Recipients */}
       <div className=" space-y-8">
@@ -99,6 +93,13 @@ export default function EmailForm({allMembers, allStaff}) {
             defaultValue={[]}
             render={({ field }) => (
               <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    maxHeight: "150px",
+                    overflowY: "auto",
+                  }),
+                }}
                 {...field}
                 {...register("recipients")}
                 autoFocus={false}
@@ -181,6 +182,5 @@ export default function EmailForm({allMembers, allStaff}) {
         className=" w-full py-2 bg-blue-700 text-white cusror-pointer hover:scale-95 hover:bg-blue-600 transition-all duration-300 ease-in-out"
       />
     </form>
-
   );
 }

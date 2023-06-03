@@ -1,6 +1,6 @@
 import Head from "next/head";
 import ModalTransaction from "@modules/components/transactions/modal-transaction";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DataTable from "@modules/components/ui/data-table";
 import { columns } from "./columns";
 import { MdOutlinePayments } from "react-icons/md";
@@ -25,19 +25,12 @@ const getAllTransactions = async () => {
   }
 };
 
-
-
 const TransactionPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data, refetch } = useQuery({
     queryKey: ["all_transactions"],
     queryFn: getAllTransactions,
   });
-
-
-  console.log(data?.data.transactions);
-
-
 
   return (
     <div>
@@ -62,11 +55,21 @@ const TransactionPage = () => {
         </section>
 
         {/* table */}
-        {data && <DataTable columns={columns} data={data?.data.transactions} title={"All Transactions"}/>}
+        {data && (
+          <DataTable
+            columns={columns}
+            data={data?.data.transactions}
+            title={"All Transactions"}
+          />
+        )}
       </div>
 
       {/* add 'add transaction' logic inside */}
-      <ModalTransaction isOpen={isOpen} setIsOpen={setIsOpen} refetchTransactions={refetch} />
+      <ModalTransaction
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        refetchTransactions={refetch}
+      />
     </div>
   );
 };

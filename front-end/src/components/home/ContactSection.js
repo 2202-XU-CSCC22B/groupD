@@ -28,6 +28,7 @@ const ContactSection = ({ ...props }) => {
       <MyContainer className="grid place-items-center h-[calc(100vh-74px)]">
         <div
           className={`${styles.carouselContainer} flex justify-center items-center`}
+          style={{ maxWidth: "100%", width: "100%" }}
         >
           <Carousel
             className={styles.gymImages}
@@ -41,6 +42,7 @@ const ContactSection = ({ ...props }) => {
             stopOnHover={true}
             swipeScrollTolerance={10}
             dynamicHeight={false}
+            style={{ maxWidth: "100%", width: "100%" }}
           >
             <div>
               <Image src={gym1} />
@@ -86,7 +88,8 @@ const ContactSection = ({ ...props }) => {
           </div>
         </div>
       </MyContainer>
-    </Section>
+      </Section>
+
   );
 };
 

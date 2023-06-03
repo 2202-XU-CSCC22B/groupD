@@ -1,12 +1,15 @@
-import {CircularProgress, TextField} from "@mui/material";
+import {CircularProgress, TextField, Checkbox, FormControlLabel} from "@mui/material";
 import Link from "next/link";
 import MyContainer from "@modules/components/ui/MyContainer";
 import React, {useState} from "react";
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(window.localStorage.getItem("username") === false ? '' : window.localStorage.getItem("username"));
+  const [password, setPassword] = useState(window.localStorage.getItem("password")=== false ? '' : window.localStorage.getItem("password"));
   const [loading, setLoading] = useState(false); // State to track loading state
+  const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
 
   async function handleAuthenticate(e) {
     setLoading(true);
@@ -28,10 +31,17 @@ export default function LoginPage() {
       if (response.ok) {
         const data = await response.json();
         const token = data.token;
-        alert(token)
         sessionStorage.setItem("token", token);
+
+        if(rememberMe) {
+          localStorage.setItem("username", username);
+          localStorage.setItem("password", password);
+        } else {
+          sessionStorage.setItem("token", token);
+        }
+
         setLoading(false)
-        window.location="/dashboard"
+       router.push("/dashboard");
         // Do something with the token
       } else {
         // Handle the error case
@@ -55,7 +65,7 @@ export default function LoginPage() {
         <div className="grid h-[calc(100vh-87px)] place-items-center calc w-full px-4 lg:px-0">
           <div className="flex flex-col gap-2 w-full max-w-[450px] min-[520px]:px-8 min-[520px]:py-12 sm:w-[450px] border border-gray-300 shadow px-4 py-8 bg-white rounded-lg">
             <h1 className="text-3xl font-medium pb-5 text-left w-full">
-              Login
+              Admin Login
             </h1>
 
             <TextField
@@ -90,12 +100,21 @@ export default function LoginPage() {
 
                 </button>
               {/*</Link>*/}
-              <small className="text-sm text-center w-fit mx-auto">
-                Forgot your password?{" "}
-                <a href="/account/forgot_password" className="text-blue-500 underline">
-                  Click here.
-                </a>
-              </small>
+              {/*<small className="text-sm text-center w-fit mx-auto">*/}
+              {/*  Forgot your password?{" "}*/}
+              {/*  <a href="/account/forgot_password" className="text-blue-500 underline">*/}
+              {/*    Click here.*/}
+              {/*  </a>*/}
+              {/*</small>*/}
+              <FormControlLabel
+                  control={
+                    <Checkbox
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                  }
+                  label="Remember me"
+              />
             </div>
           </div>
         </div>

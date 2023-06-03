@@ -111,9 +111,9 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          'Access-Control-Allow-Origin':'*',
-          'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS,GET,PUT',
-          'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS,GET,PUT",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           // Additional headers if required
         },
       }
@@ -190,14 +190,14 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(process.env.retrieve_unverified_api, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods':'GET'
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET",
             // Additional headers if required
-          }
+          },
         }); // Replace 'API_ENDPOINT' with the actual endpoint URL
         const jsonData = await response.json();
         setRow(jsonData);
@@ -245,6 +245,12 @@ export const PendingRegistrationContent = ({ className, ...props }) => {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
+        sortModel={[
+        {
+          field: 'id',
+          sort: 'desc',
+        },
+      ]}
           pageSizeOptions={[5]}
         />
         <Snackbar

@@ -21,6 +21,16 @@
   .new-transaction-group-input label {
     @apply text-sm uppercase tracking-wide font-bold text-gray-500;
   }
+
+  /* new staff form */
+  .new-staff-form input,
+  select {
+    @apply border px-2 py-1 w-full;
+  }
+
+  .new-staff-form label {
+    @apply text-sm uppercase tracking-wide font-bold text-gray-500;
+  }
 }
 
 .css-13cymwt-control {

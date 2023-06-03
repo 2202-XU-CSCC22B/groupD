@@ -1,22 +1,21 @@
 import { TbArrowsDownUp } from "react-icons/tb";
 var otherColumnIsSorting = false;
 export const columns = [
-
   {
     accessorKey: "id",
     header: ({ column }) => {
-        if(!column.getIsSorted() && otherColumnIsSorting === false){
-            column.toggleSorting("desc");
-        }
+      if (!column.getIsSorted() && otherColumnIsSorting === false) {
+        column.toggleSorting("desc");
+      }
       return (
         <div className="flex items-center gap-1">
           <p>ID</p>
           <TbArrowsDownUp
             className="cursor-pointer"
-            onClick={() =>{
-                otherColumnIsSorting = !otherColumnIsSorting;
-                column.toggleSorting(column.getIsSorted() === "asc")
-            } }
+            onClick={() => {
+              otherColumnIsSorting = !otherColumnIsSorting;
+              column.toggleSorting(column.getIsSorted() === "asc");
+            }}
           />
         </div>
       );
@@ -32,8 +31,8 @@ export const columns = [
           <TbArrowsDownUp
             className="cursor-pointer"
             onClick={() => {
-                otherColumnIsSorting = !otherColumnIsSorting;
-                column.toggleSorting(column.getIsSorted() === "asc")
+              otherColumnIsSorting = !otherColumnIsSorting;
+              column.toggleSorting(column.getIsSorted() === "asc");
             }}
           />
         </div>
@@ -50,8 +49,9 @@ export const columns = [
           <TbArrowsDownUp
             className=" cursor-pointer"
             onClick={() => {
-                otherColumnIsSorting = !otherColumnIsSorting;
-                column.toggleSorting(column.getIsSorted() === "asc")}}
+              otherColumnIsSorting = !otherColumnIsSorting;
+              column.toggleSorting(column.getIsSorted() === "asc");
+            }}
           />
         </div>
       );
@@ -72,7 +72,7 @@ export const columns = [
               row.original.transactionType === "Muay Thai Class" ||
               row.original.transactionType === "Membership Fee" ||
               row.original.transactionType === "Walk-in Session" ||
-              row.original.transactionType === "Cash-in"    
+              row.original.transactionType === "Cash-in"
                 ? " bg-emerald-100 text-emerald-700"
                 : " bg-rose-100 text-rose-700"
             }`}
@@ -97,19 +97,17 @@ export const columns = [
             >
               <option hidden></option>
               <option value="">All</option>
-                <option value="Salary">Salary</option>
-                <option value="Cash Out">Cash Out</option>
-                <option value="Trainer Fee">Trainer Fee</option>
-                <option value="Muay Thai Class">Muay Thai Class</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Maintenance">Maintenance</option>
-                <option value="Membership Fee">Membership Fee</option>
-                <option value="Walk-in Session">Walk-in Session</option>
-                <option value="Monthly Fee">Monthly Fee</option>
-                <option value="Cash-in">Cash-in</option>
-                <option value="Missing Money">Missing Money</option>
-
-
+              <option value="Salary">Salary</option>
+              <option value="Cash Out">Cash Out</option>
+              <option value="Trainer Fee">Trainer Fee</option>
+              <option value="Muay Thai Class">Muay Thai Class</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Membership Fee">Membership Fee</option>
+              <option value="Walk-in Session">Walk-in Session</option>
+              <option value="Monthly Fee">Monthly Fee</option>
+              <option value="Cash-in">Cash-in</option>
+              <option value="Missing Money">Missing Money</option>
             </select>
           </div>
         </div>
@@ -153,8 +151,9 @@ export const columns = [
           <TbArrowsDownUp
             className=" cursor-pointer"
             onClick={() => {
-                otherColumnIsSorting = !otherColumnIsSorting;
-                column.toggleSorting(column.getIsSorted() === "asc")}}
+              otherColumnIsSorting = !otherColumnIsSorting;
+              column.toggleSorting(column.getIsSorted() === "asc");
+            }}
           />
         </div>
       );
@@ -169,8 +168,9 @@ export const columns = [
           <TbArrowsDownUp
             className=" cursor-pointer"
             onClick={() => {
-                otherColumnIsSorting = !otherColumnIsSorting;
-                column.toggleSorting(column.getIsSorted() === "asc")}}
+              otherColumnIsSorting = !otherColumnIsSorting;
+              column.toggleSorting(column.getIsSorted() === "asc");
+            }}
           />
         </div>
       );

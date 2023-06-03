@@ -1,45 +1,34 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {
-  TextField,
-  Button,
-  FormControlLabel,
-  Switch,
-  Grid,
-  Accordion, InputLabel, FormControl, MenuItem,
-} from "@mui/material";
+import { TextField, FormControlLabel, Switch, Grid } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MyButton from "@modules/components/ui/MyButton";
-import MyCustomAccordion from "@modules/components/members/new/MyCustomAccordion";
-import Select from "react-select";
-import {QueryClient, useMutation} from "@tanstack/react-query";
+import { QueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-
-export const updateStaff = async (data) =>{
-  try{
-    const res = await axios.put(process.env.update_staff_api.replace("{id}", data.id),
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "PUT",
-          },
-        });
+export const updateStaff = async (data) => {
+  try {
+    const res = await axios.put(
+      process.env.update_staff_api.replace("{id}", data.id),
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "PUT",
+        },
+      }
+    );
     return res;
-  }catch (error){
-    console.log("error here at UPDATE Staff")
-    console.log(error)
+  } catch (error) {
+    console.log(error);
     return error;
   }
+};
 
-
-}
-
-const MoreStaffInfo = ({ data , refetchTransaction}) => {
+const MoreStaffInfo = ({ data, refetchTransaction }) => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState(data);
   const [isLoading, setLoading] = useState(false);
@@ -56,7 +45,6 @@ const MoreStaffInfo = ({ data , refetchTransaction}) => {
     height: formData?.height,
     occupation: formData?.occupation,
     birthday: formData?.birthday,
-
   };
 
   const handleInputChange = (event) => {
@@ -82,20 +70,19 @@ const MoreStaffInfo = ({ data , refetchTransaction}) => {
     e.preventDefault();
     setLoading(true); // Start the loading animation
 
-       setTimeout(()=>{
-         editStaffMutation.mutate(formattedData);
-       },1000);
-
+    setTimeout(() => {
+      editStaffMutation.mutate(formattedData);
+    }, 1000);
   };
 
   const editStaffMutation = useMutation({
     mutationFn: updateStaff,
     onSuccess: () => {
-      setLoading(false)
+      setLoading(false);
       queryClient.invalidateQueries({ queryKey: ["all_staff"] });
       refetchTransaction();
-    }
-  })
+    },
+  });
   return (
     <Grid
       container
@@ -245,7 +232,7 @@ MoreStaffInfo.propTypes = {
     birthday: PropTypes.instanceOf(Date),
     status: PropTypes.string,
     dateStarted: PropTypes.instanceOf(Date),
-    gender: PropTypes.string
+    gender: PropTypes.string,
   }).isRequired,
 };
 

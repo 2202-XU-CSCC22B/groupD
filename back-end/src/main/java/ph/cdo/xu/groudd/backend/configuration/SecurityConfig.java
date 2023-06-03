@@ -25,7 +25,7 @@ public class SecurityConfig {
             "/api/v1/auth/test"
     };
     private final String[] superAdminEndPoint = {
-            "/api/v1/staff/new"
+
     };
 
     @Bean
@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(publicEndPoint) // white listing
                 .permitAll()
-                .requestMatchers(superAdminEndPoint).hasRole("SuperAdmin")
+//                .requestMatchers(superAdminEndPoint).hasRole("SuperAdmin")
                 .anyRequest()
                 .authenticated()
                 .and()

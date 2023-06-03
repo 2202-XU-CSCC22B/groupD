@@ -5,32 +5,33 @@ module.exports = {
     duplicateEmailErrorMessage: "already exists!",
 
 
-    //members
-    create_members_api: "http://localhost:8080/api/v1/member/new",
-    retrieve_members_api : "http://localhost:8080/api/v1/member/all",
-    retrieve_unverified_api: "http://localhost:8080/api/v1/member/unverified",
-    update_member_api: "http://localhost:8080/api/v1/member/update/{id}",
-    validate_unverified_api: "http://localhost:8080/api/v1/member/validate/{email}",
-    delete_member_api: "http://localhost:8080/api/v1/member/delete/{email}",
-    count_members_api: "http://localhost:8080/api/v1/member/count",
-    retrieve_member_transaction: "http://localhost:8080/api/v1/{id}/transaction",
-
-
-    //Staff
-    create_staff_api: "http://localhost:8080/api/v1/staff/new",
-    update_staff_api: "http://localhost:8080/api/v1/staff/update/{id}",
-    retrieve_all_staff_api: "http://localhost:8080/api/v1/staff/all",
-    retrieve_staff_api: "http://localhost:8080/api/v1/staff/{id}",
-    retrieve_staff_transaction: "http://localhost:8080/staff/{id}/transactions",
-
-    //Transaction
-    retrieve_all_transactions_api: "http://localhost:8080/api/v1/transaction/all",
-    retrieve_all_transactions_byMonth: "http://localhost:8080/api/v1/transaction/{year}/{month}",
-    post_new_transaction_api : "http://localhost:8080/api/v1/transaction/new",
-
-
-    //authentication
-    user_authentication_api : "http://localhost:8080/api/v1/auth/authenticate"
+    // //members
+    // create_members_api: "http://localhost:8080/api/v1/member/new",
+    // retrieve_members_api : "http://localhost:8080/api/v1/member/all",
+    // retrieve_unverified_api: "http://localhost:8080/api/v1/member/unverified",
+    // update_member_api: "http://localhost:8080/api/v1/member/update/{id}",
+    // validate_unverified_api: "http://localhost:8080/api/v1/member/validate/{email}",
+    // delete_member_api: "http://localhost:8080/api/v1/member/delete/{email}",
+    // count_members_api: "http://localhost:8080/api/v1/member/count",
+    // retrieve_member_transaction: "http://localhost:8080/api/v1/{id}/transaction",
+    //
+    //
+    // //Staff
+    // create_staff_api: "http://localhost:8080/api/v1/staff/new",
+    // update_staff_api: "http://localhost:8080/api/v1/staff/update/{id}",
+    // retrieve_all_staff_api: "http://localhost:8080/api/v1/staff/all",
+    // retrieve_staff_api: "http://localhost:8080/api/v1/staff/{id}",
+    // retrieve_staff_transaction: "http://localhost:8080/staff/{id}/transactions",
+    // send_announcement_email_api: "http://localhost:8080/announcement/new",
+    //
+    // //Transaction
+    // retrieve_all_transactions_api: "http://localhost:8080/api/v1/transaction/all",
+    // retrieve_all_transactions_byMonth: "http://localhost:8080/api/v1/transaction/{year}/{month}",
+    // post_new_transaction_api : "http://localhost:8080/api/v1/transaction/new",
+    //
+    //
+    // //authentication
+    // user_authentication_api : "http://localhost:8080/api/v1/auth/authenticate"
 
 
     // create_members_api:
@@ -56,5 +57,35 @@ module.exports = {
     //   "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/all",
     // retrieve_staff_api:
     //   "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/{id}",
+
+
+
+    //members
+    create_members_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/new",
+    retrieve_members_api : "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/all",
+    retrieve_unverified_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/unverified",
+    update_member_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/update/{id}",
+    validate_unverified_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/validate/{email}",
+    delete_member_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/delete/{email}",
+    count_members_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/count",
+    retrieve_member_transaction: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/{id}/transaction",
+
+
+    //Staff
+    create_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/new",
+    update_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/update/{id}",
+    retrieve_all_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/all",
+    retrieve_staff_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/staff/{id}",
+    retrieve_staff_transaction: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/staff/{id}/transactions",
+    send_announcement_email_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/announcement/new",
+
+    //Transaction
+    retrieve_all_transactions_api: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/transaction/all",
+    retrieve_all_transactions_byMonth: "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/transaction/{year}/{month}",
+    post_new_transaction_api : "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/transaction/new",
+
+
+    //authentication
+    user_authentication_api : "http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/auth/authenticate"
   },
 };
