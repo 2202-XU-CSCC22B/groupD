@@ -36,8 +36,21 @@ https://unscathedfitness.vercel.app/
 
 Unfortunately our API request does not have an SSL certificate yet.
 
-###Our Public API deployed in AWS using EC2 Instance
-[Test API](http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/test)
+### Public API
+[PUBLIC CONNECTION](http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/test)
+
+
+### SECURED CONNECTION
+- Our Web Security is powered by using Spring Security Framework. 
+- JWT Authentication is used. 
+[VIEW ALL MEMBERS](http://ec2-54-253-215-31.ap-southeast-2.compute.amazonaws.com:8080/api/v1/member/all) 
+
+### Disclaimer
+- Our JWT Token was stored via Session Storage. We are completely aware that this is a bad practice as this is vulnerable to attacks. 
+- We can configure this by storing the Token Via HTTPS COOKIE-Only header. 
+- Honestly , nalimtan lang gyud namu ug butang sir. Sorry ✌
+
+
 
 
 
